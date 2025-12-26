@@ -1,0 +1,719 @@
+/* Activity Page Styles */
+.activity-page {
+  min-height: 100vh;
+  padding: 2rem 0 6rem;
+  
+  position: relative;
+  overflow-x: hidden;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Page Header */
+.page-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+  z-index: 2;
+}
+
+.page-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #2d3748;
+  margin-bottom: 1rem;
+  background: linear-gradient(90deg, #4f46e5, #7c3aed, #a855f7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.page-subtitle {
+  font-size: 1.25rem;
+  color: #4a5568;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Interactive Animation Section */
+.interactive-section {
+  background: white;
+  border-radius: 24px;
+  padding: 2rem 2rem;
+  margin: 2rem 0 0.5rem 0; /* Reduced top margin and bottom margin */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.interactive-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+}
+
+.animation-header {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.animation-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+.animation-subtitle {
+  font-size: 1.1rem;
+  color: #4a5568;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.animation-canvas {
+  position: relative;
+  height: 400px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50px / 25px;
+  margin: 2rem 0;
+  overflow: hidden;
+  border: 30px dashed rgba(0, 0, 0, 0.1);
+}
+
+.animation-canvas:active {
+  cursor: grabbing;
+}
+
+.floating-shape {
+  position: absolute;
+  opacity: 0.9;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  will-change: transform;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.interactive-content {
+  text-align: center;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  border-radius: 25px / 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  max-width: 80%;
+  backdrop-filter: blur(10px);
+}
+
+.interactive-content h3 {
+  font-size: 1.8rem;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, #4f46e5, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.interactive-content p {
+  color: #4a5568;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* Activities Container */
+.activities-container {
+  max-width: 1000px;
+  margin: 6rem auto 0;
+  position: relative;
+  padding: 0 2rem;
+  z-index: 2;
+}
+
+/* Activity Card */
+.activity-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0;
+  padding: 1.25rem;
+  border-radius: 120px / 60px;
+  background: linear-gradient(135deg, var(--card-color), color-mix(in srgb, var(--card-color) 80%, #fff));
+  box-shadow: 0 6px 20px color-mix(in srgb, var(--card-color) 25%, transparent);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 1;
+  max-width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  border: 2px solid transparent;
+  transform: translateY(0);
+  box-sizing: border-box;
+}
+
+.activity-card:hover {
+  border-color: color-mix(in srgb, var(--card-color) 90%, #000);
+  box-shadow: 0 8px 25px color-mix(in srgb, var(--card-color) 50%, transparent);
+  transform: translateY(-3px);
+}
+
+.activity-card.left {
+  flex-direction: row;
+  margin-left: 0;
+  text-align: left;
+}
+
+.activity-card.right {
+  flex-direction: row-reverse;
+  margin-right: 0;
+  text-align: right;
+}
+
+.activity-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+  opacity: 0.5;
+  z-index: -1;
+  transition: all 0.6s ease;
+  transform: scale(0);
+}
+
+.activity-card:hover::before {
+  transform: scale(1);
+  opacity: 0.5;
+}
+
+.card-icon {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  color: white;
+  margin: 0 1.25rem;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: rotate(-5deg);
+}
+
+.activity-card:hover .card-icon {
+  transform: scale(1.1) rotate(0);
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.card-content {
+  flex: 1;
+  padding: 0 1rem;
+}
+
+.card-content h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 0.4rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.3px;
+  line-height: 1.3;
+}
+
+.card-content p {
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 0.8rem;
+  line-height: 1.5;
+  font-size: 0.95rem;
+  font-weight: 400;
+  max-width: 95%;
+}
+
+.duration {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.3rem 1rem;
+  border-radius: 30px / 15px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: white;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.duration:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.play-button {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+  margin: 0 0.4rem 0 0.8rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: rotate(0);
+  position: relative;
+  overflow: hidden;
+  font-size: 0.9rem;
+}
+
+.play-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(-100%) skewX(-15deg);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.play-button:hover::before {
+  transform: translateX(100%) skewX(-15deg);
+}
+
+.activity-card:hover .play-button {
+  transform: scale(1.1) rotate(90deg);
+  background: rgba(255, 255, 255, 0.3);
+  color: white;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Zigzag Connector */
+.connector {
+  position: absolute;
+  width: 100%;
+  height: 100px;
+  left: 0;
+  bottom: -100px;
+  z-index: -1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+
+.activity-card:hover + .connector {
+  opacity: 0.7;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .activity-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.25rem 0.9rem;
+    max-width: 92%;
+    margin: 1.25rem auto;
+  }
+  
+  .card-icon {
+    margin: 0 0 0.8rem 0;
+    width: 54px;
+    height: 54px;
+    font-size: 1.4rem;
+  }
+  
+  .card-content p {
+    max-width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  .play-button {
+    margin: 1rem auto 0;
+  }
+  
+  .activity-card.left,
+  .activity-card.right {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.connector svg {
+  width: 200px;
+  height: 100%;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+  backdrop-filter: blur(5px);
+  opacity: 0;
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  background: white;
+  border-radius: 24px;
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  padding: 3rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transform: scale(0.95);
+  opacity: 0;
+  animation: modalAppear 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+}
+
+@keyframes modalAppear {
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.close-button {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f8fafc;
+  border: none;
+  font-size: 1.25rem;
+  color: #64748b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.close-button:hover {
+  background: #f1f5f9;
+  color: #475569;
+  transform: rotate(90deg);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+  position: relative;
+  padding-right: 3rem;
+}
+
+.modal-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 45px / 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  color: white;
+  margin-right: 1.5rem;
+  flex-shrink: 0;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.modal-header h2 {
+  font-size: 2rem;
+  color: #1e293b;
+  margin: 0;
+  flex: 1;
+}
+
+.duration-tag {
+  background: rgba(0, 0, 0, 0.05);
+  padding: 0.35rem 1rem;
+  border-radius: 30px / 15px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #475569;
+  margin-left: 1.5rem;
+}
+
+.modal-body {
+  margin: 2rem 0;
+}
+
+.video-container {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  background: #000;
+}
+
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+  overflow: hidden;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.play-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+  opacity: 0.8;
+}
+
+.play-overlay:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.ingredients-section h3 {
+  font-size: 1.5rem;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.ingredients-section h3::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: var(--card-color);
+  border-radius: 2px;
+}
+
+.ingredients-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.ingredient-item {
+  background: #f8fafc;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  color: #334155;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: 1px solid #e2e8f0;
+  text-align: center;
+}
+
+.ingredient-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  border-color: var(--card-color);
+  color: var(--card-color);
+}
+
+.start-activity-button {
+  display: block;
+  width: 100%;
+  padding: 1.1rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+  background: var(--card-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px var(--card-bg);
+}
+
+.start-activity-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px var(--card-bg);
+}
+
+.start-activity-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px var(--card-bg);
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .activity-card {
+    max-width: 90%;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    flex-direction: column !important;
+    text-align: center !important;
+    padding: 2rem 1.5rem;
+  }
+  
+  .card-icon {
+    margin: 0 auto 1.5rem;
+  }
+  
+  .play-button {
+    margin: 1.5rem auto 0;
+  }
+  
+  .connector {
+    display: none;
+  }
+  
+  .ingredients-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+  
+  .interactive-section {
+    padding: 2.5rem 1.5rem;
+  }
+  
+  .animation-canvas {
+    height: 300px;
+    font-size: 1.1rem;
+  }
+  
+  .interactive-animation {
+    padding: 2rem 1.5rem;
+  }
+  
+  .animation-title {
+    font-size: 2rem;
+  }
+  
+  .modal-content {
+    padding: 1.5rem;
+  }
+  
+  .modal-content h2 {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .activities-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .page-title {
+    font-size: 2.2rem;
+  }
+  
+  .animation-title {
+    font-size: 1.75rem;
+  }
+  
+  .ingredients ul {
+    grid-template-columns: 1fr;
+  }
+}

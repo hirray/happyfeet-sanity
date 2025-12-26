@@ -1,0 +1,100 @@
+/* src/styles/AnimatedBackground.css */
+:root {
+  --coral: 14 100% 64%;
+  --turquoise: 176 72% 54%;
+  --sunny: 48 100% 60%;
+  --lime: 110 55% 56%;
+  --purple: 262 86% 72%;
+  --orange: 28 100% 62%;
+  --pink: 334 92% 74%;
+  --blue: 210 90% 66%;
+ }
+
+.animated-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+  background-color: white;
+  pointer-events: none;
+}
+
+.animated-background-v2 {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+ }
+
+.ab-item {
+  position: absolute;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.ab-shape {
+  opacity: 0.15;
+  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.06));
+}
+
+.ab-shape--solid {
+  filter: blur(0.2px);
+}
+
+/* Circle shape */
+.floating-shape.circle {
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background: linear-gradient(45deg, var(--color1), var(--color2));
+}
+
+/* Square shape */
+.floating-shape.square {
+  width: var(--size);
+  height: var(--size);
+  border-radius: 10px;
+   filter: none;
+  opacity: 0.8;
+  background: linear-gradient(45deg, var(--color1), var(--color2));
+}
+
+/* Triangle shape */
+.floating-shape.triangle {
+  width: 0;
+  height: 0;
+  border-left: calc(var(--size) / 2) solid transparent;
+  border-right: calc(var(--size) / 2) solid transparent;
+  border-bottom: var(--size) solid var(--color1);
+  background: none !important;
+  filter: none;
+  opacity: 0.8;
+}
+
+/* Blob shape */
+.floating-shape.blob {
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50% 50% 50% 60% / 60% 60% 40% 40%;
+  background: linear-gradient(45deg, var(--color1), var(--color2));
+  animation: blob-animation 15s ease-in-out infinite;
+}
+
+@keyframes blob-animation {
+  0%, 100% { border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; }
+  25% { border-radius: 50% 50% 50% 50% / 40% 60% 40% 60%; }
+  50% { border-radius: 50% 60% 50% 50% / 50% 50% 50% 50%; }
+  75% { border-radius: 60% 40% 40% 60% / 50% 50% 50% 50%; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .floating-shape {
+    --size: 50px !important;
+    opacity: 0.6;
+  }
+}

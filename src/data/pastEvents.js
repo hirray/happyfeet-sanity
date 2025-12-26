@@ -1,0 +1,145 @@
+export const pastEvents = [
+  {
+    id: "emmas-rainbow-birthday-bash",
+    title: "Emma's Rainbow Birthday Bash",
+    date: "December 2, 2024",
+    location: "The Grand Ballroom, NYC",
+    attendees: 120,
+    image: "/birthday.jpg",
+    category: "Birthday",
+    details: {
+      theme: "Rainbow Fantasy",
+      highlight: "A color-splashed celebration with immersive photo zones and confetti moments.",
+      duration: "4 Hours",
+    },
+    planning:
+      "We started with a full mood-board and a color story, then mapped the guest journey from entry to cake-cutting. The décor was designed in layers: a bold first impression at the entrance, playful interactive corners in the mid-zone, and a warm, intimate stage area for family moments. Every element was timed to a ‘wow beat’ so the event kept surprising guests without ever feeling rushed.",
+    images: [
+      "/birthday.jpg",
+      "/img1.jpg",
+      "/img2.jpg",
+      "/img3.jpg",
+      "/img4.jpg",
+      "/img6.jpg",
+    ],
+    videos: [],
+  },
+  {
+    id: "summer-fiesta-night",
+    title: "Summer Fiesta Night",
+    date: "November 28, 2024",
+    location: "Sunset Beach Club",
+    attendees: 250,
+    image: "/fiesta.jpg",
+    category: "Fiesta",
+    details: {
+      theme: "Neon Sunset",
+      highlight: "A beachside fiesta with glowing bars, percussion moments, and a dance-floor reveal.",
+      duration: "5 Hours",
+    },
+    planning:
+      "This one was planned like a movie: we storyboarded the night into ‘scenes’—arrival ambience, golden-hour lounge, the big beat-drop, and late-night sparkle. Lighting and sound were synchronized so every transition felt intentional. The team built modular décor pieces that could be rearranged quickly, letting the venue transform multiple times without breaking the flow.",
+    images: [
+      "/fiesta.jpg",
+      "/img7.jpg",
+      "/img8.jpg",
+      "/img9.jpg",
+      "/img10.jpg",
+    ],
+    videos: [],
+  },
+  {
+    id: "ladies-afternoon-tea-party",
+    title: "Ladies Afternoon Tea Party",
+    date: "November 20, 2024",
+    location: "Rose Garden Pavilion",
+    attendees: 45,
+    image: "/kitty.jpg",
+    category: "Kitty Party",
+    details: {
+      theme: "Garden Elegance",
+      highlight: "A calm, luxe tea setup with floral tablescapes and a soft-music corner.",
+      duration: "3 Hours",
+    },
+    planning:
+      "For this event, the planning priority was comfort and conversation. Seating was arranged in clusters to keep the vibe intimate while still feeling premium. We curated a menu flow that matched the energy of the room—light starters, a gentle ‘peak’ with signature desserts, and a slow finish with warm drinks. The result felt effortless, but every detail was carefully timed.",
+    images: [
+      "/kitty.jpg",
+      "/img2.jpg",
+      "/img3.jpg",
+      "/img4.jpg",
+    ],
+    videos: [],
+  },
+  {
+    id: "wine-and-canvas-evening",
+    title: "Wine & Canvas Evening",
+    date: "November 15, 2024",
+    location: "Art Studio Downtown",
+    attendees: 30,
+    image: "/sippaint.jpg",
+    category: "Sip & Paint",
+    details: {
+      theme: "Moody Atelier",
+      highlight: "Paint, music, and mood-lighting with a dramatic reveal wall for finished canvases.",
+      duration: "3.5 Hours",
+    },
+    planning:
+      "We designed the space like a creative runway: clean workstations, controlled lighting, and one hero wall to showcase final artworks. Planning focused on pacing—small guided steps, then free-flow creation, and finally a gallery-style reveal. It kept guests engaged even if they were first-time painters.",
+    images: [
+      "/sippaint.jpg",
+      "/img6.jpg",
+      "/img8.jpg",
+      "/img9.jpg",
+    ],
+    videos: [],
+  },
+  {
+    id: "italian-cooking-masterclass",
+    title: "Italian Cooking Masterclass",
+    date: "November 10, 2024",
+    location: "Chef's Kitchen Studio",
+    attendees: 24,
+    image: "/cooking.jpg",
+    category: "Cook Party",
+    details: {
+      theme: "Rustic Kitchen",
+      highlight: "Hands-on stations, chef-led moments, and a long-table dinner finale.",
+      duration: "4 Hours",
+    },
+    planning:
+      "This masterclass was planned like a production line—with beauty. Ingredients were pre-portioned to reduce downtime, but plating stations were styled for photos. We scheduled ‘chef secrets’ moments every 20 minutes to keep excitement high. The finale was a communal dinner that turned the class into a real celebration.",
+    images: [
+      "/cooking.jpg",
+      "/img3.jpg",
+      "/img4.jpg",
+      "/img7.jpg",
+    ],
+    videos: [],
+  },
+  {
+    id: "welcome-baby-luna",
+    title: "Welcome Baby Luna",
+    date: "November 5, 2024",
+    location: "The Blossom Venue",
+    attendees: 60,
+    image: "/babyshower.jpg",
+    category: "Baby Shower",
+    details: {
+      theme: "Soft Clouds",
+      highlight: "A dreamy pastel setup with keepsake corners and gentle, warm lighting.",
+      duration: "3 Hours",
+    },
+    planning:
+      "We kept the planning centered on warmth. The palette was intentionally soft, and the layout created ‘calm zones’ so guests could chat, click photos, or play games without overlap. Every prop was chosen to become a souvenir—signing boards, message cards, and small takeaways that felt personal.",
+    images: [
+      "/babyshower.jpg",
+      "/img1.jpg",
+      "/img2.jpg",
+      "/img6.jpg",
+    ],
+    videos: [],
+  },
+];
+
+export const getEventById = (id) => pastEvents.find((e) => e.id === id);

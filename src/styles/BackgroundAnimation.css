@@ -1,0 +1,92 @@
+:root {
+  --ba-coral: 14 100% 64%;
+  --ba-turquoise: 176 72% 54%;
+  --ba-sunny: 48 100% 60%;
+  --ba-pink: 334 92% 74%;
+  --ba-purple: 262 86% 72%;
+}
+
+.bg-animation {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.bg-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(0px);
+}
+
+.bg-blob--coral {
+  background: hsla(var(--ba-coral) / 0.1);
+}
+
+.bg-blob--turquoise {
+  background: hsla(var(--ba-turquoise) / 0.1);
+}
+
+.bg-blob--sunny {
+  background: hsla(var(--ba-sunny) / 0.1);
+}
+
+.bg-blob--pink {
+  background: hsla(var(--ba-pink) / 0.1);
+}
+
+.bg-blob--purple {
+  background: hsla(var(--ba-purple) / 0.1);
+}
+
+.bg-blob--1 {
+  top: -10rem;
+  left: -10rem;
+  width: 20rem;
+  height: 20rem;
+}
+
+.bg-blob--2 {
+  top: 25%;
+  right: -5rem;
+  width: 15rem;
+  height: 15rem;
+}
+
+.bg-blob--3 {
+  top: 50%;
+  left: 25%;
+  width: 10rem;
+  height: 10rem;
+}
+
+.bg-blob--4 {
+  bottom: 5rem;
+  left: 2.5rem;
+  width: 13rem;
+  height: 13rem;
+}
+
+.bg-blob--5 {
+  bottom: 33%;
+  right: 25%;
+  width: 9rem;
+  height: 9rem;
+}
+
+.bg-dot {
+  position: absolute;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  opacity: 0.3;
+}
+
+.bg-dots {
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
