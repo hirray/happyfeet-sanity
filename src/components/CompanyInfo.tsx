@@ -6,7 +6,7 @@ const infoItems = [
   {
     icon: Calendar,
     label: "Established",
-    value: "2015",
+    value: "2010",
     iconBg: "rgba(255, 107, 107, 0.1)",
     iconColor: "hsl(10, 90%, 65%)",
     glow:
@@ -15,7 +15,7 @@ const infoItems = [
   {
     icon: MapPin,
     label: "Headquarters",
-    value: "Mumbai, India",
+    value: "Vadodara, Gujarat, India",
     iconBg: "rgba(46, 204, 113, 0.08)",
     iconColor: "hsl(174, 72%, 45%)",
     glow:
@@ -23,8 +23,8 @@ const infoItems = [
   },
   {
     icon: Users,
-    label: "Team Size",
-    value: "50+ Experts",
+    label: "Years of Experience",
+    value: "15+",
     iconBg: "rgba(255, 193, 7, 0.1)",
     iconColor: "hsl(40, 95%, 55%)",
     glow:
@@ -97,7 +97,7 @@ export const CompanyInfo = () => {
           transition={{ delay: 0.6, duration: 0.7 }}
         >
           We are a passionate team dedicated to creating extraordinary events that leave
-          lasting impressions. From corporate gatherings to dream weddings, we bring your
+          lasting impressions. From beautiful Parties to amazing fiestas, we bring your
           vision to life with creativity, care, and a touch of magic.
         </motion.p>
       </motion.div>

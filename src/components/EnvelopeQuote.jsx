@@ -71,14 +71,12 @@ export const EnvelopeQuote = () => {
               <RightFlap />
               
               <CardContent className="card-content">
-                <CardTitle>Thank You</CardTitle>
+                <CardTitle>WELCOME TO HAPPYFEET ACTIVITY CLUB</CardTitle>
                 <CardText>
                   Every celebration is a story waiting to be told, a memory waiting to be made
                 </CardText>
-                <CardSubtext>
-                  Wishing you magical moments ahead!
-                </CardSubtext>
-                <CardSignature>HAPPYFEET EVENTS</CardSignature>
+
+                <CardSignature>HAPPYFEET</CardSignature>
               </CardContent>
 
               <TopFlap className="top-flap" />
@@ -220,9 +218,9 @@ const CardContent = styled.div`
 `;
 
 const CardTitle = styled.p`
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   font-weight: 700;
-  color: #1f2937;
+  color: #b83d0cff;
   font-family: Georgia, serif;
   margin-bottom: 1rem;
   
@@ -240,7 +238,7 @@ const CardText = styled.p`
   font-size: 1.125rem;
   color: #111827;
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   line-height: 1.6;
   font-weight: 500;
   
@@ -276,7 +274,7 @@ const CardSubtext = styled.p`
 const CardSignature = styled.p`
   font-family: sans-serif;
   font-size: 0.875rem;
-  color: #374151;
+  color: #38517bff;
   padding-top: 2rem;
   font-weight: 700;
   letter-spacing: 0.1em;

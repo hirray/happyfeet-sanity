@@ -8,7 +8,7 @@ const InfoCards = () => {
       id: 1,
       icon: '🏢',
       title: 'Company',
-      description: 'HappyFeet Events',
+      description: 'HappyFeet Activity Club',
       color: '#6c63ff',
       hoverColor: '#5649e6',
       tooltipPosition: 'left'  // Added position for each card

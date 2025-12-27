@@ -214,14 +214,14 @@ const PopupIcon = styled.img`
 
 const PopupTitle = styled.h3`
   margin: 0;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   font-weight: 950;
   color: #111827;
 `;
 
 const PopupSub = styled.p`
   margin: 0.15rem 0 0;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   color: #64748b;
   font-weight: 650;
 `;
@@ -376,7 +376,7 @@ export const MapSection = () => {
                 <PopupHeader>
                   <PopupIcon src="/logo.jpg" alt="Happyfeet" />
                   <div>
-                    <PopupTitle>Happyfeet Events</PopupTitle>
+                    <PopupTitle>Happyfeet Activity Club</PopupTitle>
                     <PopupSub>We craft magical celebrations with creativity + care.</PopupSub>
                   </div>
                 </PopupHeader>
@@ -384,15 +384,15 @@ export const MapSection = () => {
                 <InfoList>
                   <InfoRow>
                     <Building style={{ color: '#ff6b6b' }} />
-                    <span>123 Event Street, Mumbai, India</span>
+                    <span>Hari Nagar Char Rasta, Vadodara, Gujarat, India</span>
                   </InfoRow>
                   <InfoRow>
                     <Clock style={{ color: '#22c1c3' }} />
-                    <span>Mon-Sat: 9AM - 7PM</span>
+                    <span>All Days: 9AM - 6PM</span>
                   </InfoRow>
                   <InfoRow>
                     <Phone style={{ color: '#f59e0b' }} />
-                    <span>+91 98765 43210</span>
+                    <span>+91 9173500020</span>
                   </InfoRow>
                 </InfoList>
 

@@ -66,7 +66,7 @@ const IconSparkles = (props) => (
 );
 
 const socialLinks = [
-  { icon: IconInstagram, href: 'https://instagram.com/happyfeet', color: '#ff4d6d' },
+  { icon: IconInstagram, href: 'https://www.instagram.com/happyfeet_activityclub?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==', color: '#ff4d6d' },
   { icon: IconFacebook, href: 'https://facebook.com/happyfeet', color: '#3b82f6' },
   { icon: IconYoutube, href: 'https://youtube.com/happyfeet', color: '#ff922b' },
   { icon: IconLinkedIn, href: 'https://linkedin.com/company/happyfeet', color: '#22b8cf' },
@@ -201,19 +201,19 @@ const Footer = () => {
                 <div className="animated-footer__pill animated-footer__pill--phone">
                   <IconPhone className="animated-footer__miniIcon" />
                 </div>
-                +91 3172301903
+                +91 9173500020
               </motion.li>
               <motion.li className="animated-footer__contactItem" whileHover={{ x: 10 }}>
                 <div className="animated-footer__pill animated-footer__pill--mail">
                   <IconMail className="animated-footer__miniIcon" />
                 </div>
-                hello@happyfeet.com
+                Happyfeet12@gmail.com
               </motion.li>
               <motion.li className="animated-footer__contactItem" whileHover={{ x: 10 }}>
                 <div className="animated-footer__pill animated-footer__pill--map">
                   <IconMapPin className="animated-footer__miniIcon" />
                 </div>
-                Mumbai, India
+                Vadodara, Gujarat, India
               </motion.li>
             </ul>
           </motion.div>
