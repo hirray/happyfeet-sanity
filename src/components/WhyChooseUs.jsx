@@ -9,14 +9,14 @@ const reasons = [
     icon: Sparkles,
     title: 'Creative Excellence',
     description:
-      'Our team of creative wizards transforms ordinary spaces into extraordinary experiences.',
+      'We create vibrant experiences through décor, games, and joyful activities that spark',
     from: '#ff7a7a',
     to: '#ff6fa5',
   },
   {
     icon: Clock,
     title: 'Timely Delivery',
-    description: "We respect deadlines like they're sacred. Your event, on time, every time.",
+    description: "From setup to wrap-up, we ensure every element is executed smoothly and delivered right on time.",
     from: '#22c1c3',
     to: '#42e695',
   },
@@ -32,14 +32,14 @@ const reasons = [
     icon: Palette,
     title: 'Attention to Detail',
     description:
-      'From the grandest stage to the smallest decoration, perfection is in our DNA.',
+      'From tiny props to grand setups, we perfect every detail for a flawless event experience.',
     from: '#a855f7',
     to: '#ec4899',
   },
   {
     icon: Shield,
     title: 'Reliable & Trusted',
-    description: '500+ successful events and counting. Our track record speaks for itself.',
+    description: '500+ successful events and counting. Our track record speaks for itself. families trust us for worry-free celebrations.',
     from: '#38bdf8',
     to: '#22c55e',
   },
@@ -47,7 +47,7 @@ const reasons = [
     icon: Zap,
     title: 'Innovative Solutions',
     description:
-      'We blend traditional charm with modern technology for unforgettable moments.',
+      'We blend creative concepts with fresh ideas to make every event unique and memorable.',
     from: '#ff9f43',
     to: '#ff6b6b',
   },

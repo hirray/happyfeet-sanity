@@ -1,6 +1,6 @@
 // src/App.jsx
 import { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import Landing from "./pages/Landing";
 import Home from "./pages/Home";
@@ -12,10 +12,31 @@ import Activity from "./pages/Activity";
 import AboutContact from './pages/AboutContact';
 import EventDetails from "./pages/EventDetails";
 import CategoryMedia from "./pages/CategoryMedia";
+import AllMedia from "./pages/AllMedia";
+import DecorThemeDetails from './pages/DecorThemeDetails';
 import SplashScreen from './components/SplashScreen';
 import RegisterPopup from './components/RegisterPopup';
 import { isRegistered as isRegisterPopupRegistered } from './utils/registerStorage';
 import './styles/App.css';
+
+function ScrollToTop() {
+  const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      const id = hash.replace('#', '');
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
+    }
+
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, [pathname, hash]);
+
+  return null;
+}
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -42,6 +63,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <div className="app">
         <main className="app__main">
           <RegisterPopup
@@ -61,8 +83,10 @@ function App() {
                 <Route path="/home" element={<Home />} />
                 <Route path="/book-event" element={<BookEvent />} />
                 <Route path="/gallery" element={<Gallery />} />
+                <Route path="/decor-themes/:slug" element={<DecorThemeDetails />} />
                 <Route path="/gallery/event/:id" element={<EventDetails />} />
                 <Route path="/gallery/category/:slug" element={<CategoryMedia />} />
+                <Route path="/gallery/all-media" element={<AllMedia />} />
                 <Route path="/testimonial" element={<Testimonials />} />
                 <Route path="/games" element={<Games />} />
                 <Route path="/testimonials" element={<Testimonials />} />

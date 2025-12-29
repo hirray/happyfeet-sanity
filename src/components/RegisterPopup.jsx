@@ -153,35 +153,129 @@ export default function RegisterPopup({ open, onClose, onRegistered }) {
                   </button>
                 </form>
                 <label htmlFor="blind-input" className="avatar">
-                  <svg xmlns="http://www.w3.org/2000/svg" width={35} height={35} viewBox="0 0 64 64" id="monkey">
-                    <ellipse cx="53.7" cy={33} rx="8.3" ry="8.2" fill="#89664c" />
-                    <ellipse cx="53.7" cy={33} rx="5.4" ry="5.4" fill="#ffc5d3" />
-                    <ellipse cx="10.2" cy={33} rx="8.2" ry="8.2" fill="#89664c" />
-                    <ellipse cx="10.2" cy={33} rx="5.4" ry="5.4" fill="#ffc5d3" />
-                    <g fill="#89664c">
-                      <path d="m43.4 10.8c1.1-.6 1.9-.9 1.9-.9-3.2-1.1-6-1.8-8.5-2.1 1.3-1 2.1-1.3 2.1-1.3-20.4-2.9-30.1 9-30.1 19.5h46.4c-.7-7.4-4.8-12.4-11.8-15.2" />
-                      <path d="m55.3 27.6c0-9.7-10.4-17.6-23.3-17.6s-23.3 7.9-23.3 17.6c0 2.3.6 4.4 1.6 6.4-1 2-1.6 4.2-1.6 6.4 0 9.7 10.4 17.6 23.3 17.6s23.3-7.9 23.3-17.6c0-2.3-.6-4.4-1.6-6.4 1-2 1.6-4.2 1.6-6.4" />
-                    </g>
-                    <path d="m52 28.2c0-16.9-20-6.1-20-6.1s-20-10.8-20 6.1c0 4.7 2.9 9 7.5 11.7-1.3 1.7-2.1 3.6-2.1 5.7 0 6.1 6.6 11 14.7 11s14.7-4.9 14.7-11c0-2.1-.8-4-2.1-5.7 4.4-2.7 7.3-7 7.3-11.7" fill="#e0ac7e" />
-                    <g fill="#3b302a" className="monkey-eye-nose">
-                      <path d="m35.1 38.7c0 1.1-.4 2.1-1 2.1-.6 0-1-.9-1-2.1 0-1.1.4-2.1 1-2.1.6.1 1 1 1 2.1" />
-                      <path d="m30.9 38.7c0 1.1-.4 2.1-1 2.1-.6 0-1-.9-1-2.1 0-1.1.4-2.1 1-2.1.5.1 1 1 1 2.1" />
-                      <ellipse cx="40.7" cy="31.7" rx="3.5" ry="4.5" className="monkey-eye-r" />
-                      <ellipse cx="23.3" cy="31.7" rx="3.5" ry="4.5" className="monkey-eye-l" />
-                    </g>
-                  </svg>
-                  <svg xmlns="http://www.w3.org/2000/svg" width={35} height={35} viewBox="0 0 64 64" id="monkey-hands">
-                    <path fill="#89664C" d="M9.4,32.5L2.1,61.9H14c-1.6-7.7,4-21,4-21L9.4,32.5z" />
+                  <svg xmlns="http://www.w3.org/2000/svg" width={35} height={35} viewBox="0 0 64 64" id="penguin">
+                    <defs>
+                      <linearGradient id="penguinBody" x1="16" y1="12" x2="48" y2="56" gradientUnits="userSpaceOnUse">
+                        <stop offset="0" stopColor="#1f2b33" />
+                        <stop offset="0.55" stopColor="#162027" />
+                        <stop offset="1" stopColor="#0c1318" />
+                      </linearGradient>
+                      <linearGradient id="penguinWing" x1="10" y1="26" x2="28" y2="44" gradientUnits="userSpaceOnUse">
+                        <stop offset="0" stopColor="#24333c" />
+                        <stop offset="1" stopColor="#0c1318" />
+                      </linearGradient>
+                      <linearGradient id="penguinWingR" x1="54" y1="26" x2="36" y2="44" gradientUnits="userSpaceOnUse">
+                        <stop offset="0" stopColor="#24333c" />
+                        <stop offset="1" stopColor="#0c1318" />
+                      </linearGradient>
+                      <radialGradient id="penguinBelly" cx="50%" cy="30%" r="70%">
+                        <stop offset="0" stopColor="#ffffff" />
+                        <stop offset="1" stopColor="#eef1f5" />
+                      </radialGradient>
+                      <linearGradient id="beak" x1="32" y1="29" x2="32" y2="41" gradientUnits="userSpaceOnUse">
+                        <stop offset="0" stopColor="#ffb21f" />
+                        <stop offset="1" stopColor="#f08d0e" />
+                      </linearGradient>
+                      <linearGradient id="feet" x1="32" y1="52" x2="32" y2="60" gradientUnits="userSpaceOnUse">
+                        <stop offset="0" stopColor="#ffb21f" />
+                        <stop offset="1" stopColor="#f08d0e" />
+                      </linearGradient>
+                    </defs>
+
+                    <ellipse cx="32" cy="55.5" rx="20" ry="6.2" fill="#7bbbd7" opacity="0.85" />
+
                     <path
-                      fill="#FFD6BB"
-                      d="M15.8,24.8c0,0,4.9-4.5,9.5-3.9c2.3,0.3-7.1,7.6-7.1,7.6s9.7-8.2,11.7-5.6c1.8,2.3-8.9,9.8-8.9,9.8\
-       \t\t\t\t\ts10-8.1,9.6-4.6c-0.3,3.8-7.9,12.8-12.5,13.8C11.5,43.2,6.3,39,9.8,24.4C11.6,17,13.3,25.2,15.8,24.8"
+                      d="M14 36c-3.5 4.4-4.8 9.6-4.2 14.1 0.3 2.7 2.3 4.6 4.9 4.8 3.5 0.2 7.7-2.5 10.8-6.9"
+                      fill="url(#penguinWing)"
                     />
-                    <path fill="#89664C" d="M54.8,32.5l7.3,29.4H50.2c1.6-7.7-4-21-4-21L54.8,32.5z" />
                     <path
-                      fill="#FFD6BB"
-                      d="M48.4,24.8c0,0-4.9-4.5-9.5-3.9c-2.3,0.3,7.1,7.6,7.1,7.6s-9.7-8.2-11.7-5.6c-1.8,2.3,8.9,9.8,8.9,9.8\
-       \t\t\t\t\ts-10-8.1-9.7-4.6c0.4,3.8,8,12.8,12.6,13.8c6.6,1.3,11.8-2.9,8.3-17.5C52.6,17,50.9,25.2,48.4,24.8"
+                      d="M50 36c3.5 4.4 4.8 9.6 4.2 14.1-0.3 2.7-2.3 4.6-4.9 4.8-3.5 0.2-7.7-2.5-10.8-6.9"
+                      fill="url(#penguinWingR)"
+                    />
+
+                    <ellipse cx="32" cy="33.5" rx="22" ry="25" fill="url(#penguinBody)" />
+                    <ellipse cx="32" cy="36" rx="15.2" ry="19.6" fill="url(#penguinBelly)" />
+
+                    <path
+                      d="M22 22c1.2-6.8 18.8-6.8 20 0"
+                      fill="none"
+                      stroke="#223039"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      opacity="0.6"
+                    />
+
+                    <ellipse cx="32" cy="31" rx="18" ry="14.5" fill="#ffffff" />
+
+                    <g className="penguin-eyes">
+                      <ellipse cx="25" cy="28" rx="5.6" ry="6.2" className="penguin-eye-white-l" fill="#ffffff" />
+                      <ellipse cx="39" cy="28" rx="5.6" ry="6.2" className="penguin-eye-white-r" fill="#ffffff" />
+                      <ellipse cx="26.6" cy="29" rx="2.7" ry="3.4" className="penguin-eye-l" fill="#121a20" />
+                      <ellipse cx="37.4" cy="29" rx="2.7" ry="3.4" className="penguin-eye-r" fill="#121a20" />
+                      <circle cx="25.8" cy="27.8" r="1" className="penguin-eye-glint-l" fill="#ffffff" />
+                      <circle cx="38.4" cy="27.8" r="1" className="penguin-eye-glint-r" fill="#ffffff" />
+                      <path
+                        d="M20.8 28.6c1.8 2.2 3.6 3.2 5.2 3.2s3.4-1 5.2-3.2"
+                        className="penguin-lid-l"
+                        fill="none"
+                        stroke="#121a20"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        opacity="0"
+                      />
+                      <path
+                        d="M34.8 28.6c1.8 2.2 3.6 3.2 5.2 3.2s3.4-1 5.2-3.2"
+                        className="penguin-lid-r"
+                        fill="none"
+                        stroke="#121a20"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        opacity="0"
+                      />
+                    </g>
+
+                    <path
+                      d="M32 32c4.6 0 8 3.1 8 3.1S36.8 43.8 32 43.8 24 35.1 24 35.1s3.4-3.1 8-3.1Z"
+                      fill="url(#beak)"
+                    />
+                    <path
+                      d="M32 34.4c3.2 0 5.8 1.8 5.8 1.8S35.6 41.2 32 41.2s-5.8-5-5.8-5S28.8 34.4 32 34.4Z"
+                      fill="#d97f10"
+                      opacity="0.55"
+                    />
+
+                    <ellipse cx="22.2" cy="34.8" rx="4.4" ry="3" fill="#e8b7b2" opacity="0.55" />
+                    <ellipse cx="41.8" cy="34.8" rx="4.4" ry="3" fill="#e8b7b2" opacity="0.55" />
+
+                    <path
+                      d="M22.5 51.5c1.5 0 3.3 0.6 5 1.7c1.1 0.7 1.7 1.6 1.4 2.6c-0.4 1.3-2 2.4-4.2 2.8c-3.2 0.6-6.2-0.7-7.2-2.6c-0.6-1.2-0.2-2.4 1-3.2c1.1-0.8 2.5-1.3 4-1.3Z"
+                      fill="url(#feet)"
+                    />
+                    <path
+                      d="M41.5 51.5c1.5 0 2.9 0.5 4 1.3c1.2 0.8 1.6 2 1 3.2c-1 1.9-4 3.2-7.2 2.6c-2.2-0.4-3.8-1.5-4.2-2.8c-0.3-1 0.3-1.9 1.4-2.6c1.7-1.1 3.5-1.7 5-1.7Z"
+                      fill="url(#feet)"
+                    />
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width={35} height={35} viewBox="0 0 64 64" id="penguin-flippers">
+                    <path
+                      d="M12 34c-3 3.4-4.6 7.6-4.6 12.2c0 4.2 3.6 6.8 7.4 5.3c4.8-1.9 9.6-8 12-13.1c1.6-3.3-2.3-6.4-6.6-5.6c-3 0.6-5.8 1.7-8.2 3.2Z"
+                      fill="#0c1318"
+                    />
+                    <path
+                      d="M52 34c3 3.4 4.6 7.6 4.6 12.2c0 4.2-3.6 6.8-7.4 5.3c-4.8-1.9-9.6-8-12-13.1c-1.6-3.3 2.3-6.4 6.6-5.6c3 0.6 5.8 1.7 8.2 3.2Z"
+                      fill="#0c1318"
+                    />
+                    <path
+                      d="M13.6 35.2c-2.2 2.6-3.4 5.9-3.4 9.4c0 3 2.5 4.9 5.2 3.8c3.3-1.3 6.9-5.8 8.6-9.3c1.1-2.2-1.7-4.2-4.8-3.7c-2.1 0.4-3.9 1.1-5.6 1.9Z"
+                      fill="#24333c"
+                      opacity="0.55"
+                    />
+                    <path
+                      d="M50.4 35.2c2.2 2.6 3.4 5.9 3.4 9.4c0 3-2.5 4.9-5.2 3.8c-3.3-1.3-6.9-5.8-8.6-9.3c-1.1-2.2 1.7-4.2 4.8-3.7c2.1 0.4 3.9 1.1 5.6 1.9Z"
+                      fill="#24333c"
+                      opacity="0.55"
                     />
                   </svg>
                 </label>
@@ -278,6 +372,7 @@ const StyledWrapper = styled.div`
     max-height: var(--sz-avatar);
     border: 1px solid #707070;
     border-radius: 9999px;
+    background: #a9d7f4;
     overflow: hidden;
     cursor: pointer;
     z-index: 2;
@@ -299,10 +394,10 @@ const StyledWrapper = styled.div`
     width: var(--sz-svg);
     pointer-events: none;
   }
-  .avatar svg#monkey {
+  .avatar svg#penguin {
     z-index: 1;
   }
-  .avatar svg#monkey-hands {
+  .avatar svg#penguin-flippers {
     z-index: 10;
     transform: translateY(calc(var(--sz-avatar) / 1.25));
   }
@@ -319,15 +414,17 @@ const StyledWrapper = styled.div`
     position: absolute;
     transition: all 0.2s ease;
     z-index: 3;
+    display: none;
   }
   .blind-check:checked ~ .avatar::before {
     width: calc(var(--sz-svg) * (9 / 100));
     height: 0;
     border-radius: 50%;
     border-bottom: calc(var(--sz-svg) * (10 / 100)) solid #3c302a;
+    display: none;
   }
-  .avatar svg#monkey .monkey-eye-r,
-  .avatar svg#monkey .monkey-eye-l {
+  .avatar svg#penguin .penguin-eye-r,
+  .avatar svg#penguin .penguin-eye-l {
     animation: blink 10s 1s infinite;
     transition: all 0.2s ease;
   }
@@ -340,63 +437,68 @@ const StyledWrapper = styled.div`
     71%,
     73%,
     100% {
-      ry: 4.5;
-      cy: 31.7;
+      ry: 3.4;
+      cy: 29;
     }
     1%,
     3%,
     27%,
     72% {
       ry: 0.5;
-      cy: 30;
+      cy: 28.6;
     }
   }
-  .blind-check:checked ~ .avatar svg#monkey .monkey-eye-r,
-  .blind-check:checked ~ .avatar svg#monkey .monkey-eye-l {
-    ry: 0.5;
-    cy: 30;
-  }
-  .blind-check:checked ~ .avatar svg#monkey .monkey-eye-r,
-  .blind-check:checked ~ .avatar svg#monkey .monkey-eye-l {
+  .blind-check:checked ~ .avatar svg#penguin .penguin-eye-r,
+  .blind-check:checked ~ .avatar svg#penguin .penguin-eye-l {
     opacity: 0;
   }
-  .blind-check:checked ~ .avatar svg#monkey-hands {
-    transform: translate3d(0, 0, 0);
+  .blind-check:checked ~ .avatar svg#penguin .penguin-eye-white-l,
+  .blind-check:checked ~ .avatar svg#penguin .penguin-eye-white-r,
+  .blind-check:checked ~ .avatar svg#penguin .penguin-eye-glint-l,
+  .blind-check:checked ~ .avatar svg#penguin .penguin-eye-glint-r {
+    opacity: 0;
   }
-  .avatar svg#monkey,
+  .blind-check:checked ~ .avatar svg#penguin .penguin-lid-l,
+  .blind-check:checked ~ .avatar svg#penguin .penguin-lid-r {
+    opacity: 1;
+  }
+  .blind-check:checked ~ .avatar svg#penguin-flippers {
+    transform: translate3d(0, -10px, 0);
+  }
+  .avatar svg#penguin,
   .avatar::before,
-  .avatar svg#monkey .monkey-eye-nose,
-  .avatar svg#monkey .monkey-eye-r,
-  .avatar svg#monkey .monkey-eye-l {
+  .avatar svg#penguin .penguin-eyes,
+  .avatar svg#penguin .penguin-eye-r,
+  .avatar svg#penguin .penguin-eye-l {
     transition: all 0.2s ease;
   }
-  .blind-check:checked ~ .form:focus-within ~ .avatar svg#monkey,
+  .blind-check:checked ~ .form:focus-within ~ .avatar svg#penguin,
   .blind-check:checked ~ .form:focus-within ~ .avatar::before,
-  .blind-check:checked ~ .form:focus-within ~ .avatar svg#monkey .monkey-eye-nose,
-  .blind-check:checked ~ .form:focus-within ~ .avatar svg#monkey .monkey-eye-r,
-  .blind-check:checked ~ .form:focus-within ~ .avatar svg#monkey .monkey-eye-l {
+  .blind-check:checked ~ .form:focus-within ~ .avatar svg#penguin .penguin-eyes,
+  .blind-check:checked ~ .form:focus-within ~ .avatar svg#penguin .penguin-eye-r,
+  .blind-check:checked ~ .form:focus-within ~ .avatar svg#penguin .penguin-eye-l {
     animation: none;
   }
-  .form:focus-within ~ .avatar svg#monkey {
+  .form:focus-within ~ .avatar svg#penguin {
     animation: slick 3s ease infinite 1s;
     --center: rotateY(0deg);
     --left: rotateY(-4deg);
     --right: rotateY(4deg);
   }
   .form:focus-within ~ .avatar::before,
-  .form:focus-within ~ .avatar svg#monkey .monkey-eye-nose,
+  .form:focus-within ~ .avatar svg#penguin .penguin-eyes,
   .blind-check:not(:checked)
     ~ .form:focus-within
     ~ .avatar
-    svg#monkey
-    .monkey-eye-r,
+    svg#penguin
+    .penguin-eye-r,
   .blind-check:not(:checked)
     ~ .form:focus-within
     ~ .avatar
-    svg#monkey
-    .monkey-eye-l {
-    ry: 3;
-    cy: 35;
+    svg#penguin
+    .penguin-eye-l {
+    ry: 2.1;
+    cy: 31.2;
     animation: slick 3s ease infinite 1s;
     --center: translateX(0);
     --left: translateX(-0.5px);

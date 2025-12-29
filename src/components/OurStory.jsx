@@ -6,34 +6,34 @@ import styled, { keyframes } from 'styled-components';
 
 const storyPoints = [
   {
-    year: '2015',
+    year: '2011',
     title: 'The Beginning',
     description:
-      'Started with a dream and a small team of 3 passionate event enthusiasts in a tiny Mumbai office.',
+      'HappyFeet Activity Club was founded to create joyful, creative experiences for children through activities and workshops.',
     icon: Rocket,
     color: '#ff7a7a',
   },
   {
-    year: '2017',
-    title: 'First Major Milestone',
+    year: '2014',
+    title: 'Growing Smiles',
     description:
-      'Organized our first 500+ attendee corporate event, putting us on the map as a serious player.',
+      'HappyFeet expanded into workshops and small events, earning trust from families and schools.',
     icon: Star,
     color: '#1abc9c',
   },
   {
-    year: '2020',
-    title: 'Pandemic Pivot',
+    year: '2018',
+    title: 'Full Service Event Management',
     description:
-      'Transformed challenges into opportunities by pioneering virtual and hybrid event solutions.',
+      'HappyFeet became a complete event company, managing décor, games, activities, and execution.',
     icon: Trophy,
     color: '#f39c12',
   },
   {
     year: 'Today',
-    title: 'Industry Leaders',
+    title: 'A Trusted Multi-Age Event Brand',
     description:
-      "Now a team of 50+ experts, we've created 500+ unforgettable events across India.",
+      "Today, HappyFeet plans diverse celebrations for all ages, with a strong focus on kids.",
     icon: Heart,
     color: '#ff6fa5',
   },

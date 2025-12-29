@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import styled from "styled-components";
 import { Sparkles, Users, Baby, PartyPopper, Grid3x3 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const categories = [
   {
@@ -42,6 +43,7 @@ const categories = [
 ];
 
 export const CategoriesSpread = () => {
+  const navigate = useNavigate();
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: false, amount: 0.3 });
 
@@ -156,6 +158,7 @@ export const CategoriesSpread = () => {
           <CTAButton
             whileHover={{ scale: 1.05, y: -3 }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => navigate('/gallery')}
           >
             <ButtonShine
               animate={{ x: ["-100%", "200%"] }}

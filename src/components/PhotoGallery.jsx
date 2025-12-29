@@ -11,44 +11,45 @@ import '../styles/PhotoGallery.css';
 const photos = [
   {
     id: 1,
-    url: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=800&h=800&fit=crop',
+    url: '/activity1.jpg',
     alt: 'Kids painting',
   },
   {
     id: 2,
-    url: 'https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=800&h=800&fit=crop',
+    url: '/actvity2.jpg',
     alt: 'Art activity',
   },
   {
     id: 3,
-    url: 'https://images.unsplash.com/photo-1560421683-6856ea585c78?w=800&h=800&fit=crop',
+    url: '/activity3.jpg',
     alt: 'Creative workshop',
   },
   {
     id: 4,
-    url: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800&h=800&fit=crop',
+    url: '/activity4.jpg',
     alt: 'Painting session',
   },
   {
     id: 5,
-    url: 'https://images.unsplash.com/photo-1499892477393-f675706cbe6e?w=800&h=800&fit=crop',
+    url: '/activity5.jpg',
     alt: 'Kids crafting',
   },
   {
     id: 6,
-    url: 'https://images.unsplash.com/photo-1607453998774-d533f65dac99?w=800&h=800&fit=crop',
+    url: '/activity6.jpg',
     alt: 'Creative play',
   },
   {
     id: 7,
-    url: 'https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=800&h=800&fit=crop',
+    url: '/activity7.jpg',
     alt: 'Art class',
   },
   {
     id: 8,
-    url: 'https://images.unsplash.com/photo-1509909756405-be0199881695?w=800&h=800&fit=crop',
+    url: '/activity8.jpeg',
     alt: 'Fun activities',
   },
+ 
 ];
 
 const stickerForRow = (row) => (row === 1 ? '⭐' : '❤');

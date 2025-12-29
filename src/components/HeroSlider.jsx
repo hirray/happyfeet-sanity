@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
 import styled from "styled-components";
 import { ChevronLeft, ChevronRight, Sparkles, Heart, Star } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const slides = [
   {
@@ -37,6 +38,8 @@ const slides = [
 export const HeroSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(1);
+
+  const navigate = useNavigate();
 
   const sliderRef = useRef(null);
   const mx = useMotionValue(0);
@@ -195,6 +198,7 @@ export const HeroSlider = () => {
                   transition={{ delay: 0.9, duration: 0.5 }}
                   whileHover={{ scale: 1.05, y: -5 }}
                   whileTap={{ scale: 0.95 }}
+                  onClick={() => navigate('/gallery#past-events')}
                 >
                   <ButtonGlow $color={slide.color} />
                   <span style={{ position: 'relative', zIndex: 10 }}>Explore Events</span>

@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Heart, MessageCircle, Send, Twitter } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 const floatWiggle = keyframes`
   0% { transform: translateY(0px) rotate(-0.5deg); }
@@ -320,6 +321,17 @@ const Success = styled(motion.div)`
   width: fit-content;
 `;
 
+const ErrorMsg = styled(motion.div)`
+  margin-top: 0.9rem;
+  padding: 0.75rem 1rem;
+  border-radius: 1rem;
+  border: 2px solid rgba(15, 23, 42, 0.18);
+  background: rgba(220, 38, 38, 0.12);
+  color: #991b1b;
+  font-weight: 800;
+  width: fit-content;
+`;
+
 const Spark = styled(motion.div)`
   position: absolute;
   width: 10px;
@@ -333,16 +345,51 @@ const Spark = styled(motion.div)`
 export const ContactComicForm = () => {
   const [values, setValues] = useState({ name: '', email: '', phone: '', message: '' });
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState('');
 
   const onChange = (key) => (e) => {
     setValues((v) => ({ ...v, [key]: e.target.value }));
     if (sent) setSent(false);
+    if (error) setError('');
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    setSent(true);
-    setValues({ name: '', email: '', phone: '', message: '' });
+
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      setError('Email service is not configured yet. Please try again later.');
+      return;
+    }
+
+    if (sending) return;
+    setSending(true);
+
+    try {
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          to_email: 'happyfeet.website12@gmail.com',
+          from_name: values.name,
+          reply_to: values.email,
+          phone: values.phone,
+          message: values.message,
+          source: 'AboutContact',
+        },
+        { publicKey }
+      );
+      setSent(true);
+      setValues({ name: '', email: '', phone: '', message: '' });
+    } catch (err) {
+      setError('Failed to send. Please try again in a moment.');
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -406,6 +453,16 @@ export const ContactComicForm = () => {
               >
                 Message sent! We’ll reach out soon.
               </Success>
+            )}
+            {!!error && (
+              <ErrorMsg
+                initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 10, scale: 0.98 }}
+                transition={{ duration: 0.25 }}
+              >
+                {error}
+              </ErrorMsg>
             )}
           </AnimatePresence>
         </Left>
@@ -493,11 +550,13 @@ export const ContactComicForm = () => {
 
                     <Submit
                       type="submit"
+                      disabled={sending}
                       whileHover={{ scale: 1.04, rotate: -1 }}
                       whileTap={{ scale: 0.98 }}
                       transition={{ type: 'spring', stiffness: 240, damping: 14 }}
+                      style={{ opacity: sending ? 0.75 : 1, cursor: sending ? 'not-allowed' : 'pointer' }}
                     >
-                      Send
+                      {sending ? 'Sending…' : 'Send'}
                       <Send />
                     </Submit>
                   </Form>

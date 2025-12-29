@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Phone, Mail, MapPin, Send, Clock, Instagram, Facebook, Youtube, Linkedin } from 'lucide-react';
 import { Toaster } from 'sonner';
 import { toast } from 'sonner';
+import emailjs from '@emailjs/browser';
 import '../styles/ContactBooking.css';
 import BackgroundAnimation from '../components/BackgroundAnimation';
 import FloatingNavbar from '../components/FloatingNavbar';
@@ -32,12 +33,14 @@ const BookEvent = () => {
     eventType: 'birthday',
   });
 
+  const [sending, setSending] = useState(false);
+
   const contactInfo = useMemo(
     () => [
-      { icon: Phone, label: 'Phone', value: '+91 98765 43210', color: 'hsl(174, 62%, 47%)' },
-      { icon: Mail, label: 'Email', value: 'hello@happyfeet.com', color: 'hsl(351, 83%, 61%)' },
-      { icon: MapPin, label: 'Location', value: '123 Creative Lane, Fun City', color: 'hsl(45, 93%, 58%)' },
-      { icon: Clock, label: 'Hours', value: 'Mon-Sat: 9AM - 7PM', color: 'hsl(270, 60%, 65%)' },
+      { icon: Phone, label: 'Phone', value: '+91 9173500020', color: 'hsl(174, 62%, 47%)' },
+      { icon: Mail, label: 'Email', value: 'happyfeet.website12@gmail.com', color: 'hsl(351, 83%, 61%)' },
+      { icon: MapPin, label: 'Location', value: 'Hari Nagar Char Rasta, Vadodara, Gujarat, India', color: 'hsl(45, 93%, 58%)' },
+      { icon: Clock, label: 'Hours', value: 'All Days: 9AM - 7PM', color: 'hsl(270, 60%, 65%)' },
     ],
     []
   );
@@ -76,10 +79,43 @@ const BookEvent = () => {
     []
   );
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    toast.success("Message sent! We'll get back to you soon 🎉");
-    setFormData({ name: '', email: '', phone: '', message: '', eventType: 'birthday' });
+
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      toast.error('Email service is not configured yet.');
+      return;
+    }
+
+    if (sending) return;
+    setSending(true);
+
+    try {
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          to_email: 'happyfeet.website12@gmail.com',
+          from_name: formData.name,
+          reply_to: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+          event_type: formData.eventType,
+          source: 'BookEvent',
+        },
+        { publicKey }
+      );
+      toast.success("Message sent! We'll get back to you soon 🎉");
+      setFormData({ name: '', email: '', phone: '', message: '', eventType: 'birthday' });
+    } catch (err) {
+      toast.error('Failed to send. Please try again.');
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -209,9 +245,11 @@ const BookEvent = () => {
                       className="contact-booking__submit"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
+                      disabled={sending}
+                      style={{ opacity: sending ? 0.75 : 1, cursor: sending ? 'not-allowed' : 'pointer' }}
                     >
                       <Send className="w-5 h-5" />
-                      Send Message
+                      {sending ? 'Sending…' : 'Send Message'}
                     </motion.button>
                   </form>
                 </div>

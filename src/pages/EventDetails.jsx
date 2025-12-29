@@ -33,6 +33,13 @@ const EventDetails = () => {
   const { id } = useParams();
 
   const event = useMemo(() => getEventById(id), [id]);
+  const media = useMemo(() => {
+    if (!event) return [];
+    const videoSrcs = (event.videos ?? [])
+      .map((v) => v?.src)
+      .filter(Boolean);
+    return [...(event.images ?? []), ...videoSrcs];
+  }, [event]);
 
   return (
     <PageRoot>
@@ -221,61 +228,44 @@ const EventDetails = () => {
                     <Images size={18} />
                   </SectionIconWrap>
                   <div>
-                    <SectionTitle>Images</SectionTitle>
-                    <SectionSubtitle>Tap to zoom your favorite moments</SectionSubtitle>
+                    <SectionTitle>Gallery</SectionTitle>
+                    <SectionSubtitle>All moments together — photos & videos</SectionSubtitle>
                   </div>
                 </SectionHeader>
 
                 <MediaGrid>
-                  {(event.images ?? []).map((src, idx) => (
-                    <MediaTile
-                      key={`${event.id}-img-${idx}`}
-                      whileHover={{ y: -10, rotate: idx % 2 === 0 ? 0.6 : -0.6, scale: 1.02 }}
-                      whileTap={{ scale: 0.99 }}
-                      transition={{ type: "spring", stiffness: 240, damping: 18 }}
-                    >
-                      <MediaTileGlow
-                        animate={{ opacity: [0.1, 0.22, 0.1] }}
-                        transition={{ duration: 3.2 + (idx % 3), repeat: Infinity, ease: "easeInOut" }}
-                      />
-                      <MediaImg src={src} alt={`${event.title} image ${idx + 1}`} loading="lazy" />
-                      <MediaShade />
-                    </MediaTile>
-                  ))}
-                </MediaGrid>
-              </Section>
+                  {media.map((src, idx) => {
+                    const lower = String(src).toLowerCase();
+                    const isVideo = lower.endsWith('.mp4') || lower.endsWith('.mov') || lower.endsWith('.webm') || lower.endsWith('.ogg');
 
-              <Section variants={item}>
-                <SectionHeader>
-                  <SectionIconWrap>
-                    <Film size={18} />
-                  </SectionIconWrap>
-                  <div>
-                    <SectionTitle>Videos</SectionTitle>
-                    <SectionSubtitle>Short clips and highlights from the event</SectionSubtitle>
-                  </div>
-                </SectionHeader>
-
-                <VideoGrid>
-                  {(event.videos ?? []).map((v, idx) => (
-                    <VideoCard
-                      key={`${event.id}-vid-${idx}`}
-                      whileHover={{ y: -10, scale: 1.01 }}
-                      whileTap={{ scale: 0.99 }}
-                      transition={{ type: "spring", stiffness: 260, damping: 20 }}
-                    >
-                      <VideoLabel>{v.title ?? `Video ${idx + 1}`}</VideoLabel>
-                      <VideoWrap>
-                        <video
-                          src={v.src}
-                          controls
-                          preload="metadata"
-                          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    return (
+                      <MediaTile
+                        key={`${event.id}-media-${idx}`}
+                        whileHover={{ y: -10, rotate: idx % 2 === 0 ? 0.6 : -0.6, scale: 1.02 }}
+                        whileTap={{ scale: 0.99 }}
+                        transition={{ type: "spring", stiffness: 240, damping: 18 }}
+                      >
+                        <MediaTileGlow
+                          animate={{ opacity: [0.1, 0.22, 0.1] }}
+                          transition={{ duration: 3.2 + (idx % 3), repeat: Infinity, ease: "easeInOut" }}
                         />
-                      </VideoWrap>
-                    </VideoCard>
-                  ))}
-                </VideoGrid>
+                        {isVideo ? (
+                          <MediaVideoWrap>
+                            <video
+                              src={src}
+                              controls
+                              preload="metadata"
+                              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                            />
+                          </MediaVideoWrap>
+                        ) : (
+                          <MediaImg src={src} alt={`${event.title} media ${idx + 1}`} loading="lazy" />
+                        )}
+                        <MediaShade />
+                      </MediaTile>
+                    );
+                  })}
+                </MediaGrid>
               </Section>
             </Content>
           )}
@@ -683,35 +673,23 @@ const MediaTile = styled(motion.div)`
   position: relative;
   border-radius: 22px;
   overflow: hidden;
-  height: 170px;
-  grid-column: span 4;
-  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.18);
-
-  &:nth-child(6n + 1),
-  &:nth-child(6n + 4) {
-    grid-column: span 6;
-    height: 220px;
-  }
+  grid-column: span 3;
+  aspect-ratio: 3 / 4;
+  min-height: 240px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.12);
 
   @media (max-width: 1024px) {
-    grid-column: span 3;
-
-    &:nth-child(6n + 1),
-    &:nth-child(6n + 4) {
-      grid-column: span 6;
-      height: 210px;
-    }
+    grid-column: span 6;
+    aspect-ratio: 4 / 5;
+    min-height: 220px;
   }
 
   @media (max-width: 640px) {
-    grid-column: span 1;
-    height: 155px;
-
-    &:nth-child(6n + 1),
-    &:nth-child(6n + 4) {
-      grid-column: span 2;
-      height: 180px;
-    }
+    grid-column: span 2;
+    aspect-ratio: 9 / 16;
+    min-height: 210px;
   }
 `;
 
@@ -731,16 +709,33 @@ const MediaImg = styled.img`
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  z-index: 1;
   filter: saturate(1.12) contrast(1.05);
   transform: translateZ(0);
+`;
+
+const MediaVideoWrap = styled.div`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: rgba(15, 23, 42, 0.9);
+
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 `;
 
 const MediaShade = styled.div`
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.04));
-  opacity: 0.8;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
 `;
 
 const VideoGrid = styled.div`

@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { CategoryCard } from "../components/CategoryCard";
@@ -15,22 +15,22 @@ import { galleryCategories } from "../data/galleryCategories";
 const categories = galleryCategories;
 
 const heroMosaicImages = [
-  "/img1.jpg",
-  "/img2.jpg",
+  "/activity9.jpeg",
+  "/activity7.jpg",
   "/img3.jpg",
   "/img4.jpg",
-  "/img6.jpg",
-  "/img7.jpg",
-  "/img8.jpg",
-  "/birthday.jpg",
-  "/fiesta.jpg",
+  "/activity10.jpeg",
+  "/landing2.jpeg",
+  "/img5.jpg",
+  "/landing7.jpg",
+  "/activity11.jpeg",
   "/corporate.jpg",
-  "/kitty.jpg",
+  "/gallery3.jpg",
   "/workshop.jpg",
   "/sippaint.jpg",
-  "/babyshower.jpg",
-  "/cakepainting.jpg",
-  "/cooking.jpg",
+  "/landing1.jpeg",
+  "/landing3.jpeg",
+  "/gallery2.jpg",
 ];
 
 const sphereImages = [
@@ -63,6 +63,14 @@ const sphereImages = [
 const Gallery = () => {
   const navigate = useNavigate();
   const containerRef = useRef(null);
+
+  useEffect(() => {
+    if (window.location.hash !== '#past-events') return;
+    const el = document.getElementById('past-events');
+    if (!el) return;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
@@ -243,7 +251,6 @@ const Gallery = () => {
                   image={category.image}
                   color={category.color}
                   index={index}
-                  onClick={() => navigate(`/gallery/category/${category.slug}`)}
                 />
               ))}
             </CardsWrapper>
@@ -327,7 +334,7 @@ const Gallery = () => {
         />
       </SphereSection>
 
-      <PastEventsSection>
+      <PastEventsSection id="past-events">
         <EventsTopGradient />
         <EventsContent>
           <motion.div
@@ -393,6 +400,7 @@ const Gallery = () => {
             <ViewAllButton
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => navigate('/gallery/all-media')}
             >
               <ButtonAnimatedGradient
                 animate={{ x: ["-100%", "100%"] }}

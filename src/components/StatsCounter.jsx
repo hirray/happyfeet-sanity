@@ -7,23 +7,23 @@ import styled, { keyframes } from 'styled-components';
 const stats = [
   {
     icon: Users,
-    value: 500,
+    value: 1000,
     suffix: '+',
     label: 'Trusted Clients',
     color: 'coral',
   },
   {
     icon: Calendar,
-    value: 1000,
+    value: 500,
     suffix: '+',
     label: 'Events Organized',
     color: 'teal',
   },
   {
     icon: Award,
-    value: 25,
+    value: 14,
     suffix: '+',
-    label: 'Awards Won',
+    label: 'Years of Experience',
     color: 'gold',
   },
   {

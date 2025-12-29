@@ -159,7 +159,7 @@ const AnimatedNumber = ({ value, suffix = '', isVisible }) => {
     }
 
     const startValue = 0;
-    const duration = 2000; // 2 seconds
+    const duration = 5000; // 2 seconds
     const startTime = Date.now();
     const endTime = startTime + duration;
 

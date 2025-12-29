@@ -2,71 +2,76 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import styled from "styled-components";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const themes = [
   {
     id: 1,
-    name: "Bow",
+    name: "Birthday",
+    slug: "birthday",
     color: "#FF69B4",
-    image: "https://images.unsplash.com/photo-1513885535751-8b9238bd345a?w=500&q=80",
+    image: "/birthday.jpg",
   },
   {
     id: 2,
-    name: "Spiderman",
+    name: "Fiesta",
+    slug: "fiesta",
     color: "#DC143C",
-    image: "https://images.unsplash.com/photo-1608889476561-6242cfdbf622?w=500&q=80",
+    image: "/fiesta.jpg",
   },
   {
     id: 3,
-    name: "Ronaldo",
+    name: "Corporate",
+    slug: "corporate",
     color: "#FFD700",
-    image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=500&q=80",
+    image: "/corporate.jpg",
   },
   {
     id: 4,
-    name: "Squid Game",
+    name: "Kitty Party",
+    slug: "kitty",
     color: "#FF1744",
-    image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=500&q=80",
+    image: "/kitty.jpg",
   },
   {
     id: 5,
-    name: "Disco",
+    name: "Workshop",
+    slug: "workshop",
     color: "#9C27B0",
-    image: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=500&q=80",
+    image: "/workshop.jpg",
   },
   {
     id: 6,
-    name: "Penguin",
+    name: "Sip & Paint",
+    slug: "sippaint",
     color: "#00BCD4",
-    image: "https://images.unsplash.com/photo-1551986782-d0169b3f8fa7?w=500&q=80",
+    image: "/sippaint.jpg",
   },
   {
     id: 7,
-    name: "Frozen",
+    name: "Baby Shower",
+    slug: "babyshower",
     color: "#64B5F6",
-    image: "https://images.unsplash.com/photo-1483664852095-d6cc6870702d?w=500&q=80",
+    image: "/babyshower.jpg",
   },
   {
     id: 8,
-    name: "Unicorn",
+    name: "Cooking Party",
+    slug: "cooking",
     color: "#E1BEE7",
-    image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&q=80",
+    image: "/cooking.jpg",
   },
   {
     id: 9,
-    name: "Safari",
+    name: "Cake Painting",
+    slug: "cakepainting",
     color: "#8D6E63",
-    image: "https://images.unsplash.com/photo-1516426122078-c23e76319801?w=500&q=80",
-  },
-  {
-    id: 10,
-    name: "Princess",
-    color: "#F8BBD0",
-    image: "https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?w=500&q=80",
+    image: "/cakepainting.jpg",
   },
 ];
 
 export const DecorThemes = () => {
+  const navigate = useNavigate();
   const containerRef = useRef(null);
   const scrollContainerRef = useRef(null);
   const isInView = useInView(containerRef, { once: false, amount: 0.2 });
@@ -82,7 +87,7 @@ export const DecorThemes = () => {
   };
 
   return (
-    <ThemesSection ref={containerRef}>
+    <ThemesSection ref={containerRef} id="decor-themes">
       <SectionBackground>
         <BackgroundWave1
           animate={{
@@ -145,6 +150,7 @@ export const DecorThemes = () => {
                     duration: 0.6,
                     delay: index * 0.1,
                   }}
+                  onClick={() => navigate(`/decor-themes/${theme.slug}`)}
                 >
                   <PolaroidCard className="polaroid-card">
                     <CardImage

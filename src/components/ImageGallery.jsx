@@ -3,11 +3,11 @@ import { useMemo, useRef } from 'react';
 import '../styles/ImageGallery.css';
 
 const galleryTiles = [
-  { id: 1, span: 'ig-tile--xl', gradient: 'ig-grad--a', src: '/img1.jpg' },
-  { id: 2, span: 'ig-tile--sm', gradient: 'ig-grad--b', src: '/img2.jpg' },
-  { id: 3, span: 'ig-tile--sm', gradient: 'ig-grad--c', src: '/img3.jpg' },
-  { id: 4, span: 'ig-tile--tall', gradient: 'ig-grad--d', src: '/img4.jpg' },
-  { id: 5, span: 'ig-tile--wide', gradient: 'ig-grad--e', src: '/img5.jpg' },
+  { id: 1, span: 'ig-tile--xl', gradient: 'ig-grad--a', src: '/landing1.jpeg' },
+  { id: 2, span: 'ig-tile--sm', gradient: 'ig-grad--b', src: '/landing2.jpeg' },
+  { id: 3, span: 'ig-tile--sm', gradient: 'ig-grad--c', src: '/landing4.jpeg' },
+  { id: 4, span: 'ig-tile--tall', gradient: 'ig-grad--d', src: '/landing5.jpeg' },
+  { id: 5, span: 'ig-tile--wide', gradient: 'ig-grad--e', src: '/landing7.jpg' },
 ];
 
 const ImageGallery = () => {
@@ -59,8 +59,8 @@ const ImageGallery = () => {
                 className="ig-tile__overlay"
               >
                 <div className="ig-tile__overlayText">
-                  <p className="ig-tile__overlayTitle">Event #{tile.id}</p>
-                  <p className="ig-tile__overlaySub">Hover to explore</p>
+                 
+                  <p className="ig-tile__overlaySub"></p>
                 </div>
               </motion.div>
 

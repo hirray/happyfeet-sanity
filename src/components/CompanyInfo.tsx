@@ -6,7 +6,7 @@ const infoItems = [
   {
     icon: Calendar,
     label: "Established",
-    value: "2010",
+    value: "2011",
     iconBg: "rgba(255, 107, 107, 0.1)",
     iconColor: "hsl(10, 90%, 65%)",
     glow:
@@ -24,7 +24,7 @@ const infoItems = [
   {
     icon: Users,
     label: "Years of Experience",
-    value: "15+",
+    value: "14+",
     iconBg: "rgba(255, 193, 7, 0.1)",
     iconColor: "hsl(40, 95%, 55%)",
     glow:

@@ -8,15 +8,12 @@ import { ClientTestimonials } from "../components/ClientTestimonials";
 import { EventTimeline } from "../components/EventTimeline";
 import ImageGallery from "../components/ImageGallery";
 import { FloatingConfetti } from "../components/FloatingConfetti";
+import { useNavigate } from "react-router-dom";
 import FloatingNavbar from "../components/FloatingNavbar";
 import Footer from "../components/Footer";
 
 const Landing = () => {
-  const scrollToGallery = () => {
-    const el = document.getElementById('landing-gallery');
-    if (!el) return;
-    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
+  const navigate = useNavigate();
 
   return (
     <PageWrapper>
@@ -58,6 +55,7 @@ const Landing = () => {
             <PrimaryButton
               whileHover={{ scale: 1.05, y: -5 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => navigate('/book-event')}
             >
               <ButtonShine
                 animate={{ x: ["-100%", "200%"] }}
@@ -68,7 +66,7 @@ const Landing = () => {
             <SecondaryButton
               whileHover={{ scale: 1.05, y: -5 }}
               whileTap={{ scale: 0.95 }}
-              onClick={scrollToGallery}
+              onClick={() => navigate('/gallery')}
             >
               View Gallery
             </SecondaryButton>

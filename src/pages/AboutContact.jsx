@@ -470,6 +470,17 @@ const AboutContact = () => {
       <ClientReviews />
       <ScrollingQuote />
       <FounderSection />
+      <FounderSection
+        name="Vriha Gokani"
+        role="Co-Founder, HappyFeet"
+        imageSrc="/cofounder.jpg"
+        badgeText="Meet Our Co-Founder"
+        showHeader={false}
+        compact
+        photoSize="sm"
+        paddingY="1.5rem"
+        paddingX="3.5rem"
+      />
       <MapSectionModern />
       <SocialMedia />
       <ContactComicForm />

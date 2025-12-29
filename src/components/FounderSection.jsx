@@ -7,7 +7,7 @@ import styled from 'styled-components';
 const Section = styled.section`
   position: relative;
   overflow: hidden;
-  padding: 5rem 1rem;
+  padding: ${({ $paddingY }) => ($paddingY ? `${$paddingY} 1rem` : '5rem 1rem')};
 `;
 
 const DecoBlob = styled(motion.div)`
@@ -113,8 +113,8 @@ const InnerRing = styled.div`
 
 const PhotoCircle = styled(motion.div)`
   position: relative;
-  width: 18rem;
-  height: 18rem;
+  width: ${({ $size }) => ($size === 'sm' ? '12rem' : '18rem')};
+  height: ${({ $size }) => ($size === 'sm' ? '12rem' : '18rem')};
   border-radius: 999px;
   overflow: hidden;
   box-shadow:
@@ -123,8 +123,8 @@ const PhotoCircle = styled(motion.div)`
   z-index: 2;
 
   @media (min-width: 768px) {
-    width: 20rem;
-    height: 20rem;
+    width: ${({ $size }) => ($size === 'sm' ? '14rem' : '20rem')};
+    height: ${({ $size }) => ($size === 'sm' ? '14rem' : '20rem')};
   }
 `;
 
@@ -338,7 +338,21 @@ const Dot = styled(motion.div)`
   background: linear-gradient(90deg, #ff6b6b, #ec4899);
 `;
 
-export const FounderSection = ({ imageSrc = '/twinkle-gokani.jpg' }) => {
+export const FounderSection = ({
+  imageSrc = '/twinkle-gokani.jpg',
+  name = 'Twinkle Gokani',
+  role = 'Founder & CEO, HappyFeet',
+  badgeText = 'Meet Our Visionary',
+  headingPrefix = 'The Heart Behind',
+  headingAccent = 'HappyFeet',
+  quote =
+    "At HappyFeet, we don't just organize events – we create memories that last a lifetime. Every smile, every laugh, every moment of joy is what drives us to make your celebrations extraordinary.",
+  initials,
+  compact = false,
+  photoSize = 'lg',
+  showHeader = true,
+  paddingY,
+}) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.2,
@@ -346,8 +360,15 @@ export const FounderSection = ({ imageSrc = '/twinkle-gokani.jpg' }) => {
 
   const [imgError, setImgError] = useState(false);
 
+  const computedInitials = (initials ?? name)
+    .split(' ')
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase())
+    .join('');
+
   return (
-    <Section ref={ref}>
+    <Section ref={ref} $paddingY={paddingY}>
       <DecoBlob
         style={{
           top: '2.5rem',
@@ -372,20 +393,35 @@ export const FounderSection = ({ imageSrc = '/twinkle-gokani.jpg' }) => {
       />
 
       <Container>
-        <Header
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-        >
-          <Badge whileHover={{ scale: 1.05 }}>
-            <Sparkles />
-            <span>Meet Our Visionary</span>
-            <Sparkles />
-          </Badge>
-          <Title>
-            The Heart Behind <Accent>HappyFeet</Accent>
-          </Title>
-        </Header>
+        {showHeader ? (
+          <Header
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+          >
+            <Badge whileHover={{ scale: 1.05 }}>
+              <Sparkles />
+              <span>{badgeText}</span>
+              <Sparkles />
+            </Badge>
+            <Title>
+              {headingPrefix} <Accent>{headingAccent}</Accent>
+            </Title>
+          </Header>
+        ) : (
+          <Header
+            initial={{ opacity: 0, y: 12 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            style={{ marginBottom: '1.5rem' }}
+          >
+            <Badge whileHover={{ scale: 1.05 }}>
+              <Sparkles />
+              <span>{badgeText}</span>
+              <Sparkles />
+            </Badge>
+          </Header>
+        )}
 
         <Layout>
           <ImageWrap
@@ -408,9 +444,9 @@ export const FounderSection = ({ imageSrc = '/twinkle-gokani.jpg' }) => {
             />
             <InnerRing />
 
-            <PhotoCircle whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }}>
+            <PhotoCircle $size={photoSize} whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }}>
               {!imgError ? (
-                <Photo src={imageSrc} alt="Twinkle Gokani" onError={() => setImgError(true)} />
+                <Photo src={imageSrc} alt={name} onError={() => setImgError(true)} />
               ) : (
                 <PhotoFallback>
                   <div style={{ textAlign: 'center' }}>
@@ -424,7 +460,7 @@ export const FounderSection = ({ imageSrc = '/twinkle-gokani.jpg' }) => {
                       }}
                       transition={{ duration: 2, repeat: Infinity }}
                     >
-                      TG
+                      {computedInitials}
                     </Initials>
                   </div>
                 </PhotoFallback>
@@ -446,7 +482,7 @@ export const FounderSection = ({ imageSrc = '/twinkle-gokani.jpg' }) => {
               whileHover={{ scale: 1.03 }}
             >
               <RoleDot />
-              Founder & CEO, HappyFeet
+              {role}
             </RolePill>
 
             <FloatingBadge
@@ -472,79 +508,80 @@ export const FounderSection = ({ imageSrc = '/twinkle-gokani.jpg' }) => {
             />
           </ImageWrap>
 
-          <QuoteWrap
-            initial={{ opacity: 0, x: 50 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <motion.div
-              initial={{ scale: 0, rotate: -180 }}
-              animate={inView ? { scale: 1, rotate: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.6, type: 'spring' }}
-            >
-              <QuoteIconWrap>
-                <Quote />
-              </QuoteIconWrap>
-            </motion.div>
-
-            <motion.blockquote
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.7 }}
-            >
-              <QuoteText>
-                "At HappyFeet, we don't just organize events – we{' '}
-                <Emph whileHover={{ scale: 1.05 }}>
-                  <span style={{ color: '#ff6b6b' }}>create memories</span>
-                  <Underline
-                    style={{ background: 'linear-gradient(90deg, #ff6b6b, #ec4899)' }}
-                    initial={{ scaleX: 0 }}
-                    animate={inView ? { scaleX: 1 } : {}}
-                    transition={{ duration: 0.8, delay: 1 }}
-                  />
-                </Emph>{' '}
-                that last a lifetime. Every smile, every laugh, every moment of joy is what drives us to make your celebrations{' '}
-                <Emph whileHover={{ scale: 1.05 }}>
-                  <span style={{ color: '#22c1c3' }}>extraordinary</span>
-                  <Underline
-                    style={{ background: 'linear-gradient(90deg, #22c1c3, #a855f7)' }}
-                    initial={{ scaleX: 0 }}
-                    animate={inView ? { scaleX: 1 } : {}}
-                    transition={{ duration: 0.8, delay: 1.2 }}
-                  />
-                </Emph>
-                ."
-              </QuoteText>
-            </motion.blockquote>
-
+          {compact ? (
             <NameBlock
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 14 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.9 }}
+              transition={{ duration: 0.6, delay: 0.45 }}
             >
               <FounderName
                 animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
                 transition={{ duration: 5, repeat: Infinity }}
+                style={{ fontSize: 'clamp(1.35rem, 2vw, 1.75rem)' }}
               >
-                Twinkle Gokani
+                {name}
               </FounderName>
 
               <FounderTitle whileHover={{ x: 5 }}>
                 <Line />
-                Founder & CEO, HappyFeet
+                {role}
               </FounderTitle>
-
-              <Dots initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}} transition={{ delay: 1.1 }}>
-                {[...Array(5)].map((_, i) => (
-                  <Dot
-                    key={i}
-                    animate={{ scale: [1, 1.3, 1], opacity: [0.55, 1, 0.55] }}
-                    transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.2 }}
-                  />
-                ))}
-              </Dots>
             </NameBlock>
-          </QuoteWrap>
+          ) : (
+            <QuoteWrap
+              initial={{ opacity: 0, x: 50 }}
+              animate={inView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              <motion.div
+                initial={{ scale: 0, rotate: -180 }}
+                animate={inView ? { scale: 1, rotate: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.6, type: 'spring' }}
+              >
+                <QuoteIconWrap>
+                  <Quote />
+                </QuoteIconWrap>
+              </motion.div>
+
+              <motion.blockquote
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.7 }}
+              >
+                <QuoteText>
+                  &quot;{quote}&quot;
+                </QuoteText>
+              </motion.blockquote>
+
+              <NameBlock
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.9 }}
+              >
+                <FounderName
+                  animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
+                  transition={{ duration: 5, repeat: Infinity }}
+                >
+                  {name}
+                </FounderName>
+
+                <FounderTitle whileHover={{ x: 5 }}>
+                  <Line />
+                  {role}
+                </FounderTitle>
+
+                <Dots initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}} transition={{ delay: 1.1 }}>
+                  {[...Array(5)].map((_, i) => (
+                    <Dot
+                      key={i}
+                      animate={{ scale: [1, 1.3, 1], opacity: [0.55, 1, 0.55] }}
+                      transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.2 }}
+                    />
+                  ))}
+                </Dots>
+              </NameBlock>
+            </QuoteWrap>
+          )}
         </Layout>
       </Container>
     </Section>

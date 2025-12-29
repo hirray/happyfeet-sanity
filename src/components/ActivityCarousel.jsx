@@ -3,16 +3,17 @@ import styled from 'styled-components';
 
 // Array of image paths
 const cardImages = [
-  '/img1.jpg',
-  '/img2.jpg',
-  '/img3.jpg',
-  '/img4.jpg',
-  '/img5.jpg',
-  '/img6.jpg',
-  '/img7.jpg',
-  '/img8.jpg',
-  '/img9.jpg',
-  '/img10.jpg'
+  '/activity1.jpg',
+  '/actvity2.jpg',
+  '/activity3.jpg',
+  '/activity4.jpg',
+  '/activity5.jpg',
+  '/activity6.jpg',
+  '/activity7.jpg',
+  '/activity8.jpg',
+  '/activity9.jpg',
+  '/activity10.jpg',
+  '/activity11.jpg'
 ];
 
 // Helper function to generate colors for cards

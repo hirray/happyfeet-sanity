@@ -203,13 +203,23 @@ const Footer = () => {
                 </div>
                 +91 9173500020
               </motion.li>
-              <motion.li className="animated-footer__contactItem" whileHover={{ x: 10 }}>
+              <motion.li
+                className="animated-footer__contactItem"
+                whileHover={{ x: 10 }}
+                onClick={() => window.open('https://mail.google.com/mail/?view=cm&fs=1&to=happyfeet.website12@gmail.com', '_blank', 'noopener,noreferrer')}
+                style={{ cursor: 'pointer' }}
+              >
                 <div className="animated-footer__pill animated-footer__pill--mail">
                   <IconMail className="animated-footer__miniIcon" />
                 </div>
-                Happyfeet12@gmail.com
+                happyfeet.website12@gmail.com
               </motion.li>
-              <motion.li className="animated-footer__contactItem" whileHover={{ x: 10 }}>
+              <motion.li
+                className="animated-footer__contactItem"
+                whileHover={{ x: 10 }}
+                onClick={() => window.open('https://www.google.com/maps/search/?api=1&query=Vadodara%2C%20Gujarat%2C%20India', '_blank', 'noopener,noreferrer')}
+                style={{ cursor: 'pointer' }}
+              >
                 <div className="animated-footer__pill animated-footer__pill--map">
                   <IconMapPin className="animated-footer__miniIcon" />
                 </div>
