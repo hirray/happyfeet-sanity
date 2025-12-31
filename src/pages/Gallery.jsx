@@ -39,7 +39,7 @@ const sphereImages = [
   { src: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=400", alt: "Kitty Party" },
   { src: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=400", alt: "Sip & Paint" },
   { src: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=400", alt: "Cook Party" },
-  { src: "https://images.unsplash.com/photo-1519689680058-324335c77eba?w=400", alt: "Baby Shower" },
+  { src: "/disco.jpg", alt: "Baby Shower" },
   { src: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400", alt: "Cake Painting" },
   { src: "https://images.unsplash.com/photo-1511578314322-379afb476865?w=400", alt: "Corporate Event" },
   { src: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400", alt: "Workshop" },
@@ -48,7 +48,7 @@ const sphereImages = [
   { src: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=400", alt: "Kitty Party 2" },
   { src: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=400", alt: "Sip & Paint 2" },
   { src: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=400", alt: "Cook Party 2" },
-  { src: "https://images.unsplash.com/photo-1519689680058-324335c77eba?w=400", alt: "Baby Shower 2" },
+  { src: "/workshop.jpg", alt: "Baby Shower 2" },
   { src: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400", alt: "Cake Painting 2" },
   { src: "https://images.unsplash.com/photo-1511578314322-379afb476865?w=400", alt: "Corporate Event 2" },
   { src: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400", alt: "Workshop 2" },
@@ -57,7 +57,7 @@ const sphereImages = [
   { src: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=400", alt: "Kitty Party 3" },
   { src: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=400", alt: "Sip & Paint 3" },
   { src: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=400", alt: "Cook Party 3" },
-  { src: "https://images.unsplash.com/photo-1519689680058-324335c77eba?w=400", alt: "Baby Shower 3" },
+  { src: "/kitty.jpg", alt: "Baby Shower 3" },
 ];
 
 const Gallery = () => {
@@ -741,8 +741,9 @@ const ScrollContainer = styled.div`
   position: relative;
   display: flex;
   gap: 1.5rem;
-  padding: 0 1rem 2rem;
+  padding: 0 2rem 2rem;
   overflow-x: auto;
+  scroll-padding-left: 2rem;
   scrollbar-width: none;
   
   &::-webkit-scrollbar {
@@ -753,7 +754,7 @@ const ScrollContainer = styled.div`
 const CardsWrapper = styled.div`
   display: flex;
   gap: 1.5rem;
-  padding-left: 1rem;
+  padding-left: 0;
 `;
 
 const ScrollHint = styled(motion.div)`

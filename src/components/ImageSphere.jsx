@@ -1,4 +1,4 @@
-import { useRef, useState, useMemo } from "react";
+import { useRef, useState, useMemo, useEffect } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import styled from "styled-components";
 
@@ -8,10 +8,34 @@ export const ImageSphere = ({ images }) => {
   
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+
+  const autoRotate = useMotionValue(0);
   
   const springConfig = { stiffness: 100, damping: 30 };
   const rotateX = useSpring(useTransform(mouseY, [-300, 300], [30, -30]), springConfig);
   const rotateY = useSpring(useTransform(mouseX, [-300, 300], [-30, 30]), springConfig);
+
+  useEffect(() => {
+    if (isHovered) return;
+
+    let rafId;
+    let lastTs;
+
+    const loop = (ts) => {
+      if (lastTs == null) lastTs = ts;
+      const dt = ts - lastTs;
+      lastTs = ts;
+
+      const speedDegPerSec = 14;
+      autoRotate.set(autoRotate.get() + (dt / 1000) * speedDegPerSec);
+      rafId = requestAnimationFrame(loop);
+    };
+
+    rafId = requestAnimationFrame(loop);
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, [isHovered, autoRotate]);
 
   const handleMouseMove = (e) => {
     if (!containerRef.current) return;
@@ -63,7 +87,7 @@ export const ImageSphere = ({ images }) => {
         <SphereInner
           style={{
             rotateX: isHovered ? rotateX : 0,
-            rotateY: isHovered ? rotateY : 0,
+            rotateY: isHovered ? rotateY : autoRotate,
           }}
         >
           {images.map((image, i) => {
