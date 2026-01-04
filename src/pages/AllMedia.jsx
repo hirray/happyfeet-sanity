@@ -64,7 +64,15 @@ const AllMedia = () => {
               >
                 {isVideo ? (
                   <VideoWrap>
-                    <video src={src} controls preload="metadata" />
+                    <video
+                      src={src}
+                      controls
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                    />
                   </VideoWrap>
                 ) : (
                   <Img src={src} alt="" loading="lazy" />
