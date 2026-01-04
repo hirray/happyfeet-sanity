@@ -15,15 +15,17 @@ export const pastEvents = [
     planning:
       "A charming bow-themed celebration with creative activities like comb decoration and candle painting.Perfectly planned for fun, creativity, and happy little moments.",
     images: [
+      "/bow9.mp4",
+      "/bow5.mp4",
       "/bow1.jpg",
       "/bow2.jpg",
       "/bow3.jpg",
       "/bow4.jpg",
-      "/bow5.mp4",
+      
       "/bow7.jpg",
       "/bow6.mp4",
       "/bow8.jpg",
-      "/bow9.mp4",
+      
 
     ],
     videos: [],
@@ -44,9 +46,10 @@ export const pastEvents = [
     planning:
       "We planned this Christmas fiesta with a warm, festive vibe—glowing décor, joyful activities, and a smooth flow so every moment felt magical.",
     images: [
-      "/cristmas1.MOV",
+     
       "/cristmas18.mp4",
-      "/cristmas3.JPG",
+       "/cristmas3.JPG",
+       "/cristmas1.MOV",
       "/cristmas9.MOV",
       "/cristmas10.JPG",
       "/cristmas11.MOV",
