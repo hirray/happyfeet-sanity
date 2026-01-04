@@ -136,7 +136,7 @@ const SplashScreen = () => {
           animate={{ letterSpacing: '0.02em', opacity: 1 }}
           transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
         >
-          Happyfeet
+          Happy feet
         </motion.h1>
 
         <motion.p

@@ -39,7 +39,7 @@ const BookEvent = () => {
     () => [
       { icon: Phone, label: 'Phone', value: '+91 9173500020', color: 'hsl(174, 62%, 47%)' },
       { icon: Mail, label: 'Email', value: 'happyfeet.website12@gmail.com', color: 'hsl(351, 83%, 61%)' },
-      { icon: MapPin, label: 'Location', value: 'Hari Nagar Char Rasta, Vadodara, Gujarat, India', color: 'hsl(45, 93%, 58%)' },
+      { icon: MapPin, label: 'Location', value: 'Hari Nagar Cross Road, Vadodara, Gujarat, India', color: 'hsl(45, 93%, 58%)' },
       { icon: Clock, label: 'Hours', value: 'All Days: 9AM - 7PM', color: 'hsl(270, 60%, 65%)' },
     ],
     []

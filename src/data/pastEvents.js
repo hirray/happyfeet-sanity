@@ -141,16 +141,17 @@ export const pastEvents = [
     planning:
       "We plan vibrant Diwali fiestas with traditional décor, lights, and engaging activities.Every detail is thoughtfully managed to create a joyful celebration.",
     images: [
-      "/diwali1.mp4",
-      "/diwali4.MOV",
       
+      "/diwali4.MOV",
+      "/diwali7.MOV",
       "/diwali15.mp4",
       "/diwali16.mp4",
       "/diwali2.jpg",
       
       "/diwali3.mp4",
       "/diwali6.MOV",
-      "/diwali7.MOV",
+      "/diwali1.mp4",
+      
       "/diwali5.MOV",
       "/diwali8.mp4",
       "/diwali9.MOV",

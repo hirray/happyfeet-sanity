@@ -384,7 +384,7 @@ export const MapSection = () => {
                 <InfoList>
                   <InfoRow>
                     <Building style={{ color: '#ff6b6b' }} />
-                    <span>Hari Nagar Char Rasta, Vadodara, Gujarat, India</span>
+                    <span>Hari Nagar Cross Road, Vadodara, Gujarat, India</span>
                   </InfoRow>
                   <InfoRow>
                     <Clock style={{ color: '#22c1c3' }} />
