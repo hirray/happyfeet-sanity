@@ -28,7 +28,7 @@ const slides = [
     id: 3,
     title: "Memories That Last",
     subtitle: "Crafting Experiences You'll Cherish Forever",
-    image: "/img3.jpg",
+    image: "/santa4.jpeg",
     imagePosition: 'center',
     color: "hsl(175, 70%, 45%)",
     icon: Star,

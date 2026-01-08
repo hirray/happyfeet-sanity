@@ -388,7 +388,7 @@ export const MapSection = () => {
                   </InfoRow>
                   <InfoRow>
                     <Clock style={{ color: '#22c1c3' }} />
-                    <span>All Days: 9AM - 6PM</span>
+                    <span>All Days: 9AM - 7PM</span>
                   </InfoRow>
                   <InfoRow>
                     <Phone style={{ color: '#f59e0b' }} />
@@ -424,11 +424,11 @@ export const MapSection = () => {
           >
             <BarItem>
               <MapPin style={{ color: '#ff6b6b' }} />
-              Mumbai, Maharashtra
+              Vadodara, Gujarat.
             </BarItem>
             <BarItem>
               <Clock style={{ color: '#22c1c3' }} />
-              Open 6 days a week
+              Open All Days 
             </BarItem>
             <BarItem>
               <Phone style={{ color: '#f59e0b' }} />

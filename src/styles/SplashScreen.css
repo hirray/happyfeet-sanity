@@ -192,7 +192,6 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  text-transform: lowercase;
 }
 
 .splash__tag {

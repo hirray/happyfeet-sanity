@@ -286,12 +286,12 @@
 
 .ac-modal__panel {
   position: relative;
-  width: min(880px, 100%);
-  max-height: 90vh;
+  width: min(680px, 90%);
+  max-height: 80vh;
   overflow: auto;
-  border-radius: 26px;
+  border-radius: 20px;
   background: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.7);
 }
 
