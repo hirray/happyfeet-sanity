@@ -91,7 +91,6 @@ const InteractiveMap = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ 
               opacity: 1, 
-              y: 0,
               x: cursorPos.x - 100,
               y: cursorPos.y - 120
             }}

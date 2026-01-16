@@ -14,6 +14,7 @@ import EventDetails from "./pages/EventDetails";
 import CategoryMedia from "./pages/CategoryMedia";
 import AllMedia from "./pages/AllMedia";
 import DecorThemeDetails from './pages/DecorThemeDetails';
+import Kits from "./pages/Kits";
 import SplashScreen from './components/SplashScreen';
 import RegisterPopup from './components/RegisterPopup';
 import { isRegistered as isRegisterPopupRegistered } from './utils/registerStorage';
@@ -81,6 +82,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Landing />} />
                 <Route path="/home" element={<Home />} />
+                <Route path="/kits" element={<Kits />} />
                 <Route path="/book-event" element={<BookEvent />} />
                 <Route path="/gallery" element={<Gallery />} />
                 <Route path="/decor-themes/:slug" element={<DecorThemeDetails />} />

@@ -52,8 +52,8 @@ const FloatingNavbar = () => {
         </div>
 
         <div className="floating-navbar__logo">
-          <NavLink to="/" className="floating-navbar__logoLink">
-            <span className="floating-navbar__logoText">Happyfeet</span>
+          <NavLink to="/kits" className="floating-navbar__logoLink">
+            <span className="floating-navbar__logoText">Kits</span>
           </NavLink>
         </div>
 
