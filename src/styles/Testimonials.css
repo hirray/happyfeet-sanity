@@ -674,6 +674,12 @@
   backdrop-filter: blur(10px);
 }
 
+@media (min-width: 980px) {
+  .testimonialsReview__overlay {
+    padding: 18px 20px;
+  }
+}
+
 .testimonialsReview__modal {
   width: min(560px, 100%);
   border-radius: 22px;
@@ -684,6 +690,15 @@
     0 0 0 1px rgba(255, 255, 255, 0.25);
   overflow: hidden;
   transform-style: preserve-3d;
+}
+
+@media (min-width: 980px) {
+  .testimonialsReview__modal {
+    width: min(520px, 100%);
+    max-height: calc(100vh - 140px);
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .testimonialsReview__modal::before {
@@ -705,6 +720,12 @@
   justify-content: space-between;
   gap: 14px;
   padding: 18px 18px 0;
+}
+
+@media (min-width: 980px) {
+  .testimonialsReview__header {
+    padding: 14px 16px 0;
+  }
 }
 
 .testimonialsReview__title {
@@ -748,12 +769,25 @@
   padding: 16px 18px 18px;
 }
 
+@media (min-width: 980px) {
+  .testimonialsReview__form {
+    padding: 12px 16px 14px;
+    overflow: auto;
+  }
+}
+
 .testimonialsReview__stars {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
   padding: 14px 10px 10px;
+}
+
+@media (min-width: 980px) {
+  .testimonialsReview__stars {
+    padding: 10px 8px 6px;
+  }
 }
 
 .testimonialsReview__star {
@@ -780,6 +814,12 @@
   margin-top: 8px;
 }
 
+@media (min-width: 980px) {
+  .testimonialsReview__field {
+    margin-top: 6px;
+  }
+}
+
 .testimonialsReview__label {
   display: block;
   font-weight: 900;
@@ -798,6 +838,12 @@
   outline: none;
   box-shadow: 0 14px 35px rgba(17, 19, 28, 0.06);
   transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+}
+
+@media (min-width: 980px) {
+  .testimonialsReview__input {
+    padding: 10px 12px;
+  }
 }
 
 .testimonialsReview__input:focus {
@@ -822,6 +868,19 @@
   transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
 }
 
+@media (min-width: 980px) {
+  .testimonialsReview__textarea {
+    padding: 12px 12px;
+    resize: none;
+  }
+}
+
+@media (min-width: 980px) {
+  .testimonialsReview__textarea {
+    min-height: 90px;
+  }
+}
+
 .testimonialsReview__textarea:focus {
   border-color: rgba(255, 77, 109, 0.55);
   box-shadow:
@@ -835,6 +894,12 @@
   display: flex;
   justify-content: flex-end;
   gap: 10px;
+}
+
+@media (min-width: 980px) {
+  .testimonialsReview__actions {
+    margin-top: 10px;
+  }
 }
 
 .testimonialsReview__btn {
