@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
 import { Camera, Heart, Music, Sparkles, Star as StarIcon } from 'lucide-react';
 import '../styles/Testimonials.css';
 import AnimatedBackground from '../components/AnimatedBackground';
@@ -114,6 +114,53 @@ const HeroSection = () => {
 
 const escapeRegExp = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
+const positiveHighlights = [
+  'amazing',
+  'awesome',
+  'beautiful',
+  'best',
+  'brilliant',
+  'creative',
+  'excellent',
+  'fantastic',
+  'flawless',
+  'friendly',
+  'gorgeous',
+  'great',
+  'incredible',
+  'magical',
+  'memorable',
+  'outstanding',
+  'perfect',
+  'professional',
+  'smooth',
+  'stunning',
+  'unforgettable',
+  'unique',
+  'well-organized',
+  'impressed',
+  'good',
+  'happy',
+  'loved',
+  'lovely',
+  'loving',
+  'unique',
+  'wonderful',
+  
+];
+
+const extractHighlights = (text) => {
+  const source = String(text || '').toLowerCase();
+  const hits = [];
+
+  positiveHighlights.forEach((w) => {
+    if (!w) return;
+    if (source.includes(w.toLowerCase())) hits.push(w);
+  });
+
+  return Array.from(new Set(hits)).slice(0, 6);
+};
+
 const highlightText = (text, highlights) => {
   if (!highlights?.length) return text;
   const pattern = highlights
@@ -169,15 +216,33 @@ const QuoteMark = () => (
   </svg>
 );
 
-const testimonials = [
+const BigStar = ({ filled }) => (
+  <svg
+    width="34"
+    height="34"
+    viewBox="0 0 24 24"
+    fill={filled ? 'currentColor' : 'none'}
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+  </svg>
+);
+
+const initialTestimonials = [
   {
-    name: 'Sarah Johnson',
+    id: 1,
+    name: 'Sneha Kulkarni',
     role: 'Birthday Party',
     rating: 5,
     text: 'The most amazing birthday party for my daughter! They made everything so magical and stress-free. Truly the best team.',
     highlights: ['amazing', 'magical', 'stress-free', 'best'],
   },
   {
+    id: 2,
     name: 'Raj Patel',
     role: 'Family Celebration',
     rating: 5,
@@ -185,13 +250,15 @@ const testimonials = [
     highlights: ['Incredible', 'stunning', 'blast', 'Smooth', 'friendly'],
   },
   {
-    name: 'Emily Chen',
+    id: 3,
+    name: 'Ishaan Chatterjee',
     role: 'Workshop',
     rating: 5,
     text: 'Perfect workshop organization. My guests are still talking about it! Great vibe, great music, and beautiful setup.',
     highlights: ['Perfect', 'Great vibe', 'beautiful'],
   },
   {
+    id: 4,
     name: 'Aditi Sharma',
     role: 'Baby Shower',
     rating: 5,
@@ -199,6 +266,7 @@ const testimonials = [
     highlights: ['dreamy', 'elegant', 'fun', 'premium'],
   },
   {
+    id: 5,
     name: 'Vikram Singh',
     role: 'Corporate Event',
     rating: 5,
@@ -206,6 +274,7 @@ const testimonials = [
     highlights: ['Professional', 'punctual', 'creative', 'flawlessly', 'attention to detail'],
   },
   {
+    id: 6,
     name: 'Neha Kapoor',
     role: 'Kitty Party',
     rating: 5,
@@ -213,6 +282,7 @@ const testimonials = [
     highlights: ['lovely', 'gorgeous', 'engaging', 'smiling'],
   },
   {
+    id: 7,
     name: 'Arjun Mehta',
     role: 'College Fest',
     rating: 5,
@@ -220,6 +290,7 @@ const testimonials = [
     highlights: ['phenomenal', 'unreal', 'Best'],
   },
   {
+    id: 8,
     name: 'Priya Nair',
     role: 'House Party',
     rating: 5,
@@ -227,6 +298,7 @@ const testimonials = [
     highlights: ['unforgettable', 'next-level'],
   },
   {
+    id: 9,
     name: 'Karan Verma',
     role: 'Fair',
     rating: 5,
@@ -234,7 +306,8 @@ const testimonials = [
     highlights: ['unique', 'vibrant', 'joyful', 'well-organized'],
   },
   {
-    name: 'Maya Rodriguez',
+    id: 10,
+    name: 'Anika Desai',
     role: 'Sip and Paint',
     rating: 5,
     text: 'A beautiful evening with classy decor and amazing hosts. Everything was thoughtfully curated and looked spectacular.',
@@ -254,6 +327,50 @@ const cardPalette = [
 ];
 
 const Testimonials = () => {
+  const [testimonials, setTestimonials] = useState(initialTestimonials);
+  const [isReviewOpen, setIsReviewOpen] = useState(false);
+  const [reviewerName, setReviewerName] = useState('');
+  const [rating, setRating] = useState(0);
+  const [hoverRating, setHoverRating] = useState(0);
+  const [reviewText, setReviewText] = useState('');
+  const nextTestimonialId = useRef(
+    Math.max(0, ...initialTestimonials.map((t) => Number(t.id) || 0)) + 1
+  );
+
+  const openReview = () => {
+    setIsReviewOpen(true);
+  };
+
+  const closeReview = () => {
+    setIsReviewOpen(false);
+    setHoverRating(0);
+  };
+
+  const handleSubmitReview = (e) => {
+    e.preventDefault();
+
+    if (!reviewerName.trim() || !rating || !reviewText.trim()) return;
+
+    const highlights = extractHighlights(reviewText);
+
+    const newReview = {
+      id: nextTestimonialId.current++,
+      name: reviewerName.trim(),
+      role: 'Customer Review',
+      rating,
+      text: reviewText.trim(),
+      highlights,
+    };
+
+    setTestimonials((prev) => [...prev, newReview]);
+
+    setIsReviewOpen(false);
+    setHoverRating(0);
+    setRating(0);
+    setReviewText('');
+    setReviewerName('');
+  };
+
   return (
     <div className="testimonials">
       <AnimatedBackground />
@@ -277,7 +394,7 @@ const Testimonials = () => {
 
               return (
                 <div
-                  key={`${t.name}-${i}`}
+                  key={t.id}
                   className={
                     side === 'left'
                       ? 'testimonials__item testimonials__item--left'
@@ -334,6 +451,133 @@ const Testimonials = () => {
             })}
           </div>
         </div>
+
+        <div className="testimonialsReview__ctaWrap">
+          <motion.button
+            type="button"
+            className="testimonialsReview__cta"
+            onClick={openReview}
+            whileHover={{ y: -4, scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <span className="testimonialsReview__ctaGlow" aria-hidden="true" />
+            <span className="testimonialsReview__ctaText">Give a Review</span>
+            <span className="testimonialsReview__ctaIcon" aria-hidden="true">
+              <StarIcon />
+            </span>
+          </motion.button>
+        </div>
+
+        <AnimatePresence>
+          {isReviewOpen ? (
+            <motion.div
+              className="testimonialsReview__overlay"
+              role="dialog"
+              aria-modal="true"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={closeReview}
+            >
+              <motion.div
+                className="testimonialsReview__modal"
+                initial={{ opacity: 0, y: 26, scale: 0.96, rotateX: 10 }}
+                animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
+                exit={{ opacity: 0, y: 18, scale: 0.97 }}
+                transition={{ type: 'spring', stiffness: 180, damping: 18 }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="testimonialsReview__header">
+                  <div>
+                    <div className="testimonialsReview__title">Share your experience</div>
+                    <div className="testimonialsReview__subtitle">Your review helps others choose Happyfeet.</div>
+                  </div>
+
+                  <button
+                    type="button"
+                    className="testimonialsReview__close"
+                    onClick={closeReview}
+                    aria-label="Close"
+                  >
+                    ×
+                  </button>
+                </div>
+
+                <form className="testimonialsReview__form" onSubmit={handleSubmitReview}>
+                  <div className="testimonialsReview__field">
+                    <label className="testimonialsReview__label" htmlFor="reviewerName">
+                      Name
+                    </label>
+                    <input
+                      id="reviewerName"
+                      className="testimonialsReview__input"
+                      placeholder="Your name"
+                      value={reviewerName}
+                      onChange={(e) => setReviewerName(e.target.value)}
+                      autoComplete="name"
+                    />
+                  </div>
+
+                  <div className="testimonialsReview__stars" aria-label="Choose a rating">
+                    {Array.from({ length: 5 }).map((_, idx) => {
+                      const value = idx + 1;
+                      const isOn = (hoverRating || rating) >= value;
+                      return (
+                        <button
+                          key={value}
+                          type="button"
+                          className={isOn ? 'testimonialsReview__star testimonialsReview__star--on' : 'testimonialsReview__star'}
+                          onMouseEnter={() => setHoverRating(value)}
+                          onMouseLeave={() => setHoverRating(0)}
+                          onClick={() => setRating(value)}
+                          aria-label={`${value} star${value === 1 ? '' : 's'}`}
+                        >
+                          <BigStar filled={isOn} />
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  <div className="testimonialsReview__field">
+                    <label className="testimonialsReview__label" htmlFor="reviewText">
+                      Write your review
+                    </label>
+                    <textarea
+                      id="reviewText"
+                      className="testimonialsReview__textarea"
+                      placeholder="Tell us what you loved…"
+                      value={reviewText}
+                      onChange={(e) => setReviewText(e.target.value)}
+                      rows={5}
+                    />
+                  </div>
+
+                  <div className="testimonialsReview__actions">
+                    <motion.button
+                      type="button"
+                      className="testimonialsReview__btn testimonialsReview__btn--ghost"
+                      onClick={closeReview}
+                      whileHover={{ y: -2 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      Cancel
+                    </motion.button>
+
+                    <motion.button
+                      type="submit"
+                      className="testimonialsReview__btn testimonialsReview__btn--primary"
+                      disabled={!reviewerName.trim() || !rating || !reviewText.trim()}
+                      whileHover={{ y: -2 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      Submit Review
+                    </motion.button>
+                  </div>
+                </form>
+              </motion.div>
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
 
         <Footer />
       </div>

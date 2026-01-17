@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const testimonials = [
   {
     id: 1,
-    name: "Sarah Johnson",
+    name: "Aarohi Iyer",
     rating: 5,
     review: "Absolutely amazing experience! The team made our wedding unforgettable with their creative decorations.",
     highlight: ["amazing", "unforgettable", "creative"],
@@ -17,7 +17,7 @@ const testimonials = [
   },
   {
     id: 2,
-    name: "Michael Chen",
+    name: "Rohan Gupta",
     rating: 5,
     review: "Outstanding service and incredible attention to detail. Our daughter's birthday party was perfect!",
     highlight: ["Outstanding", "incredible", "perfect"],
@@ -27,7 +27,7 @@ const testimonials = [
   },
   {
     id: 3,
-    name: "Emily Rodriguez",
+    name: "Meera Menon",
     rating: 5,
     review: "Highly professional team! They transformed our venue into a magical wonderland. Exceeded expectations!",
     highlight: ["professional", "magical", "Exceeded expectations"],
@@ -37,7 +37,7 @@ const testimonials = [
   },
   {
     id: 4,
-    name: "David Thompson",
+    name: "Kabir Malhotra",
     rating: 5,
     review: "Fantastic work! The decorations were stunning and everyone loved the theme. Truly exceptional!",
     highlight: ["Fantastic", "stunning", "exceptional"],

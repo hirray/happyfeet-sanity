@@ -13,8 +13,8 @@ const reviews = [
     highlight: 'phenomenal experience',
   },
   {
-    name: 'Rahul Mehta',
-    role: 'Wedding Client',
+    name: 'Rahul Patel',
+    role: 'Birthday Client',
     rating: 5,
     review: 'They made our wedding day truly magical. Best decision we ever made!',
     highlight: 'truly magical',

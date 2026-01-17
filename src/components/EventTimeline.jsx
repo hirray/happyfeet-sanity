@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import styled from "styled-components";
 import { Calendar, MapPin, Users, Sparkles } from "lucide-react";
+import { useIsMobile } from "../hooks/use-mobile";
 
 const milestones = [
   {
@@ -43,12 +44,64 @@ const milestones = [
 
 export const EventTimeline = () => {
   const containerRef = useRef(null);
+  const isMobile = useIsMobile();
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
   });
 
   const x = useTransform(scrollYProgress, [0, 1], ["15%", "-55%"]);
+
+  if (isMobile) {
+    return (
+      <TimelineSection ref={containerRef}>
+        <SectionHeader
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <SectionTitle>
+            Timeline <GradientText>Business</GradientText>
+          </SectionTitle>
+          <SectionSubtitle>The Journey to Your Perfect Event</SectionSubtitle>
+        </SectionHeader>
+
+        <MobileTimeline>
+          <MobileLine aria-hidden="true" />
+          {milestones.map((milestone, index) => {
+            const Icon = milestone.icon;
+            return (
+              <MobileItem
+                key={milestone.id}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.35 }}
+                transition={{ duration: 0.55, delay: index * 0.05 }}
+              >
+                <MobileMarker>
+                  <MobileMarkerCircle>
+                    <MobileMarkerNumber>{milestone.number}</MobileMarkerNumber>
+                  </MobileMarkerCircle>
+                </MobileMarker>
+
+                <MobileCard
+                  whileHover={{ scale: 1.01 }}
+                  transition={{ duration: 0.25 }}
+                >
+                  <IconWrapper>
+                    <Icon size={22} />
+                  </IconWrapper>
+                  <CardTitle>{milestone.title}</CardTitle>
+                  <CardDescription>{milestone.description}</CardDescription>
+                </MobileCard>
+              </MobileItem>
+            );
+          })}
+        </MobileTimeline>
+      </TimelineSection>
+    );
+  }
 
   return (
     <TimelineSection ref={containerRef}>
@@ -254,6 +307,11 @@ const TimelineSection = styled.section`
   padding: 6rem 0;
   background: linear-gradient(to bottom, #f8f9fa 0%, #e9ecef 100%);
   overflow: hidden;
+
+  @media (max-width: 768px) {
+    min-height: auto;
+    padding: 5rem 0 4rem;
+  }
 `;
 
 const SectionHeader = styled(motion.div)`
@@ -296,6 +354,68 @@ const SectionSubtitle = styled.p`
   @media (max-width: 640px) {
     font-size: 1rem;
   }
+`;
+
+const MobileTimeline = styled.div`
+  position: relative;
+  width: min(720px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 10px 0 0;
+`;
+
+const MobileLine = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 18px;
+  width: 4px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255, 107, 157, 0.85), rgba(34, 184, 207, 0.75), rgba(255, 212, 59, 0.75));
+  box-shadow: 0 20px 60px rgba(34, 184, 207, 0.12);
+`;
+
+const MobileItem = styled(motion.div)`
+  position: relative;
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+  padding: 18px 0;
+`;
+
+const MobileMarker = styled.div`
+  position: relative;
+  display: grid;
+  place-items: start center;
+`;
+
+const MobileMarkerCircle = styled.div`
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ff6b9d, #fec163);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
+  border: 3px solid rgba(255, 255, 255, 0.95);
+  z-index: 2;
+`;
+
+const MobileMarkerNumber = styled.span`
+  font-size: 1.05rem;
+  font-weight: 950;
+  color: rgba(255, 255, 255, 0.98);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+`;
+
+const MobileCard = styled(motion.div)`
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 18px;
+  padding: 16px 16px;
+  box-shadow: 0 18px 45px rgba(17, 19, 28, 0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 `;
 
 const RoadWrapper = styled.div`

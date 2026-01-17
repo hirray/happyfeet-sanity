@@ -223,13 +223,22 @@ const CardTitle = styled.p`
   color: #b83d0cff;
   font-family: Georgia, serif;
   margin-bottom: 1rem;
+  text-align: center;
+  line-height: 1.2;
+  padding: 0 2rem;
   
   @media (max-width: 768px) {
-    font-size: 2rem;
+    font-size: 1.25rem;
+    padding: 0 1.5rem;
   }
   
   @media (max-width: 640px) {
-    font-size: 1.5rem;
+    font-size: 1.1rem;
+    padding: 0 1.25rem;
+  }
+  
+  @media (max-width: 420px) {
+    font-size: 1rem;
   }
 `;
 
@@ -250,6 +259,11 @@ const CardText = styled.p`
   @media (max-width: 640px) {
     font-size: 0.875rem;
     padding: 0 2rem;
+  }
+  
+  @media (max-width: 420px) {
+    font-size: 0.82rem;
+    padding: 0 1.5rem;
   }
 `;
 

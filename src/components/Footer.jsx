@@ -74,9 +74,12 @@ const socialLinks = [
 
 const footerLinks = [
   { name: 'Home', path: '/' },
+  { name: 'Book Event', path: '/book-event' },
   { name: 'Gallery', path: '/gallery' },
+  { name: 'Testimonial', path: '/testimonial' },
   { name: 'Games', path: '/games' },
   { name: 'Activity', path: '/activity' },
+  { name: 'Kits', path: '/kits' },
   { name: 'About Us', path: '/about' },
   { name: 'Contact', path: '/about#contact-section' },
 ];

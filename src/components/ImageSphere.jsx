@@ -46,7 +46,7 @@ export const ImageSphere = ({ images }) => {
     mouseY.set(e.clientY - centerY);
   };
 
-  const sphereRadius = 200;
+  const sphereRadius = 165;
   const goldenAngle = Math.PI * (3 - Math.sqrt(5));
   const imagePositions = useMemo(
     () =>
@@ -54,7 +54,7 @@ export const ImageSphere = ({ images }) => {
         const y = 1 - (i / (images.length - 1)) * 2;
         const radius = Math.sqrt(1 - y * y);
         const theta = goldenAngle * i;
-        const baseSize = 48 + Math.random() * 24;
+        const baseSize = 58 + Math.random() * 26;
         const idleScale = 1 + Math.random() * 0.15;
         const idleDelay = Math.random() * 2 + i * 0.03;
         const idleDuration = 2.5 + Math.random() * 1.5;
@@ -179,13 +179,13 @@ const SphereContainer = styled.div`
 
 const SphereWrapper = styled(motion.div)`
   position: relative;
-  width: 500px;
-  height: 500px;
+  width: 420px;
+  height: 420px;
   perspective: 1000px;
   
   @media (max-width: 768px) {
-    width: 350px;
-    height: 350px;
+    width: 300px;
+    height: 300px;
   }
 `;
 
@@ -214,8 +214,8 @@ const CenterLogo = styled(motion.div)`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 5rem;
-  height: 5rem;
+  width: 4.25rem;
+  height: 4.25rem;
   border-radius: 50%;
   border: 2px solid rgba(0, 0, 0, 0.1);
   display: flex;
@@ -236,26 +236,26 @@ const DecorativeRings = styled.div`
 
 const Ring1 = styled(motion.div)`
   position: absolute;
-  width: 520px;
-  height: 520px;
+  width: 440px;
+  height: 440px;
   border-radius: 50%;
   border: 1px solid hsl(10, 90%, 65%, 0.2);
   
   @media (max-width: 768px) {
-    width: 370px;
-    height: 370px;
+    width: 320px;
+    height: 320px;
   }
 `;
 
 const Ring2 = styled(motion.div)`
   position: absolute;
-  width: 560px;
-  height: 560px;
+  width: 480px;
+  height: 480px;
   border-radius: 50%;
   border: 1px solid hsl(175, 70%, 45%, 0.15);
   
   @media (max-width: 768px) {
-    width: 410px;
-    height: 410px;
+    width: 360px;
+    height: 360px;
   }
 `;

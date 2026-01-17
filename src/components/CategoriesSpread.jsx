@@ -3,6 +3,7 @@ import { motion, useInView } from "framer-motion";
 import styled from "styled-components";
 import { Sparkles, Users, Baby, PartyPopper, Grid3x3 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useIsMobile } from "../hooks/use-mobile";
 
 const categories = [
   {
@@ -46,6 +47,7 @@ export const CategoriesSpread = () => {
   const navigate = useNavigate();
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: false, amount: 0.3 });
+  const isMobile = useIsMobile();
 
   const getMergedPosition = () => ({
     x: 0,
@@ -55,13 +57,23 @@ export const CategoriesSpread = () => {
   });
 
   const getSpreadPosition = (index) => {
-    const positions = [
+    const desktopPositions = [
       { x: -280, y: -80, rotate: -15 },
       { x: -140, y: 100, rotate: 8 },
       { x: 0, y: -120, rotate: 0 },
       { x: 140, y: 90, rotate: -10 },
       { x: 280, y: -60, rotate: 12 },
     ];
+
+    const mobilePositions = [
+      { x: -85, y: -10, rotate: -10 },
+      { x: -85, y: 155, rotate: 8 },
+      { x: 0, y: -170, rotate: 0 },
+      { x: 85, y: 155, rotate: -8 },
+      { x: 85, y: -10, rotate: 10 },
+    ];
+
+    const positions = isMobile ? mobilePositions : desktopPositions;
     return { ...positions[index], scale: 1 };
   };
 
@@ -270,6 +282,14 @@ const CardsContainer = styled.div`
   
   @media (max-width: 768px) {
     height: 400px;
+  }
+
+  @media (max-width: 640px) {
+    height: 560px;
+  }
+
+  @media (max-width: 480px) {
+    height: 600px;
   }
 `;
 

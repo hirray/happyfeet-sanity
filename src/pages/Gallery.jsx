@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { CategoryCard } from "../components/CategoryCard";
+import { useIsMobile } from "../hooks/use-mobile";
 import { FloatingConfetti } from "../components/FloatingConfetti";
 import { ImageSphere } from "../components/ImageSphere";
 import { EventCard } from "../components/EventCard";
@@ -63,6 +64,7 @@ const sphereImages = [
 const Gallery = () => {
   const navigate = useNavigate();
   const containerRef = useRef(null);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     if (window.location.hash !== '#past-events') return;
@@ -76,7 +78,7 @@ const Gallery = () => {
     offset: ["start end", "end start"],
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const x = useTransform(scrollYProgress, [0, 1], [0, 0]);
 
   return (
     <PageWrapper>
@@ -745,9 +747,16 @@ const ScrollContainer = styled.div`
   overflow-x: auto;
   scroll-padding-left: 2rem;
   scrollbar-width: none;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
   
   &::-webkit-scrollbar {
     display: none;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0 1rem 1.25rem;
+    scroll-padding-left: 1rem;
   }
 `;
 
@@ -755,6 +764,11 @@ const CardsWrapper = styled.div`
   display: flex;
   gap: 1.5rem;
   padding-left: 0;
+
+  @media (max-width: 768px) {
+    gap: 1rem;
+    padding-right: 1rem;
+  }
 `;
 
 const ScrollHint = styled(motion.div)`
