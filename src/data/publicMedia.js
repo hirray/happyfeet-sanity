@@ -11,26 +11,22 @@ export const publicMedia = [
   "/activity8.jpeg",
   "/activity9.jpeg",
   "/actvity2.jpg",
-  "/babyshower.jpg",
   "/babyshower1.jpg",
-  "/babyshower2.jpg",
-  "/babyshower3.jpg",
-  "/babyshower4.jpg",
   "/babyshower5.jpg",
-  "/birthday.jpg",
+  
   "/birthday1.jpg",
   "/birthday2.jpg",
   "/birthday3.jpg",
   "/birthday4.jpg",
   "/birthday5.jpg",
-  "/bow.png",
+  
   "/bow1.jpg",
   "/bow2.jpg",
   "/bow3.jpg",
-  "/bow4.jpg",
+  
   "/bow5.mp4",
   "/bow6.mp4",
-  "/bow7.jpg",
+  
   "/bow8.jpg",
   "/bow9.mp4",
   "/cakepaint1.jpg",
@@ -38,13 +34,13 @@ export const publicMedia = [
   "/cakepaint3.jpg",
   "/cakepaint4.jpg",
   "/cakepaint5.jpg",
-  "/cakepainting.jpg",
-  "/cooking.jpg",
+ 
+  
   "/cooking1.jpg",
   "/cooking2.jpg",
   "/cooking3.jpg",
   "/cooking4.jpg",
-  "/cooking5.jpg",
+ 
   "/corporate.jpg",
   "/corporate1.jpg",
   "/corporate2.jpg",
@@ -96,11 +92,9 @@ export const publicMedia = [
   "/diwali14.mp4",
   "/diwali15.mp4",
   "/diwali16.mp4",
-  "/fiesta.jpg",
+ 
   "/fiesta1.jpg",
-  "/fiesta2.jpg",
-  "/fiesta3.webp",
-  "/fiesta4.jpg",
+
   "/fiesta5.jpg",
   "/fiesta6.jpg",
   "/gallery1.jpg",
@@ -122,7 +116,7 @@ export const publicMedia = [
   "/img8.jpg",
   "/img9.jpg",
   "/img10.jpg",
-  "/kitty.jpg",
+  
   "/kitty1.jpg",
   "/kitty2.jpg",
   "/kitty3.jpg",
@@ -136,7 +130,7 @@ export const publicMedia = [
   "/landing5.jpeg",
   "/landing6.jpeg",
   "/landing7.jpg",
-  "/logo.jpg",
+ 
   "/santa1.jpeg",
   "/santa2.jpeg",
   "/santa3.jpeg",
@@ -163,7 +157,6 @@ export const publicMedia = [
   "/sipnpaint3.jpg",
   "/sipnpaint4.jpg",
   "/sipnpaint5.jpg",
-  "/sippaint.jpg",
   "/squid1.jpg",
   "/squid2.jpg",
   "/squid3.jpg",

@@ -25,11 +25,11 @@ const contactMethods = [
   {
     icon: Mail,
     label: "Email Us",
-    value: "happyfeet.website12@gmail.com",
+    value: "Happyfeetenterprises@gmail.com",
     gradient: "linear-gradient(135deg, rgba(165, 94, 234, 1), rgba(255, 159, 243, 1))",
     tint: "linear-gradient(135deg, rgba(165, 94, 234, 0.14), rgba(255, 159, 243, 0.12))",
     shadow: "rgba(165, 94, 234, 0.26)",
-    link: "mailto:happyfeet.website12@gmail.com",
+    link: "mailto:Happyfeetenterprises@gmail.com",
   },
   {
     icon: Instagram,

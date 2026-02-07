@@ -374,7 +374,7 @@ export const ContactComicForm = () => {
         serviceId,
         templateId,
         {
-          to_email: 'happyfeet.website12@gmail.com',
+          to_email: 'Happyfeetenterprises@gmail.com',
           from_name: values.name,
           reply_to: values.email,
           phone: values.phone,

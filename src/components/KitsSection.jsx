@@ -6,69 +6,75 @@ import { useCallback, useState } from "react";
 const kits = [
   {
     id: 1,
-    name: "Custom Canvas Paint Kit",
+    name: "Painting Kits",
     description:
-      "A cute paint-and-color set with a pre-printed art sheet, paint pots, and brush — perfect for quick creative fun.",
-    price: "₹799",
+      "From canvas to candles, pots, blocks, glass and tote-bags — pick a painting style and create your own masterpiece.",
+    price: "Starts from ₹499",
     colors: ["#EC6F87", "#7DD3C0", "#C9A0DC", "#F5C842"],
-    image: "/canvaskit2.jpg",
-    features: ["1 Pre-Printed Art Sheet", "5 Mini Paint Pots", "1 Detail Brush", "Easy Step Guide"],
+    image: "/candlekit.jpg",
+    images: ["/candlekit.jpg", "/labelkit.jpg", "/potpaint.jpg"],
+    features: ["Canvas Painting kit", "Candle Decorating kit", "Pot painting kit", "Block Painting kit","Glass Painting kit","Tote-Bag Painting kit"],
   },
   {
     id: 2,
-    name: "Custom Slime Kit",
+    name: "DIY kits ",
     description:
-      "Everything you need to mix, stretch, and squish — with fun add-ins for crunchy and colorful slime textures.",
-    price: "₹499",
+      "Fun DIY projects you can finish at home — block painting, comb decor, string art, tie-dye, soap and slime making.",
+    price: "Starts from ₹649",
     colors: ["#7DD3C0", "#F5C842", "#EC6F87", "#87CEEB"],
-    image: "/slimekit.jpg",
-    features: ["Clear Glue", "Activator (Borax)", "Foam Beads & Sprinkles", "Mixing Bowl & Stick"],
+    image: "/blockpaint.jpg",
+    images: ["/blockpaint.jpg", "/combdiy.jpg", "/stringdiy.jpg","/soapdiy.jpg"],
+    features: ["DIY Block Painting kit", "DIY Comb Decoration kit", "DIY String Art kit", "Tie-Dye kit","Soap Making kit","Slime Making kit"],
   },
   {
     id: 3,
-    name: "DIY Jewelry Making Kit",
+    name: "DIY Beading Kits",
     description:
-      "A trendy bling kit to create cute accessories and personalize items with colorful gems and pearl beads.",
-    price: "₹649",
+      "Create your own accessories with beads — make keychains, bracelets, bands, jewellery and cute bag charms.",
+    price: "Starts from ₹399",
     colors: ["#C9A0DC", "#EC6F87", "#F5C842", "#7DD3C0"],
-    image: "/jewllerykit3.jpg",
-    features: ["Rhinestone Sticker Sheets", "Pearl & Color Beads", "Mini Storage Box", "Design Inspiration Card"],
+    image: "/Beadkeychain.jpg",
+    images: ["/Beadkeychain.jpg", "/beadbracelet.jpg", "/beadband.jpg"],
+    features: ["DIY keychain kit", "DIY Bracelet kit", "DIY beading jwellery kit", "DIY Bagcharm Making kit"],
   },
   {
     id: 4,
-    name: "Candle Decorating Kit",
-    description: "Decorate and personalize candles with bright colors and simple steps — great for gifting and events.",
-    price: "₹899",
+    name: "DIY Crafting Kits",
+    description: "Quick craft activities for creative hands — knoting, mirror decorating, shell scraping and pen stand making.",
+    price: "Starts from ₹799",
     colors: ["#F5C842", "#FFDAB9", "#EC6F87", "#C9A0DC"],
-    image: "/candlekit.jpg",
-    features: ["Assorted Candles", "Mini Paint Pots", "1 Paint Brush", "Decoration Steps Card"],
+    image: "/craftknoting.jpg",
+    images: ["/craftknoting.jpg", "/craftmirror.jpg", "/craftshell.jpg"],
+    features: ["DIY knoting kit", "DIY Mirror Decorating kit", "DIY ShellScraping kit", "DIY Pen Stand kit"],
   },
   {
     id: 5,
-    name: "Wooden Art Kit",
-    description: "Paint and decorate adorable wooden cut-outs with colors and gem stickers for a super cute craft set.",
-    price: "₹599",
+    name: "Texture Art Kits",
+    description: "Explore texture art with different finishes — tissue, shell, paste and sand textures for a 3D look.",
+    price: "Starts from ₹899",
     colors: ["#87CEEB", "#EC6F87", "#F5C842", "#7DD3C0"],
-    image: "/labelkit.jpg",
-    features: ["Wooden Cut-Out Shapes", "Gem Sticker Sheet", "Mini Paint Pots", "Brush Set"],
+    image: "/texture1.jpg",
+    images: ["/texture1.jpg", "/texture2.jpg", "/texture3.jpg","/texture4.jpg"],
+    features: ["Tissue Texture Art kit", "Shell Texture Art kit", "Paste Texture Art kit ", "Sand Texture Art kit"],
   },
   {
     id: 6,
-    name: "woolen crafting kit",
+    name: "Resin Art kit",
     description:
-      "Make a beautiful dreamcatcher-style craft using threads, beads, and feather cut-outs — fun and easy to assemble.",
-    price: "₹999",
+      "Create glossy resin art pieces — molds, frames, bookmarks, jewellery and more with fun add-ons like flowers and shells.",
+    price: "Starts from ₹999",
     colors: ["#C9A0DC", "#7DD3C0", "#87CEEB", "#EC6F87"],
-    image: "/wollenkit.jpg",
-    features: ["Wooden Hoop & Feather Pieces", "Color Threads", "Beads & Charms", "Assembly Guide"],
+    image: "/resinkit.jpg",
+    images: ["/resinkeychain.jpg", "/resinframe.jpg", "/resincase.jpg"],
+    features: ["Resin Mold Art kit", "Resin Frame Art kit", "Resin Bookmark kit", "Resin Jwellery Making kit","Flower Resin Art kit","Beads/Shell Resin Art kit"],
   },
 ];
 
 const KitsSection = () => {
   const [activeIndex, setActiveIndex] = useState(null);
 
-  const handleHoverChange = useCallback((index, hovering) => {
-    setActiveIndex(hovering ? index : null);
+  const handleActiveChange = useCallback((index, active) => {
+    setActiveIndex(active ? index : null);
   }, []);
 
   return (
@@ -106,7 +112,7 @@ const KitsSection = () => {
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
             >
-              <Sub>Hover over any kit to discover what's inside and start customizing!</Sub>
+              <Sub>Click any kit to discover what's inside and start customizing!</Sub>
             </motion.p>
           </Header>
         </motion.div>
@@ -118,7 +124,8 @@ const KitsSection = () => {
               kit={kit}
               index={index}
               raised={activeIndex === index}
-              onHoverChange={(hovering) => handleHoverChange(index, hovering)}
+              flipped={activeIndex === index}
+              onActiveChange={(active) => handleActiveChange(index, active)}
             />
           ))}
         </Grid>

@@ -42,11 +42,54 @@ const cardSchemes = [
   },
 ];
 
-const KitCard = ({ kit, index, raised = false, onHoverChange }) => {
+const KitCard = ({ kit, index, raised = false, flipped = false, onActiveChange }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [popoutSide, setPopoutSide] = useState("right");
   const rootRef = useRef(null);
   const scheme = cardSchemes[index % cardSchemes.length];
+
+  const updatePopoutSide = () => {
+    try {
+      const el = rootRef.current;
+      if (el && typeof window !== "undefined") {
+        const rect = el.getBoundingClientRect();
+        const cardWidth = rect.width;
+        const gap = 16;
+        const popW = cardWidth * 1.8;
+        const popWEachSide = cardWidth * 0.9;
+
+        const leftSpace = rect.left - gap;
+        const rightSpace = window.innerWidth - rect.right - gap;
+
+        const canOpenBoth = leftSpace > popWEachSide + 12 && rightSpace > popWEachSide + 12;
+        if (canOpenBoth) {
+          setPopoutSide("both");
+          return;
+        }
+
+        const shouldOpenLeft = rect.right + gap + popW > window.innerWidth - 12;
+        setPopoutSide(shouldOpenLeft ? "left" : "right");
+      }
+    } catch {
+      setPopoutSide("right");
+    }
+  };
+
+  const toggleActive = () => {
+    if (!flipped) updatePopoutSide();
+    onActiveChange?.(!flipped);
+  };
+
+  const previewImages = Array.isArray(kit.images) && kit.images.length
+    ? kit.images
+    : [kit.image].filter(Boolean);
+
+  const popoutImages = [
+    previewImages[0],
+    previewImages[1] || previewImages[0],
+    previewImages[2] || previewImages[0],
+    previewImages[3] || previewImages[0],
+  ];
 
   return (
     <motion.div
@@ -54,52 +97,95 @@ const KitCard = ({ kit, index, raised = false, onHoverChange }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.6, delay: index * 0.08 }}
-      onMouseEnter={() => {
-        try {
-          const el = rootRef.current;
-          if (el && typeof window !== "undefined") {
-            const rect = el.getBoundingClientRect();
-            const cardWidth = rect.width;
-            const gap = 16;
-            const popW = cardWidth * 0.92;
-
-            const shouldOpenLeft = rect.right + gap + popW > window.innerWidth - 12;
-            setPopoutSide(shouldOpenLeft ? "left" : "right");
-          }
-        } catch {
-          setPopoutSide("right");
+      role="button"
+      tabIndex={0}
+      onClick={toggleActive}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          toggleActive();
         }
+      }}
+      onMouseEnter={() => {
         setIsHovered(true);
-        onHoverChange?.(true);
       }}
       onMouseLeave={() => {
         setIsHovered(false);
-        onHoverChange?.(false);
       }}
       style={{ width: "100%", position: "relative", zIndex: raised ? 950 : 1 }}
       ref={rootRef}
     >
       <Perspective>
-        <PopoutWrap $side={popoutSide}>
-          <motion.img
-            src={kit.image}
-            alt={kit.name}
-            initial={false}
-            animate={
-              isHovered
-                ? { opacity: 1, x: 0, scale: 1 }
-                : {
-                    opacity: 0,
-                    x: popoutSide === "left" ? 20 : -20,
-                    scale: 0.96,
-                  }
-            }
-            transition={{ duration: 0.35, ease: "easeOut" }}
-          />
-        </PopoutWrap>
+        {popoutSide === "both" ? (
+          <>
+            <PopoutWrap $side="left" $scale={0.9}>
+              <motion.div
+                initial={false}
+                animate={flipped ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: 20, scale: 0.96 }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
+                style={{ width: "100%", height: "100%" }}
+              >
+                <PopoutDuo>
+                  <PopoutThumb>
+                    <img src={popoutImages[0]} alt={kit.name} />
+                  </PopoutThumb>
+                  <PopoutThumb>
+                    <img src={popoutImages[1]} alt={kit.name} />
+                  </PopoutThumb>
+                </PopoutDuo>
+              </motion.div>
+            </PopoutWrap>
+            <PopoutWrap $side="right" $scale={0.9}>
+              <motion.div
+                initial={false}
+                animate={flipped ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: -20, scale: 0.96 }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
+                style={{ width: "100%", height: "100%" }}
+              >
+                <PopoutDuo>
+                  <PopoutThumb>
+                    <img src={popoutImages[2]} alt={kit.name} />
+                  </PopoutThumb>
+                  <PopoutThumb>
+                    <img src={popoutImages[3]} alt={kit.name} />
+                  </PopoutThumb>
+                </PopoutDuo>
+              </motion.div>
+            </PopoutWrap>
+          </>
+        ) : (
+          <PopoutWrap $side={popoutSide}>
+            <motion.div
+              initial={false}
+              animate={
+                flipped
+                  ? { opacity: 1, x: 0, scale: 1 }
+                  : {
+                      opacity: 0,
+                      x: popoutSide === "left" ? 20 : -20,
+                      scale: 0.96,
+                    }
+              }
+              transition={{ duration: 0.35, ease: "easeOut" }}
+              style={{ width: "100%", height: "100%" }}
+            >
+              <PopoutGrid>
+                <PopoutMain>
+                  <img src={previewImages[0]} alt={kit.name} />
+                </PopoutMain>
+                <PopoutThumb>
+                  <img src={previewImages[1] || previewImages[0]} alt={kit.name} />
+                </PopoutThumb>
+                <PopoutThumb>
+                  <img src={previewImages[2] || previewImages[0]} alt={kit.name} />
+                </PopoutThumb>
+              </PopoutGrid>
+            </motion.div>
+          </PopoutWrap>
+        )}
 
         <motion.div
-          animate={{ rotateY: isHovered ? 180 : 0 }}
+          animate={{ rotateY: flipped ? 180 : 0 }}
           transition={{ duration: 0.6, ease: "easeInOut" }}
           style={{
             transformStyle: "preserve-3d",
@@ -178,7 +264,7 @@ const KitCard = ({ kit, index, raised = false, onHoverChange }) => {
               <BackContent>
                 <motion.div
                   initial={{ opacity: 0 }}
-                  animate={{ opacity: isHovered ? 1 : 0 }}
+                  animate={{ opacity: flipped ? 1 : 0 }}
                   transition={{ delay: 0.3 }}
                   style={{ display: "flex", flexDirection: "column", height: "100%", justifyContent: "center" }}
                 >
@@ -191,7 +277,7 @@ const KitCard = ({ kit, index, raised = false, onHoverChange }) => {
                       <motion.div
                         key={i}
                         initial={{ x: -20, opacity: 0 }}
-                        animate={{ x: isHovered ? 0 : -20, opacity: isHovered ? 1 : 0 }}
+                        animate={{ x: flipped ? 0 : -20, opacity: flipped ? 1 : 0 }}
                         transition={{ delay: 0.4 + i * 0.08 }}
                         style={{ display: "flex", alignItems: "center", gap: 8 }}
                       >
@@ -225,22 +311,69 @@ const PopoutWrap = styled.div`
   top: 4%;
   left: ${(p) => (p.$side === "left" ? "auto" : "calc(100% + 16px)")};
   right: ${(p) => (p.$side === "left" ? "calc(100% + 16px)" : "auto")};
-  width: 92%;
+  width: ${(p) => `${(p.$scale ?? 1.8) * 100}%`};
   height: 92%;
   z-index: 40;
   pointer-events: none;
+
+  @media (max-width: 900px) {
+    display: none;
+  }
+`;
+
+const PopoutGrid = styled.div`
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+`;
+
+const PopoutDuo = styled.div`
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+`;
+
+const PopoutMain = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 18px;
+  box-shadow: 0 26px 80px rgba(27, 31, 59, 0.22);
+  border: 2px solid rgba(255, 255, 255, 0.65);
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 18px;
-    box-shadow: 0 26px 80px rgba(27, 31, 59, 0.22);
-    border: 2px solid rgba(255, 255, 255, 0.65);
+    display: block;
   }
+`;
 
-  @media (max-width: 900px) {
-    display: none;
+const PopoutThumbs = styled.div`
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 8px;
+`;
+
+const PopoutThumb = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 22px 70px rgba(27, 31, 59, 0.20);
+  border: 2px solid rgba(255, 255, 255, 0.62);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 `;
 

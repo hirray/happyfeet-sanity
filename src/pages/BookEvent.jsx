@@ -38,7 +38,7 @@ const BookEvent = () => {
   const contactInfo = useMemo(
     () => [
       { icon: Phone, label: 'Phone', value: '+91 9173500020', color: 'hsl(174, 62%, 47%)' },
-      { icon: Mail, label: 'Email', value: 'happyfeet.website12@gmail.com', color: 'hsl(351, 83%, 61%)' },
+      { icon: Mail, label: 'Email', value: 'Happyfeetenterprises@gmail.com', color: 'hsl(351, 83%, 61%)' },
       { icon: MapPin, label: 'Location', value: 'Hari Nagar Cross Road, Vadodara, Gujarat, India', color: 'hsl(45, 93%, 58%)' },
       { icon: Clock, label: 'Hours', value: 'All Days: 9AM - 7PM', color: 'hsl(270, 60%, 65%)' },
     ],
@@ -99,7 +99,7 @@ const BookEvent = () => {
         serviceId,
         templateId,
         {
-          to_email: 'happyfeet.website12@gmail.com',
+          to_email: 'Happyfeetenterprises@gmail.com',
           from_name: formData.name,
           reply_to: formData.email,
           phone: formData.phone,

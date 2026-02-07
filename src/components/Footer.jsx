@@ -209,13 +209,13 @@ const Footer = () => {
               <motion.li
                 className="animated-footer__contactItem"
                 whileHover={{ x: 10 }}
-                onClick={() => window.open('https://mail.google.com/mail/?view=cm&fs=1&to=happyfeet.website12@gmail.com', '_blank', 'noopener,noreferrer')}
+                onClick={() => window.open('https://mail.google.com/mail/?view=cm&fs=1&to=Happyfeetenterprises@gmail.com', '_blank', 'noopener,noreferrer')}
                 style={{ cursor: 'pointer' }}
               >
                 <div className="animated-footer__pill animated-footer__pill--mail">
                   <IconMail className="animated-footer__miniIcon" />
                 </div>
-                happyfeet.website12@gmail.com
+                Happyfeetenterprises@gmail.com
               </motion.li>
               <motion.li
                 className="animated-footer__contactItem"
