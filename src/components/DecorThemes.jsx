@@ -17,7 +17,7 @@ const themes = [
     name: "Fiesta",
     slug: "fiesta",
     color: "#DC143C",
-    image: "/fiesta.jpg",
+    image: "/fiesta.jpeg",
   },
   {
     id: 3,
@@ -45,7 +45,7 @@ const themes = [
     name: "Sip & Paint",
     slug: "sippaint",
     color: "#00BCD4",
-    image: "/sippaint.jpg",
+    image: "/sipnpaintn.jpg",
   },
   {
     id: 7,

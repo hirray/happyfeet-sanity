@@ -11,7 +11,6 @@ const testimonials = [
     rating: 5,
     review: "Absolutely amazing experience! The team made our wedding unforgettable with their creative decorations.",
     highlight: ["amazing", "unforgettable", "creative"],
-    avatar: "https://i.pravatar.cc/150?img=1",
     color: "#FF6B9D",
     gradient: "linear-gradient(135deg, #FF6B9D, #FEC163)",
   },
@@ -21,7 +20,6 @@ const testimonials = [
     rating: 5,
     review: "Outstanding service and incredible attention to detail. Our daughter's birthday party was perfect!",
     highlight: ["Outstanding", "incredible", "perfect"],
-    avatar: "https://i.pravatar.cc/150?img=2",
     color: "#667EEA",
     gradient: "linear-gradient(135deg, #667EEA, #764BA2)",
   },
@@ -31,7 +29,6 @@ const testimonials = [
     rating: 5,
     review: "Highly professional team! They transformed our venue into a magical wonderland. Exceeded expectations!",
     highlight: ["professional", "magical", "Exceeded expectations"],
-    avatar: "https://i.pravatar.cc/150?img=3",
     color: "#F093FB",
     gradient: "linear-gradient(135deg, #F093FB, #F5576C)",
   },
@@ -41,7 +38,6 @@ const testimonials = [
     rating: 5,
     review: "Fantastic work! The decorations were stunning and everyone loved the theme. Truly exceptional!",
     highlight: ["Fantastic", "stunning", "exceptional"],
-    avatar: "https://i.pravatar.cc/150?img=4",
     color: "#4FACFE",
     gradient: "linear-gradient(135deg, #4FACFE, #00F2FE)",
   },
@@ -51,7 +47,6 @@ const testimonials = [
     rating: 5,
     review: "Best event planners ever! They brought our vision to life beautifully. Highly recommend!",
     highlight: ["Best", "beautifully", "Highly recommend"],
-    avatar: "https://i.pravatar.cc/150?img=5",
     color: "#43E97B",
     gradient: "linear-gradient(135deg, #43E97B, #38F9D7)",
   },
@@ -170,24 +165,6 @@ export const ClientTestimonials = () => {
                 </QuoteIcon>
 
                 <CardHeader>
-                  <AvatarWrapper
-                    animate={
-                      shouldHighlight
-                        ? { 
-                            rotate: [0, -10, 10, -10, 0],
-                            scale: [1, 1.15, 1]
-                          }
-                        : { rotate: 0, scale: 1 }
-                    }
-                    transition={{ duration: 0.8, delay: 0.3 }}
-                  >
-                    <Avatar
-                      src={testimonial.avatar}
-                      alt={testimonial.name}
-                      $borderColor={testimonial.color}
-                    />
-                    <AvatarGlow $color={testimonial.color} />
-                  </AvatarWrapper>
                   <ClientInfo>
                     <ClientName>{testimonial.name}</ClientName>
                     <RatingContainer>
@@ -498,34 +475,6 @@ const CardHeader = styled.div`
   margin-bottom: 1.25rem;
   margin-top: 0.75rem;
   z-index: 2;
-`;
-
-const AvatarWrapper = styled(motion.div)`
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const Avatar = styled.img`
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid ${props => props.$borderColor};
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-  position: relative;
-  z-index: 2;
-`;
-
-const AvatarGlow = styled.div`
-  position: absolute;
-  inset: -8px;
-  background: ${props => props.$color};
-  border-radius: 50%;
-  filter: blur(15px);
-  opacity: 0.4;
-  z-index: 1;
 `;
 
 const ClientInfo = styled.div`
