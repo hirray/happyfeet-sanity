@@ -340,7 +340,7 @@ const Dot = styled(motion.div)`
 
 export const FounderSection = ({
   imageSrc = '/twinkle-gokani.jpg',
-  name = 'Twinkle Gokani',
+  name = 'Twinkle Popat',
   role = 'Founder & CEO, HappyFeet',
   badgeText = 'Meet Our Visionary',
   headingPrefix = 'The Heart Behind',

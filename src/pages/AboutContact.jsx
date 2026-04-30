@@ -471,7 +471,7 @@ const AboutContact = () => {
       <ScrollingQuote />
       <FounderSection />
       <FounderSection
-        name="Vriha Gokani"
+        name="Vrihha Popat"
         role="Co-Founder, HappyFeet"
         imageSrc="/cofounder.jpg"
         badgeText="Meet Our Co-Founder"
