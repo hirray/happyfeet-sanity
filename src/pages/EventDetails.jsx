@@ -254,11 +254,10 @@ const EventDetails = () => {
                             <video
                               src={src}
                               controls
-                              autoPlay
                               muted
                               loop
                               playsInline
-                              preload="metadata"
+                              preload="none"
                             />
                           </MediaVideoWrap>
                         ) : (

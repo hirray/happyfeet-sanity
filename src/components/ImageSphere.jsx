@@ -107,16 +107,10 @@ export const ImageSphere = ({ images }) => {
                     ? {
                         opacity: 1,
                         scale: 1,
-                        boxShadow: "0 4px 15px rgba(0, 0, 0, 0.2)",
                       }
                     : {
                         opacity: [0.9, 1, 0.9],
                         scale: [1, pos.idleScale, 1],
-                        boxShadow: [
-                          "0 4px 15px rgba(0, 0, 0, 0.2)",
-                          "0 0 0 3px rgba(255, 124, 2, 0.7), 0 4px 18px rgba(0, 0, 0, 0.25)",
-                          "0 4px 15px rgba(0, 0, 0, 0.2)",
-                        ],
                       }
                 }
                 transition={
@@ -133,8 +127,6 @@ export const ImageSphere = ({ images }) => {
                 whileHover={{
                   scale: 1.3,
                   zIndex: 100,
-                  boxShadow:
-                    "0 0 0 6px rgba(255, 159, 67, 0.9), 0 6px 22px rgba(0, 0, 0, 0.3)",
                 }}
               >
                 <img

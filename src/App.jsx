@@ -1,24 +1,51 @@
-// src/App.jsx
-import { useEffect, useState } from 'react';
+import { useEffect, useState, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
-import Landing from "./pages/Landing";
-import Home from "./pages/Home";
-import BookEvent from "./pages/BookEvent";
-import Gallery from "./pages/Gallery";
-import Testimonials from "./pages/Testimonials";
-import Games from "./pages/Games";
-import Activity from "./pages/Activity";
-import AboutContact from './pages/AboutContact';
-import EventDetails from "./pages/EventDetails";
-import CategoryMedia from "./pages/CategoryMedia";
-import AllMedia from "./pages/AllMedia";
-import DecorThemeDetails from './pages/DecorThemeDetails';
-import Kits from "./pages/Kits";
 import SplashScreen from './components/SplashScreen';
 import RegisterPopup from './components/RegisterPopup';
 import { isRegistered as isRegisterPopupRegistered } from './utils/registerStorage';
 import './styles/App.css';
+
+// Lazy load pages for code splitting
+const Landing = lazy(() => import("./pages/Landing"));
+const Home = lazy(() => import("./pages/Home"));
+const BookEvent = lazy(() => import("./pages/BookEvent"));
+const Gallery = lazy(() => import("./pages/Gallery"));
+const Testimonials = lazy(() => import("./pages/Testimonials"));
+const Games = lazy(() => import("./pages/Games"));
+const Activity = lazy(() => import("./pages/Activity"));
+const AboutContact = lazy(() => import('./pages/AboutContact'));
+const EventDetails = lazy(() => import("./pages/EventDetails"));
+const CategoryMedia = lazy(() => import("./pages/CategoryMedia"));
+const AllMedia = lazy(() => import("./pages/AllMedia"));
+const DecorThemeDetails = lazy(() => import('./pages/DecorThemeDetails'));
+const Kits = lazy(() => import("./pages/Kits"));
+
+const LoadingFallback = () => (
+  <div style={{
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
+    background: 'radial-gradient(circle at center, #ffffff 0%, #f7f9fc 100%)',
+    flexDirection: 'column',
+    gap: '1rem',
+  }}>
+    <div style={{
+      width: '42px',
+      height: '42px',
+      borderRadius: '50%',
+      border: '3px solid rgba(255, 107, 107, 0.2)',
+      borderTopColor: 'hsl(10, 90%, 65%)',
+      animation: 'appSpin 1s linear infinite'
+    }} />
+    <style>{`
+      @keyframes appSpin {
+        to { transform: rotate(360deg); }
+      }
+    `}</style>
+  </div>
+);
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -79,23 +106,25 @@ function App() {
             {showSplash ? (
               <SplashScreen />
             ) : (
-              <Routes>
-                <Route path="/" element={<Landing />} />
-                <Route path="/home" element={<Home />} />
-                <Route path="/kits" element={<Kits />} />
-                <Route path="/book-event" element={<BookEvent />} />
-                <Route path="/gallery" element={<Gallery />} />
-                <Route path="/decor-themes/:slug" element={<DecorThemeDetails />} />
-                <Route path="/gallery/event/:id" element={<EventDetails />} />
-                <Route path="/gallery/category/:slug" element={<CategoryMedia />} />
-                <Route path="/gallery/all-media" element={<AllMedia />} />
-                <Route path="/testimonial" element={<Testimonials />} />
-                <Route path="/games" element={<Games />} />
-                <Route path="/testimonials" element={<Testimonials />} />
-                <Route path="/activity" element={<Activity />} />
-                <Route path="/about" element={<AboutContact />} />
-                <Route path="/contact" element={<AboutContact />} />
-              </Routes>
+              <Suspense fallback={<LoadingFallback />}>
+                <Routes>
+                  <Route path="/" element={<Landing />} />
+                  <Route path="/home" element={<Home />} />
+                  <Route path="/kits" element={<Kits />} />
+                  <Route path="/book-event" element={<BookEvent />} />
+                  <Route path="/gallery" element={<Gallery />} />
+                  <Route path="/decor-themes/:slug" element={<DecorThemeDetails />} />
+                  <Route path="/gallery/event/:id" element={<EventDetails />} />
+                  <Route path="/gallery/category/:slug" element={<CategoryMedia />} />
+                  <Route path="/gallery/all-media" element={<AllMedia />} />
+                  <Route path="/testimonial" element={<Testimonials />} />
+                  <Route path="/games" element={<Games />} />
+                  <Route path="/testimonials" element={<Testimonials />} />
+                  <Route path="/activity" element={<Activity />} />
+                  <Route path="/about" element={<AboutContact />} />
+                  <Route path="/contact" element={<AboutContact />} />
+                </Routes>
+              </Suspense>
             )}
           </AnimatePresence>
         </main>
