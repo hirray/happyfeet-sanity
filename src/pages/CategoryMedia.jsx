@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import styled from "styled-components";
@@ -6,8 +6,9 @@ import { ArrowLeft, Film, Images, Sparkles } from "lucide-react";
 import FloatingNavbar from "../components/FloatingNavbar";
 import Footer from "../components/Footer";
 import AnimatedBackground from "../components/AnimatedBackground";
-import { getCategoryBySlug } from "../data/galleryCategories";
-import { pastEvents } from "../data/pastEvents";
+import { galleryCategories as fallbackCategories } from "../data/galleryCategories";
+import { pastEvents as fallbackPastEvents } from "../data/pastEvents";
+import { fetchCategories, fetchPastEvents } from "../lib/sanity";
 
 const pageVariants = {
   initial: { opacity: 0, filter: "blur(14px)", y: 18 },
@@ -72,12 +73,42 @@ const CategoryMedia = () => {
   const navigate = useNavigate();
   const { slug } = useParams();
 
-  const category = useMemo(() => getCategoryBySlug(slug), [slug]);
+  const [categoriesList, setCategoriesList] = useState(fallbackCategories);
+  const [eventsList, setEventsList] = useState(fallbackPastEvents);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let active = true;
+    const loadData = async () => {
+      try {
+        const [cats, evts] = await Promise.all([
+          fetchCategories(),
+          fetchPastEvents()
+        ]);
+        if (active) {
+          setCategoriesList(cats);
+          setEventsList(evts);
+          setLoading(false);
+        }
+      } catch (err) {
+        console.error("Error loading category media data from Sanity:", err);
+        if (active) {
+          setLoading(false);
+        }
+      }
+    };
+    loadData();
+    return () => { active = false; };
+  }, []);
+
+  const category = useMemo(() => {
+    return categoriesList.find((c) => c.slug === slug);
+  }, [categoriesList, slug]);
 
   const media = useMemo(() => {
     if (!category) return { images: [], videos: [] };
 
-    const events = pastEvents.filter((e) => e.category === category.eventCategory);
+    const events = eventsList.filter((e) => e.category === category.eventCategory);
 
     const images = events.flatMap((e) => [e.image, ...(e.images ?? [])]).filter(Boolean);
     const videos = events.flatMap((e) => e.videos ?? []).filter(Boolean);
@@ -92,14 +123,39 @@ const CategoryMedia = () => {
 
     const seenVideos = new Set();
     const uniqueVideos = videos.filter((v) => {
-      const key = v?.src ?? "";
+      const key = v?.src || v || "";
       if (!key || seenVideos.has(key)) return false;
       seenVideos.add(key);
       return true;
     });
 
     return { images: uniqueImages, videos: uniqueVideos };
-  }, [category]);
+  }, [category, eventsList]);
+
+  if (loading) {
+    return (
+      <PageRoot>
+        <AnimatedBackground />
+        <FloatingNavbar />
+        <Main style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60vh' }}>
+          <div style={{
+            width: '42px',
+            height: '42px',
+            borderRadius: '50%',
+            border: '3px solid rgba(255, 107, 107, 0.2)',
+            borderTopColor: 'hsl(10, 90%, 65%)',
+            animation: 'spin 1s linear infinite'
+          }} />
+          <style>{`
+            @keyframes spin {
+              to { transform: rotate(360deg); }
+            }
+          `}</style>
+        </Main>
+        <Footer />
+      </PageRoot>
+    );
+  }
 
   return (
     <PageRoot>
@@ -269,7 +325,7 @@ const CategoryMedia = () => {
                   <VideoGrid>
                     {media.videos.map((v, idx) => (
                       <VideoCard
-                        key={`${category.slug}-vid-${idx}-${v.src}`}
+                        key={`${category.slug}-vid-${idx}-${v.src || v}`}
                         whileHover={{ y: -10, scale: 1.01 }}
                         whileTap={{ scale: 0.99 }}
                         transition={{ type: "spring", stiffness: 260, damping: 20 }}
@@ -282,7 +338,7 @@ const CategoryMedia = () => {
                         <VideoLabel>{v.title ?? `Video ${idx + 1}`}</VideoLabel>
                         <VideoWrap>
                           <video
-                            src={v.src}
+                            src={v.src || v}
                             controls
                             preload="metadata"
                             style={{ width: "100%", height: "100%", objectFit: "cover" }}

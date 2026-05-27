@@ -10,10 +10,10 @@ import { EventCard } from "../components/EventCard";
 import FloatingNavbar from "../components/FloatingNavbar";
 import Footer from "../components/Footer";
 import AnimatedBackground from "../components/AnimatedBackground";
-import { pastEvents } from "../data/pastEvents";
-import { galleryCategories } from "../data/galleryCategories";
-
-const categories = galleryCategories;
+import { pastEvents as fallbackPastEvents } from "../data/pastEvents";
+import { galleryCategories as fallbackCategories } from "../data/galleryCategories";
+import { fetchCategories, fetchPastEvents } from "../lib/sanity";
+import { useState } from "react";
 
 const heroMosaicImages = [
   "/activity9.jpeg",
@@ -65,6 +65,28 @@ const Gallery = () => {
   const navigate = useNavigate();
   const containerRef = useRef(null);
   const isMobile = useIsMobile();
+  const [categories, setCategories] = useState(fallbackCategories);
+  const [eventsList, setEventsList] = useState(fallbackPastEvents);
+
+  useEffect(() => {
+    let active = true;
+    const loadData = async () => {
+      try {
+        const [cats, evts] = await Promise.all([
+          fetchCategories(),
+          fetchPastEvents()
+        ]);
+        if (active) {
+          setCategories(cats);
+          setEventsList(evts);
+        }
+      } catch (err) {
+        console.error("Error loading gallery data from Sanity:", err);
+      }
+    };
+    loadData();
+    return () => { active = false; };
+  }, []);
 
   useEffect(() => {
     if (window.location.hash !== '#past-events') return;
@@ -382,7 +404,7 @@ const Gallery = () => {
           </motion.div>
 
           <EventsGrid>
-            {pastEvents.map((event, index) => (
+            {eventsList.map((event, index) => (
               <EventCard
                 key={event.title}
                 {...event}

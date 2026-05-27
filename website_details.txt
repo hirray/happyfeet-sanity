@@ -1,0 +1,88 @@
+HappyFeet Activity Club - Website Structure & Details
+
+=========================================
+1. GLOBAL ELEMENTS & APP STRUCTURE
+=========================================
+- App.jsx: The main entry point. It handles all the routing for the application, lazy-loads the pages for better performance (code splitting), manages the global ScrollToTop behavior when navigating between pages, and controls the initial SplashScreen and the RegisterPopup.
+- SplashScreen.jsx: A playful, engaging loading screen that appears when the user first visits the website, giving the React application time to load behind the scenes.
+- RegisterPopup.jsx: A global modal that automatically prompts users to register/sign up for a newsletter or updates if they haven't done so. It appears after a short delay on the site.
+- FloatingNavbar.jsx: The persistent navigation menu that floats at the bottom/top of the screen. It allows users to quickly jump between all the main pages (Home, Book Event, Gallery, Testimonials, Kits, Games, Activity, About Us, Contact Us).
+- Footer.jsx: The global footer displayed at the bottom of pages, containing company information, quick links, contact details, and social media icons.
+- FloatingConfetti.jsx: A background visual effect component that renders playful floating shapes/confetti to match the brand's aesthetic.
+
+=========================================
+2. PAGES & THEIR FUNCTIONS
+=========================================
+
+--- A. LANDING PAGE (/) ---
+File: src/pages/Landing.jsx
+Function: The main showcase page designed to capture attention and direct users to key services.
+Components Used:
+- HeroSlider: A dynamic, auto-playing image slider at the top of the page with call-to-action buttons.
+- EnvelopeQuote: A visually striking section designed to look like a welcome card or envelope containing the HappyFeet mission quote.
+- ImageGallery: A "Captured Moments" photo grid displaying a quick glimpse of past events.
+- CategoriesSpread: A visual layout showcasing the different types of events HappyFeet organizes (e.g., Birthdays, Corporate, Carnivals).
+- DecorThemes: A horizontally scrolling carousel displaying various decoration themes available for parties.
+- ClientTestimonials: A section showcasing reviews and ratings from past clients.
+- EventTimeline: A visual step-by-step timeline explaining the process of how HappyFeet plans an event from start to finish.
+
+--- B. KITS PAGE (/kits) ---
+File: src/pages/Kits.jsx
+Function: Showcases the physical DIY activity kits that HappyFeet sells for kids to do at home or at parties.
+Components Used:
+- KitsHeroSection: The introductory header for the kits page.
+- KitsSection & KitCard: Displays a grid of available kits with details, images, and pricing/booking information.
+
+--- C. BOOK EVENT PAGE (/book-event) ---
+File: src/pages/BookEvent.jsx
+Function: The primary conversion page where users can fill out a form with their event details (date, type of event, number of kids, etc.) to request a booking or quotation from HappyFeet.
+
+--- D. GALLERY PAGES ---
+The gallery is split into multiple specialized pages to organize a large amount of media.
+1. Main Gallery (/gallery)
+   File: src/pages/Gallery.jsx
+   Function: The entry point to the photo and video gallery, allowing users to browse by categories or specific events.
+2. Event Details (/gallery/event/:id)
+   File: src/pages/EventDetails.jsx
+   Function: A dynamic page that loads the specific photo album and details for a single, past event.
+3. Category Media (/gallery/category/:slug)
+   File: src/pages/CategoryMedia.jsx
+   Function: Displays all photos and videos related to a specific category (e.g., all "Birthday" media).
+4. All Media (/gallery/all-media)
+   File: src/pages/AllMedia.jsx
+   Function: A comprehensive, filterable grid of all media assets across the entire company history.
+
+--- E. DECOR THEMES DETAILS (/decor-themes/:slug) ---
+File: src/pages/DecorThemeDetails.jsx
+Function: When a user clicks on a theme (like "Jungle Safari" or "Space") from the Landing page, they are taken here to see a detailed description, color palettes, and photos specifically for that theme.
+
+--- F. TESTIMONIALS PAGE (/testimonial) ---
+File: src/pages/Testimonials.jsx
+Function: A dedicated page for social proof, showing a comprehensive list of client reviews, video testimonials, and success stories.
+
+--- G. GAMES PAGE (/games) ---
+File: src/pages/Games.jsx
+Function: Showcases the interactive games and physical setups HappyFeet provides for parties. 
+Components Used:
+- GamesSection / GameCard: A grid of available games.
+- GameModal: A popup that shows more details or rules about a specific game when clicked.
+
+--- H. ACTIVITY PAGE (/activity) ---
+File: src/pages/Activity.jsx
+Function: Details the specific craft, art, and play activities offered by HappyFeet.
+Components Used:
+- ActivityHero: Header section.
+- ActivityCards & ActivityCarousel: Visual displays of the different activities kids can participate in.
+
+--- I. ABOUT & CONTACT PAGE (/about, /contact) ---
+File: src/pages/AboutContact.jsx
+Function: A combined page that tells the company's story and provides contact methods.
+Components Used:
+- OurStory: Text and images detailing how HappyFeet started.
+- FounderSection: Information about the founders/team.
+- ContactSection & ContactComicForm: A stylized, playful contact form for users to send general inquiries, along with a map and contact details.
+
+=========================================
+3. DATA MANAGEMENT (Currently Local, Moving to Sanity CMS)
+=========================================
+The website currently relies on static local JavaScript files (like pastEvents.js, categories.js) to populate the pages with data. The architecture is currently being transitioned to Sanity CMS (configured in the `studio/` folder) which will allow the client to update text, images, themes, and gallery items dynamically without touching the code.

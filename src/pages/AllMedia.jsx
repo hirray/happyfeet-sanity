@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import styled from "styled-components";
@@ -6,15 +6,64 @@ import { ArrowLeft, Images } from "lucide-react";
 import FloatingNavbar from "../components/FloatingNavbar";
 import Footer from "../components/Footer";
 import AnimatedBackground from "../components/AnimatedBackground";
-import { publicMedia } from "../data/publicMedia";
+import { publicMedia as fallbackMedia } from "../data/publicMedia";
+import { fetchPublicMedia } from "../lib/sanity";
 
 const AllMedia = () => {
   const navigate = useNavigate();
 
-  const media = useMemo(() => {
-    const deduped = Array.from(new Set(publicMedia));
-    return deduped;
+  const [mediaList, setMediaList] = useState(fallbackMedia);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let active = true;
+    const loadMedia = async () => {
+      try {
+        const data = await fetchPublicMedia();
+        if (active) {
+          setMediaList(data);
+          setLoading(false);
+        }
+      } catch (err) {
+        console.error("Error loading public media from Sanity:", err);
+        if (active) {
+          setLoading(false);
+        }
+      }
+    };
+    loadMedia();
+    return () => { active = false; };
   }, []);
+
+  const media = useMemo(() => {
+    const deduped = Array.from(new Set(mediaList));
+    return deduped;
+  }, [mediaList]);
+
+  if (loading) {
+    return (
+      <PageRoot>
+        <AnimatedBackground />
+        <FloatingNavbar />
+        <Main style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60vh' }}>
+          <div style={{
+            width: '42px',
+            height: '42px',
+            borderRadius: '50%',
+            border: '3px solid rgba(255, 107, 107, 0.2)',
+            borderTopColor: 'hsl(10, 90%, 65%)',
+            animation: 'spin 1s linear infinite'
+          }} />
+          <style>{`
+            @keyframes spin {
+              to { transform: rotate(360deg); }
+            }
+          `}</style>
+        </Main>
+        <Footer />
+      </PageRoot>
+    );
+  }
 
   return (
     <PageRoot>

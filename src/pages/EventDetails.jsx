@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import styled from "styled-components";
@@ -6,7 +6,7 @@ import { ArrowLeft, Calendar, MapPin, Users, Sparkles, Film, Images } from "luci
 import FloatingNavbar from "../components/FloatingNavbar";
 import Footer from "../components/Footer";
 import AnimatedBackground from "../components/AnimatedBackground";
-import { getEventById } from "../data/pastEvents";
+import { fetchEventById } from "../lib/sanity";
 
 const pageVariants = {
   initial: { opacity: 0, filter: "blur(14px)", y: 18 },
@@ -32,14 +32,61 @@ const EventDetails = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const event = useMemo(() => getEventById(id), [id]);
+  const [event, setEvent] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let active = true;
+    const loadEvent = async () => {
+      try {
+        const data = await fetchEventById(id);
+        if (active) {
+          setEvent(data);
+          setLoading(false);
+        }
+      } catch (err) {
+        console.error("Error fetching event details:", err);
+        if (active) {
+          setLoading(false);
+        }
+      }
+    };
+    loadEvent();
+    return () => { active = false; };
+  }, [id]);
+
   const media = useMemo(() => {
     if (!event) return [];
     const videoSrcs = (event.videos ?? [])
-      .map((v) => v?.src)
+      .map((v) => v?.src || v)
       .filter(Boolean);
     return [...(event.images ?? []), ...videoSrcs];
   }, [event]);
+
+  if (loading) {
+    return (
+      <PageRoot>
+        <AnimatedBackground />
+        <FloatingNavbar />
+        <Main style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60vh' }}>
+          <div style={{
+            width: '42px',
+            height: '42px',
+            borderRadius: '50%',
+            border: '3px solid rgba(255, 107, 107, 0.2)',
+            borderTopColor: 'hsl(10, 90%, 65%)',
+            animation: 'spin 1s linear infinite'
+          }} />
+          <style>{`
+            @keyframes spin {
+              to { transform: rotate(360deg); }
+            }
+          `}</style>
+        </Main>
+        <Footer />
+      </PageRoot>
+    );
+  }
 
   return (
     <PageRoot>
