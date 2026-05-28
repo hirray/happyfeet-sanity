@@ -85,53 +85,48 @@ const footerLinks = [
 ];
 
 const Footer = () => {
-  const confetti = useMemo(() => {
-    const colors = ['#ff922b', '#22b8cf', '#ffd43b', '#51cf66', '#845ef7', '#ff4d6d'];
-    return Array.from({ length: 15 }).map((_, i) => ({
-      id: i,
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      size: 8 + Math.random() * 6,
-      color: colors[i % colors.length],
-      duration: 4 + Math.random() * 4,
-      delay: Math.random() * 2,
-      drift: Math.random() * 20 - 10,
-    }));
-  }, []);
-
   return (
     <footer className="animated-footer">
-      <div className="animated-footer__wave">
-        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="animated-footer__waveSvg">
-          <motion.path
-            d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
-            className="animated-footer__wavePath"
-            animate={{
-              d: [
-                'M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z',
-                'M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z',
-                'M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z',
-              ],
-            }}
-            
-          />
-        </svg>
-      </div>
-
-      {confetti.map((c) => (
-        <motion.div
-          key={c.id}
-          className="animated-footer__confetti"
-          style={{ left: c.left, top: c.top, width: c.size, height: c.size, backgroundColor: c.color }}
-          animate={{
-            y: [0, -30, 0],
-            x: [0, c.drift, 0],
-            scale: [1, 1.2, 1],
-            rotate: [0, 360],
-          }}
-          transition={{ duration: c.duration, delay: c.delay, repeat: Infinity, ease: 'easeInOut' }}
-        />
-      ))}
+      {/* Background Floating Circles */}
+      <motion.div
+        className="animated-footer__floating-circle"
+        style={{ top: '10%', left: '8%', width: 90, height: 90 }}
+        animate={{
+          x: [0, 40, 80, 30, -20, 0],
+          y: [0, 20, -10, 30, -15, 0],
+        }}
+        transition={{
+          duration: 25,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+      <motion.div
+        className="animated-footer__floating-circle animated-footer__floating-circle--small"
+        style={{ bottom: '15%', right: '12%', width: 60, height: 60 }}
+        animate={{
+          x: [0, -50, -20, -70, 30, 0],
+          y: [0, -20, 15, -30, 20, 0],
+        }}
+        transition={{
+          duration: 30,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+      <motion.div
+        className="animated-footer__floating-circle animated-footer__floating-circle--large"
+        style={{ top: '35%', left: '48%', width: 120, height: 120 }}
+        animate={{
+          x: [0, 60, -60, 30, -30, 0],
+          y: [0, -40, 40, -20, 20, 0],
+        }}
+        transition={{
+          duration: 35,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
 
       <div className="container animated-footer__container">
         <div className="animated-footer__grid">
@@ -160,7 +155,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="animated-footer__socialBtn"
-                  whileHover={{ scale: 1.18, rotate: 360, backgroundColor: s.color }}
+                  whileHover={{ scale: 1.1, backgroundColor: s.color, color: 'white' }}
                   transition={{ duration: 0.3 }}
                 >
                   <s.icon className="animated-footer__socialIcon" />
@@ -249,7 +244,7 @@ const Footer = () => {
             type="button"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="animated-footer__topBtn"
-            whileHover={{ scale: 1.05, boxShadow: '0 0 22px rgba(255, 146, 43, 0.35)' }}
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             Back to Top ↑

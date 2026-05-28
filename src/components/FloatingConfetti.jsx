@@ -15,11 +15,11 @@ const shapes = ["circle", "square", "triangle"];
 
 export const FloatingConfetti = () => {
   const confettiPieces = useMemo(() => {
-    return Array.from({ length: 30 }, (_, i) => ({
+    return Array.from({ length: 6 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       delay: Math.random() * 5,
-      duration: 8 + Math.random() * 10,
+      duration: 15 + Math.random() * 20,
       size: 6 + Math.random() * 12,
       color: colors[Math.floor(Math.random() * colors.length)],
       shape: shapes[Math.floor(Math.random() * shapes.length)],
@@ -83,4 +83,5 @@ const ConfettiPiece = styled(motion.div)`
   border-bottom: ${props => 
     props.$shape === "triangle" ? `${props.$size}px solid ${props.$color}` : "none"
   };
+  filter: blur(1.5px);
 `;

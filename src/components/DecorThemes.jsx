@@ -89,22 +89,7 @@ export const DecorThemes = () => {
   return (
     <ThemesSection ref={containerRef} id="decor-themes">
       <SectionBackground>
-        <BackgroundWave1
-          animate={{
-            x: [0, 100, 0],
-            y: [0, 50, 0],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <BackgroundWave2
-          animate={{
-            x: [0, -100, 0],
-            y: [0, -50, 0],
-            scale: [1.1, 1, 1.1],
-          }}
-          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-        />
+        {/* Removed background waves for a cleaner, elegant look matching Captured Moments */}
       </SectionBackground>
 
       <ContentWrapper>
@@ -114,7 +99,7 @@ export const DecorThemes = () => {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
             transition={{ duration: 0.8 }}
           >
-            Explore Our <GradientText>Decor Themes</GradientText>
+            Explore Our Decor Themes
           </SectionTitle>
           <SectionSubtitle
             initial={{ opacity: 0, x: -30 }}
@@ -152,14 +137,14 @@ export const DecorThemes = () => {
                   }}
                   onClick={() => navigate(`/decor-themes/${theme.slug}`)}
                 >
-                  <PolaroidCard className="polaroid-card">
+                  <ElegantCard className="elegant-card">
                     <CardImage
                       className="card-image"
                       src={theme.image}
                       alt={theme.name}
                     />
                     <CardLabel className="card-label">{theme.name}</CardLabel>
-                  </PolaroidCard>
+                  </ElegantCard>
                 </CardStack>
               ))}
             </CardsTrack>
@@ -189,6 +174,12 @@ export const DecorThemes = () => {
           </IndicatorArrow>
         </ScrollIndicator>
       </ContentWrapper>
+
+      <BottomCurve>
+        <svg viewBox="0 0 1440 180" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M0,80 C320,180 640,20 960,110 C1180,170 1340,110 1440,80 L1440,180 L0,180 Z" fill="#a76b53" />
+        </svg>
+      </BottomCurve>
     </ThemesSection>
   );
 };
@@ -198,8 +189,9 @@ const ThemesSection = styled.section`
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 6rem 0;
+  padding: 6rem 0 12vw 0;
   overflow: hidden;
+  background-color: #eae3d8; /* Beige background to match the theme */
 `;
 
 const SectionBackground = styled.div`
@@ -209,25 +201,11 @@ const SectionBackground = styled.div`
 `;
 
 const BackgroundWave1 = styled(motion.div)`
-  position: absolute;
-  top: -10%;
-  left: -10%;
-  width: 50%;
-  height: 50%;
-  border-radius: 50%;
-  background: radial-gradient(circle, hsl(340, 80%, 65%, 0.15), transparent);
-  filter: blur(60px);
+  display: none;
 `;
 
 const BackgroundWave2 = styled(motion.div)`
-  position: absolute;
-  bottom: -10%;
-  right: -10%;
-  width: 60%;
-  height: 60%;
-  border-radius: 50%;
-  background: radial-gradient(circle, hsl(270, 60%, 70%, 0.15), transparent);
-  filter: blur(60px);
+  display: none;
 `;
 
 const ContentWrapper = styled.div`
@@ -241,13 +219,28 @@ const HeaderSection = styled.div`
   margin: 0 auto;
   padding: 0 2rem;
   margin-bottom: 4rem;
+  text-align: center;
 `;
 
 const SectionTitle = styled(motion.h2)`
+  font-family: 'Playfair Display', serif;
   font-size: 3rem;
-  font-weight: 900;
-  color: #2d3436;
+  font-weight: 400;
+  color: #2f2622;
   margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background-color: #a76b53;
+  }
 
   @media (max-width: 768px) {
     font-size: 2.5rem;
@@ -258,21 +251,10 @@ const SectionTitle = styled(motion.h2)`
   }
 `;
 
-const GradientText = styled.span`
-  background: linear-gradient(
-    135deg,
-    hsl(340, 80%, 65%),
-    hsl(270, 60%, 70%),
-    hsl(175, 70%, 45%)
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-`;
-
 const SectionSubtitle = styled(motion.p)`
-  font-size: 1.25rem;
-  color: #636e72;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  color: #6a605a;
 
   @media (max-width: 640px) {
     font-size: 1rem;
@@ -294,14 +276,14 @@ const ScrollButton = styled(motion.button)`
   width: 3.5rem;
   height: 3.5rem;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.95);
-  border: 2px solid hsl(340, 80%, 65%);
-  color: hsl(340, 80%, 65%);
+  background: rgba(253, 252, 240, 0.95);
+  border: 1px solid #a76b53;
+  color: #a76b53;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 15px rgba(167, 107, 83, 0.1);
   backdrop-filter: blur(10px);
 
   @media (max-width: 768px) {
@@ -328,7 +310,7 @@ const ScrollContainer = styled.div`
   }
 
   &::-webkit-scrollbar-thumb {
-    background: hsl(340, 80%, 65%);
+    background: rgba(167, 107, 83, 0.5);
     border-radius: 10px;
   }
 
@@ -345,101 +327,73 @@ const CardsTrack = styled.div`
 `;
 
 const CardStack = styled(motion.div)`
-  width: 220px;
+  width: 250px;
   max-width: 400px;
-  transition: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: all 0.3s ease;
   flex-shrink: 0;
   cursor: pointer;
   
   &:hover {
-    transform: rotate(5deg) scale(1.08) translateY(-15px);
+    transform: translateY(-8px);
     
-    .polaroid-card {
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
-    }
-    
-    .polaroid-card::before {
-      transform: translateY(-3%) rotate(-4deg) scale(0.98);
-    }
-    
-    .polaroid-card::after {
-      transform: translateY(3%) rotate(4deg) scale(0.98);
+    .elegant-card {
+      box-shadow: 0 12px 30px rgba(167, 107, 83, 0.15);
+      border-color: #b48d7b;
     }
     
     .card-image {
-      transform: scale(1.05);
+      transform: scale(1.02);
     }
     
     .card-label {
-      color: hsl(340, 80%, 65%);
-      transform: translateX(-50%) scale(1.1);
+      color: #a76b53;
     }
   }
   
   @media (max-width: 768px) {
-    width: 200px;
+    width: 220px;
   }
 `;
 
-const PolaroidCard = styled.div`
+const ElegantCard = styled.div`
   aspect-ratio: 3 / 4;
-  border: 4px solid #000;
+  border: 4px solid rgba(167, 107, 83, 0.1);
   background-color: #fff;
+  border-radius: 4px;
   position: relative;
-  transition: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  padding: 5% 5% 15% 5%;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  
-  &::before,
-  &::after {
-    content: "";
-    display: block;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    border: 4px solid #000;
-    background-color: #fff;
-    transform-origin: center center;
-    z-index: -1;
-    transition: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    top: 0;
-    left: 0;
-  }
-  
-  &::before {
-    transform: translateY(-2%) rotate(-6deg);
-  }
-  
-  &::after {
-    transform: translateY(2%) rotate(6deg);
-  }
+  transition: all 0.3s ease;
+  padding: 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 `;
 
 const CardImage = styled.img`
   width: 100%;
-  border: 4px solid #000;
-  background-color: #eee;
-  aspect-ratio: 1 / 1;
+  height: 80%;
   object-fit: cover;
   display: block;
   transition: 0.3s ease;
+  background-color: #f5f5f5;
 `;
 
 const CardLabel = styled.div`
-  position: absolute;
-  bottom: 5%;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: #2d3436;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #2f2622;
   text-align: center;
-  width: 90%;
-  font-family: 'Courier New', monospace;
-  transition: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  width: 100%;
+  font-family: 'Playfair Display', serif;
+  transition: all 0.3s ease;
+  background-color: white;
   
   @media (max-width: 768px) {
-    font-size: 0.95rem;
+    font-size: 1rem;
   }
 `;
 
@@ -453,11 +407,31 @@ const ScrollIndicator = styled(motion.div)`
 `;
 
 const IndicatorText = styled.span`
-  font-size: 0.875rem;
-  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.5px;
 `;
 
 const IndicatorArrow = styled(motion.span)`
   font-size: 1.25rem;
   font-weight: 700;
+`;
+
+const BottomCurve = styled.div`
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 12vw;
+  min-height: 90px;
+  max-height: 180px;
+  z-index: 15;
+  pointer-events: none;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
 `;

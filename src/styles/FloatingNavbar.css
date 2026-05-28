@@ -1,4 +1,5 @@
 .floating-navbar {
+  display: none !important; /* Hidden for now */
   position: fixed;
   left: 20%;
   bottom: 22px;
@@ -8,7 +9,7 @@
 }
 
 .floating-navbarMobile__toggle {
-  display: none;
+  display: none !important; /* Hidden for now */
 }
 
 .floating-navbarMobile__overlay {

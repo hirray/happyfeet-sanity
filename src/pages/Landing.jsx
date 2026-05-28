@@ -7,7 +7,6 @@ import { DecorThemes } from "../components/DecorThemes";
 import { ClientTestimonials } from "../components/ClientTestimonials";
 import { EventTimeline } from "../components/EventTimeline";
 import ImageGallery from "../components/ImageGallery";
-import { FloatingConfetti } from "../components/FloatingConfetti";
 import { useNavigate } from "react-router-dom";
 import FloatingNavbar from "../components/FloatingNavbar";
 import Footer from "../components/Footer";
@@ -17,7 +16,6 @@ const Landing = () => {
 
   return (
     <PageWrapper>
-      <FloatingConfetti />
       <FloatingNavbar />
       
       <HeroSlider />
@@ -35,10 +33,11 @@ const Landing = () => {
       <EventTimeline />
 
       <CTASection>
-        <CTABackground
-          animate={{ scale: [1, 1.05, 1], opacity: [0.05, 0.1, 0.05] }}
-          transition={{ duration: 8, repeat: Infinity }}
-        />
+        <TopCurve>
+          <svg viewBox="0 0 1440 180" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <path d="M0,80 C320,180 640,20 960,110 C1180,170 1340,110 1440,80 L1440,180 L0,180 Z" fill="#a76b53" />
+          </svg>
+        </TopCurve>
         <CTAContent
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -46,45 +45,28 @@ const Landing = () => {
           transition={{ duration: 0.8 }}
         >
           <CTATitle>
-            Ready to Create Your <GradientText>Perfect Event?</GradientText>
+            Ready to Create Your Perfect Event?
           </CTATitle>
           <CTADescription>
             Let's bring your vision to life with unforgettable celebrations
           </CTADescription>
           <CTAButtons>
             <PrimaryButton
-              whileHover={{ scale: 1.05, y: -5 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               onClick={() => navigate('/book-event')}
             >
-              <ButtonShine
-                animate={{ x: ["-100%", "200%"] }}
-                transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
-              />
               <span style={{ position: 'relative', zIndex: 10 }}>Book Your Event</span>
             </PrimaryButton>
             <SecondaryButton
-              whileHover={{ scale: 1.05, y: -5 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               onClick={() => navigate('/gallery')}
             >
               View Gallery
             </SecondaryButton>
           </CTAButtons>
         </CTAContent>
-
-        <FloatingElement1
-          animate={{ y: [-20, 20, -20], rotate: [0, 180, 360] }}
-          transition={{ duration: 10, repeat: Infinity }}
-        />
-        <FloatingElement2
-          animate={{ y: [20, -20, 20], rotate: [360, 180, 0] }}
-          transition={{ duration: 12, repeat: Infinity }}
-        />
-        <FloatingElement3
-          animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
-          transition={{ duration: 4, repeat: Infinity }}
-        />
       </CTASection>
 
       <Footer />
@@ -94,7 +76,7 @@ const Landing = () => {
 
 const PageWrapper = styled.div`
   min-height: 100vh;
-  background: linear-gradient(135deg, #ffffff 0%, #fefefe 50%, #ffffff 100%);
+  background: #fdfcf0;
   position: relative;
   overflow-x: hidden;
 `;
@@ -102,15 +84,27 @@ const PageWrapper = styled.div`
 const CTASection = styled.section`
   position: relative;
   padding: 8rem 1rem;
-  overflow: hidden;
+  background: #a76b53;
+  color: white;
 `;
 
-const CTABackground = styled(motion.div)`
+const TopCurve = styled.div`
   position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, hsl(10, 90%, 65%), hsl(340, 80%, 65%));
-  border-radius: 50%;
-  filter: blur(100px);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 12vw;
+  min-height: 90px;
+  max-height: 180px;
+  transform: translateY(-99%);
+  z-index: 5;
+  pointer-events: none;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
 `;
 
 const CTAContent = styled(motion.div)`
@@ -122,9 +116,10 @@ const CTAContent = styled(motion.div)`
 `;
 
 const CTATitle = styled.h2`
+  font-family: 'Playfair Display', serif;
   font-size: 2.5rem;
-  font-weight: 900;
-  color: #2d3436;
+  font-weight: 400;
+  color: white;
   margin-bottom: 1.5rem;
   
   @media (min-width: 768px) {
@@ -132,21 +127,10 @@ const CTATitle = styled.h2`
   }
 `;
 
-const GradientText = styled.span`
-  background: linear-gradient(
-    135deg,
-    hsl(10, 90%, 65%),
-    hsl(340, 80%, 65%),
-    hsl(270, 60%, 70%)
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-`;
-
 const CTADescription = styled.p`
+  font-family: 'Inter', sans-serif;
   font-size: 1.25rem;
-  color: #636e72;
+  color: rgba(255, 255, 255, 0.9);
   margin-bottom: 3rem;
 `;
 
@@ -159,69 +143,32 @@ const CTAButtons = styled.div`
 
 const PrimaryButton = styled(motion.button)`
   position: relative;
-  padding: 1.25rem 3rem;
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: white;
-  background: linear-gradient(135deg, hsl(10, 90%, 65%), hsl(340, 80%, 65%));
-  border: none;
-  border-radius: 50px;
+  padding: 1rem 3rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #a76b53;
+  background: white;
+  border: 1px solid white;
+  border-radius: 4px;
   cursor: pointer;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-`;
-
-const ButtonShine = styled(motion.div)`
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.4),
-    transparent
-  );
+  text-transform: uppercase;
+  letter-spacing: 1px;
 `;
 
 const SecondaryButton = styled(motion.button)`
-  padding: 1.25rem 3rem;
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: hsl(10, 90%, 65%);
-  background: white;
-  border: 2px solid hsl(10, 90%, 65%);
-  border-radius: 50px;
+  padding: 1rem 3rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: white;
+  background: transparent;
+  border: 1px solid white;
+  border-radius: 4px;
   cursor: pointer;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-`;
-
-const FloatingElement1 = styled(motion.div)`
-  position: absolute;
-  top: 10%;
-  left: 10%;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  background: hsl(340, 80%, 65%, 0.3);
-`;
-
-const FloatingElement2 = styled(motion.div)`
-  position: absolute;
-  bottom: 20%;
-  right: 15%;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
-  background: hsl(175, 70%, 45%, 0.3);
-`;
-
-const FloatingElement3 = styled(motion.div)`
-  position: absolute;
-  top: 50%;
-  right: 10%;
-  width: 2rem;
-  height: 2rem;
-  transform: rotate(45deg);
-  background: hsl(40, 95%, 55%, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 `;
 
 export default Landing;

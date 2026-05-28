@@ -50,16 +50,16 @@ export const Header = () => {
   };
 
   return (
-    <>
+    <div className="fixed bottom-6 left-0 w-full z-50 flex justify-center px-4 pointer-events-none">
       <motion.header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? "glass py-3" : "bg-transparent py-5"
+        className={`pointer-events-auto rounded-full transition-all duration-300 shadow-xl border border-white/20 inline-flex ${
+          isScrolled ? "bg-white/95 backdrop-blur-md py-1 px-3" : "bg-white/80 backdrop-blur-sm py-1.5 px-4"
         }`}
-        initial={{ y: -100 }}
+        initial={{ y: 100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
-        <nav className="container mx-auto px-4 flex items-center justify-between">
+        <nav className="flex items-center justify-center gap-1.5">
           {/* Logo */}
           <motion.button
             onClick={() => scrollToSection("#home")}
@@ -68,24 +68,24 @@ export const Header = () => {
             whileTap={{ scale: 0.95 }}
           >
             <motion.div
-              className="w-10 h-10 rounded-full bg-gradient-coral flex items-center justify-center"
+              className="w-6 h-6 rounded-full bg-gradient-coral flex items-center justify-center"
               animate={{ rotate: [0, 10, -10, 0] }}
               transition={{ duration: 4, repeat: Infinity }}
             >
-              <Sparkles className="w-5 h-5 text-primary-foreground" />
+              <Sparkles className="w-3 h-3 text-primary-foreground" />
             </motion.div>
-            <span className="font-display text-xl font-bold text-foreground hidden sm:block">
+            <span className="font-display text-base font-bold text-foreground hidden sm:block">
               Event<span className="text-coral">Gallery</span>
             </span>
           </motion.button>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden md:flex items-center gap-0">
             {navLinks.map((link, index) => (
               <motion.button
                 key={link.label}
                 onClick={() => scrollToSection(link.href)}
-                className={`relative px-4 py-2 text-sm font-medium transition-colors ${
+                className={`relative px-2.5 py-1 text-[12px] font-semibold transition-colors ${
                   activeSection === link.href.replace("#", "")
                     ? "text-coral"
                     : "text-muted-foreground hover:text-foreground"
@@ -109,7 +109,7 @@ export const Header = () => {
 
           {/* CTA Button - Desktop */}
           <motion.button
-            className="hidden md:block px-6 py-2.5 rounded-full bg-gradient-coral text-primary-foreground text-sm font-medium shadow-glow-coral"
+            className="hidden md:block ml-1.5 px-3 py-1 rounded-full bg-[#1a1a1a] text-white text-[12px] font-semibold shadow-md"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4 }}
@@ -234,6 +234,6 @@ export const Header = () => {
           </>
         )}
       </AnimatePresence>
-    </>
+    </div>
   );
 };

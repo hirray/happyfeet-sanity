@@ -1,5 +1,6 @@
 .ig {
-  padding: 96px 16px;
+  padding: 80px 16px;
+  background-color: #eae3d8; /* Beige background to match the theme */
 }
 
 .ig__container {
@@ -9,59 +10,69 @@
 
 .ig__heading {
   text-align: center;
-  margin-bottom: 56px;
+  margin-bottom: 30px;
 }
 
 .ig__title {
   margin: 0;
+  font-family: 'Playfair Display', serif;
   font-size: clamp(2.1rem, 4.2vw, 3.2rem);
   line-height: 1.1;
   letter-spacing: -0.6px;
-  font-weight: 900;
-  color: rgba(23, 24, 31, 0.92);
+  font-weight: 400;
+  color: #2f2622;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ig__title::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 1px;
+  background-color: #a76b53;
+  margin-top: 15px;
 }
 
 .ig__titleGradient {
-  background: linear-gradient(135deg, rgba(255, 77, 109, 0.95), rgba(34, 184, 207, 0.95), rgba(132, 94, 247, 0.95));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #2f2622;
 }
 
 .ig__subtitle {
   margin: 14px auto 0;
   max-width: 720px;
-  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
   font-size: 1.05rem;
-  color: rgba(23, 24, 31, 0.62);
+  color: #4a423e;
   line-height: 1.7;
 }
 
 .ig__grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-  grid-auto-rows: 190px;
+  gap: 10px;
+  grid-auto-rows: 140px;
 }
 
 @media (min-width: 768px) {
   .ig__grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 16px;
-    grid-auto-rows: 200px;
+    gap: 12px;
+    grid-auto-rows: 150px;
   }
 }
 
 .ig-tile {
   position: relative;
   overflow: hidden;
-  border-radius: 22px;
+  border-radius: 4px;
   cursor: pointer;
   transform-style: preserve-3d;
-  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.14);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  background: rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(167, 107, 83, 0.15);
+  background: #fdfcf0;
 }
 
 .ig-tile::before {
@@ -72,24 +83,12 @@
   z-index: 0;
 }
 
-.ig-grad--a::before {
-  background: linear-gradient(135deg, rgba(255, 77, 109, 0.22), rgba(34, 184, 207, 0.18));
-}
-
-.ig-grad--b::before {
-  background: linear-gradient(135deg, rgba(132, 94, 247, 0.18), rgba(255, 146, 43, 0.18));
-}
-
-.ig-grad--c::before {
-  background: linear-gradient(135deg, rgba(34, 184, 207, 0.20), rgba(255, 77, 109, 0.18));
-}
-
-.ig-grad--d::before {
-  background: linear-gradient(135deg, rgba(255, 212, 59, 0.16), rgba(132, 94, 247, 0.18));
-}
-
+.ig-grad--a::before,
+.ig-grad--b::before,
+.ig-grad--c::before,
+.ig-grad--d::before,
 .ig-grad--e::before {
-  background: linear-gradient(135deg, rgba(255, 77, 109, 0.18), rgba(81, 207, 102, 0.18));
+  background: rgba(167, 107, 83, 0.05);
 }
 
 .ig-tile__img {
@@ -124,25 +123,26 @@
   display: flex;
   align-items: flex-end;
   padding: 18px;
-  background: linear-gradient(180deg, rgba(23, 24, 31, 0) 0%, rgba(23, 24, 31, 0.35) 44%, rgba(23, 24, 31, 0.84) 100%);
+  background: linear-gradient(180deg, rgba(47, 38, 34, 0) 0%, rgba(47, 38, 34, 0.2) 44%, rgba(47, 38, 34, 0.7) 100%);
 }
 
 .ig-tile__overlayText {
-  color: rgba(255, 255, 255, 0.96);
+  color: #fdfcf0;
 }
 
 .ig-tile__overlayTitle {
   margin: 0;
-  font-weight: 900;
-  letter-spacing: 0.2px;
-  font-size: 1.05rem;
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 1.15rem;
 }
 
 .ig-tile__overlaySub {
   margin: 6px 0 0;
-  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
   font-size: 0.85rem;
-  opacity: 0.82;
+  opacity: 0.9;
 }
 
 .ig-tile__corner {

@@ -1,432 +1,411 @@
-import { useRef, useState, useEffect } from "react";
-import { motion, useInView } from "framer-motion";
+import React, { useRef } from "react";
 import styled from "styled-components";
-import { Sparkles, Users, Baby, PartyPopper, Grid3x3 } from "lucide-react";
+import { motion, useInView } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { useIsMobile } from "../hooks/use-mobile";
-
-const categories = [
-  {
-    id: 1,
-    name: "Parties",
-    icon: PartyPopper,
-    color: "hsl(340, 80%, 65%)",
-    gradient: "linear-gradient(135deg, hsl(340, 80%, 65%), hsl(10, 90%, 65%))",
-  },
-  {
-    id: 2,
-    name: "Workshops",
-    icon: Users,
-    color: "hsl(270, 60%, 70%)",
-    gradient: "linear-gradient(135deg, hsl(270, 60%, 70%), hsl(240, 70%, 65%))",
-  },
-  {
-    id: 3,
-    name: "Baby Showers",
-    icon: Baby,
-    color: "hsl(175, 70%, 45%)",
-    gradient: "linear-gradient(135deg, hsl(175, 70%, 45%), hsl(200, 80%, 55%))",
-  },
-  {
-    id: 4,
-    name: "Fiesta & Fair",
-    icon: Sparkles,
-    color: "hsl(40, 95%, 55%)",
-    gradient: "linear-gradient(135deg, hsl(40, 95%, 55%), hsl(30, 90%, 60%))",
-  },
-  {
-    id: 5,
-    name: "Others",
-    icon: Grid3x3,
-    color: "hsl(150, 60%, 50%)",
-    gradient: "linear-gradient(135deg, hsl(150, 60%, 50%), hsl(120, 70%, 55%))",
-  },
-];
+import { Users, Star, Sparkles, LayoutGrid } from "lucide-react";
 
 export const CategoriesSpread = () => {
   const navigate = useNavigate();
-  const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: false, amount: 0.3 });
-  const isMobile = useIsMobile();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const getMergedPosition = () => ({
-    x: 0,
-    y: 0,
-    rotate: 0,
-    scale: 0.8,
-  });
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { 
+        staggerChildren: 0.2 
+      }
+    }
+  };
 
-  const getSpreadPosition = (index) => {
-    const desktopPositions = [
-      { x: -280, y: -80, rotate: -15 },
-      { x: -140, y: 100, rotate: 8 },
-      { x: 0, y: -120, rotate: 0 },
-      { x: 140, y: 90, rotate: -10 },
-      { x: 280, y: -60, rotate: 12 },
-    ];
-
-    const mobilePositions = [
-      { x: -85, y: -10, rotate: -10 },
-      { x: -85, y: 155, rotate: 8 },
-      { x: 0, y: -170, rotate: 0 },
-      { x: 85, y: 155, rotate: -8 },
-      { x: 85, y: -10, rotate: 10 },
-    ];
-
-    const positions = isMobile ? mobilePositions : desktopPositions;
-    return { ...positions[index], scale: 1 };
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
   };
 
   return (
-    <CategoriesSection ref={containerRef}>
-      <SectionBackground>
-        <BackgroundBlob1
-          animate={{ scale: [1, 1.2, 1], opacity: [0.05, 0.1, 0.05] }}
-          transition={{ duration: 8, repeat: Infinity }}
-        />
-        <BackgroundBlob2
-          animate={{ scale: [1.2, 1, 1.2], opacity: [0.05, 0.1, 0.05] }}
-          transition={{ duration: 10, repeat: Infinity }}
-        />
-      </SectionBackground>
+    <Section id="categories" ref={ref}>
+      {/* Floating Terracotta Background Circles */}
+      <FloatingCircle
+        style={{ top: '12%', left: '5%', width: 100, height: 100 }}
+        animate={{
+          x: [0, 50, 90, 40, -20, 0],
+          y: [0, 25, -15, 35, -10, 0],
+        }}
+        transition={{
+          duration: 28,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+      <FloatingCircle
+        style={{ bottom: '10%', right: '8%', width: 70, height: 70 }}
+        animate={{
+          x: [0, -40, -10, -60, 25, 0],
+          y: [0, -25, 20, -30, 15, 0],
+        }}
+        transition={{
+          duration: 32,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+      <FloatingCircle
+        style={{ top: '45%', left: '50%', width: 120, height: 120 }}
+        animate={{
+          x: [0, 55, -50, 30, -25, 0],
+          y: [0, -35, 35, -20, 25, 0],
+        }}
+        transition={{
+          duration: 36,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
 
-      <ContentWrapper>
-        <SectionTitle
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
-        >
-          Our <GradientText>Event Categories</GradientText>
-        </SectionTitle>
+      <Container
+        variants={containerVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+      >
+        {/* Left Content Column */}
+        <ContentColumn>
+          <motion.div variants={itemVariants}>
+            <Title>
+              Crafting magical<br />
+              memories & celebrations
+            </Title>
+          </motion.div>
+          
+          <motion.div variants={itemVariants}>
+            <Subtitle>
+              From wildly creative workshops to unforgettable parties—step into a world where every celebration is designed with joy, laughter, and a touch of Happy Feet magic.
+            </Subtitle>
+          </motion.div>
 
-        <SectionSubtitle
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          Discover the perfect celebration for every occasion
-        </SectionSubtitle>
+          <motion.div variants={itemVariants}>
+            <ButtonGroup>
+              <PrimaryButton onClick={() => navigate('/gallery')}>
+                Explore Gallery
+              </PrimaryButton>
+              <SecondaryButton onClick={() => navigate('/#contact')}>
+                Contact Us
+              </SecondaryButton>
+            </ButtonGroup>
+          </motion.div>
 
-        <CardsContainer>
-          {categories.map((category, index) => {
-            const Icon = category.icon;
-            const mergedPos = getMergedPosition();
-            const spreadPos = getSpreadPosition(index);
+          <motion.div variants={itemVariants}>
+            <StatsRow>
+              <StatItem>
+                <StatValue>50+</StatValue>
+                <StatLabel>Event Themes</StatLabel>
+              </StatItem>
+              <Divider />
+              <StatItem>
+                <StatValue>5K+</StatValue>
+                <StatLabel>Happy Kids</StatLabel>
+              </StatItem>
+              <Divider />
+              <StatItem>
+                <StatIconWrapper>
+                  <LayoutGrid size={24} />
+                </StatIconWrapper>
+                <StatLabel>Categories</StatLabel>
+              </StatItem>
+            </StatsRow>
+          </motion.div>
+        </ContentColumn>
 
-            return (
-              <CategoryCard
-                key={category.id}
-                initial={mergedPos}
-                animate={
-                  isInView
-                    ? spreadPos
-                    : mergedPos
-                }
-                transition={{
-                  duration: 0.8,
-                  delay: isInView ? index * 0.1 : 0,
-                  type: "spring",
-                  stiffness: 100,
-                  damping: 15,
-                }}
-                whileHover={{
-                  scale: 1.1,
-                  rotate: 0,
-                  y: -10,
-                  transition: { duration: 0.3 },
-                }}
-                $gradient={category.gradient}
-              >
-                <CardGlow $color={category.color} />
-                
-                <CardContent>
-                  <IconWrapper
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                  >
-                    <Icon size={40} strokeWidth={2} />
-                  </IconWrapper>
+        {/* Right Image Grid Column */}
+        <ImageColumn variants={itemVariants}>
+          <Grid>
+            {/* Row 1 */}
+            <ImageCard className="img-1" $bg="/landing1.jpeg">
+              <CategoryOverlay>Parties</CategoryOverlay>
+            </ImageCard>
 
-                  <CategoryName>{category.name}</CategoryName>
+            <ImageCard className="img-2" $bg="/landing7.jpg">
+              <CategoryOverlay>Baby Showers</CategoryOverlay>
+            </ImageCard>
 
-                  <CardShine
-                    animate={{ x: ["-100%", "200%"] }}
-                    transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-                  />
-                </CardContent>
+            {/* Right Tall Image */}
+            <ImageCard className="img-3" $bg="/landing5.jpeg">
+              <CategoryOverlay>Workshops</CategoryOverlay>
+            </ImageCard>
 
-                <CardBorder />
-              </CategoryCard>
-            );
-          })}
-        </CardsContainer>
+            {/* Row 2 */}
+            <ImageCard className="img-4" $bg="/landing2.jpeg">
+              <CategoryOverlay>Fiesta & Fair</CategoryOverlay>
+            </ImageCard>
 
-        <CallToAction
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-        >
-          <CTAText>Ready to plan your perfect event?</CTAText>
-          <CTAButton
-            whileHover={{ scale: 1.05, y: -3 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => navigate('/gallery')}
-          >
-            <ButtonShine
-              animate={{ x: ["-100%", "200%"] }}
-              transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
-            />
-            <span style={{ position: 'relative', zIndex: 10 }}>Explore Events</span>
-          </CTAButton>
-        </CallToAction>
-      </ContentWrapper>
-    </CategoriesSection>
+            <ImageCard className="img-5" $bg="/landing4.jpeg">
+              <CategoryOverlay>Others</CategoryOverlay>
+            </ImageCard>
+          </Grid>
+        </ImageColumn>
+      </Container>
+    </Section>
   );
 };
 
-const CategoriesSection = styled.section`
+// --- Styled Components ---
+
+const Section = styled.section`
   position: relative;
-  min-height: 100vh;
+  padding: 6rem 2rem;
+  background-color: transparent;
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding: 6rem 1rem;
   overflow: hidden;
 `;
 
-const SectionBackground = styled.div`
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-`;
-
-const BackgroundBlob1 = styled(motion.div)`
-  position: absolute;
-  top: 15%;
-  left: 15%;
-  width: 30rem;
-  height: 30rem;
-  border-radius: 50%;
-  background: hsl(340, 80%, 65%);
-  filter: blur(80px);
-`;
-
-const BackgroundBlob2 = styled(motion.div)`
-  position: absolute;
-  bottom: 15%;
-  right: 15%;
-  width: 35rem;
-  height: 35rem;
-  border-radius: 50%;
-  background: hsl(175, 70%, 45%);
-  filter: blur(80px);
-`;
-
-const ContentWrapper = styled.div`
-  position: relative;
-  z-index: 10;
+const Container = styled(motion.div)`
   max-width: 1200px;
   width: 100%;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
   align-items: center;
-`;
-
-const SectionTitle = styled(motion.h2)`
-  font-size: 3rem;
-  font-weight: 900;
-  color: #2d3436;
-  text-align: center;
-  margin-bottom: 1rem;
-  
-  @media (max-width: 768px) {
-    font-size: 2.5rem;
-  }
-  
-  @media (max-width: 640px) {
-    font-size: 2rem;
-  }
-`;
-
-const GradientText = styled.span`
-  background: linear-gradient(
-    135deg,
-    hsl(10, 90%, 65%),
-    hsl(340, 80%, 65%),
-    hsl(270, 60%, 70%)
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-`;
-
-const SectionSubtitle = styled(motion.p)`
-  font-size: 1.25rem;
-  color: #636e72;
-  text-align: center;
-  margin-bottom: 4rem;
-  
-  @media (max-width: 640px) {
-    font-size: 1rem;
-  }
-`;
-
-const CardsContainer = styled.div`
   position: relative;
-  width: 100%;
-  height: 500px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 4rem;
-  
-  @media (max-width: 768px) {
-    height: 400px;
-  }
-
-  @media (max-width: 640px) {
-    height: 560px;
-  }
-
-  @media (max-width: 480px) {
-    height: 600px;
-  }
-`;
-
-const CategoryCard = styled(motion.div)`
-  position: absolute;
-  width: 200px;
-  height: 240px;
-  background: ${props => props.$gradient};
-  border-radius: 20px;
-  cursor: pointer;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  
-  @media (max-width: 768px) {
-    width: 160px;
-    height: 200px;
-  }
-  
-  @media (max-width: 640px) {
-    width: 140px;
-    height: 180px;
-  }
-`;
-
-const CardGlow = styled.div`
-  position: absolute;
-  inset: -2px;
-  background: ${props => props.$color};
-  border-radius: 20px;
-  opacity: 0;
-  filter: blur(20px);
-  transition: opacity 0.3s ease;
-  
-  ${CategoryCard}:hover & {
-    opacity: 0.6;
-  }
-`;
-
-const CardContent = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
-  color: white;
   z-index: 10;
+
+  @media (max-width: 968px) {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
 `;
 
-const IconWrapper = styled(motion.div)`
-  margin-bottom: 1.5rem;
+// --- Left Column ---
+
+const ContentColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 500px;
+  padding-left: 2rem;
   
-  @media (max-width: 768px) {
-    margin-bottom: 1rem;
+  @media (max-width: 968px) {
+    max-width: 100%;
+    padding-left: 0;
+    align-items: center;
+    text-align: center;
+  }
+`;
+
+const Title = styled.h2`
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+  line-height: 1.15;
+  color: #2f2622;
+  letter-spacing: -0.01em;
+`;
+
+const Subtitle = styled.p`
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #4a423e;
+  margin-top: 0.25rem;
+  margin-bottom: 1.5rem;
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+
+  @media (max-width: 968px) {
+    justify-content: center;
+  }
+`;
+
+const PrimaryButton = styled.button`
+  background-color: #a76b53;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.8rem 1.8rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #905a45;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(167, 107, 83, 0.2);
+  }
+`;
+
+const SecondaryButton = styled.button`
+  background-color: transparent;
+  color: #a76b53;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.8rem 1.8rem;
+  border-radius: 4px;
+  border: 1px solid #a76b53;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: rgba(167, 107, 83, 0.05);
+    transform: translateY(-2px);
+  }
+`;
+
+const StatsRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  
+  @media (max-width: 480px) {
+    gap: 1rem;
+  }
+`;
+
+const StatItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+`;
+
+const StatValue = styled.div`
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #2f2622;
+`;
+
+const StatIconWrapper = styled.div`
+  font-size: 1.25rem;
+  color: #2f2622;
+  display: flex;
+  align-items: center;
+  height: 30px;
+  
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+`;
+
+const StatLabel = styled.div`
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  color: #6a605a;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+`;
+
+const Divider = styled.div`
+  width: 1px;
+  height: 40px;
+  background-color: #e2e8f0;
+`;
+
+// --- Right Column ---
+
+const ImageColumn = styled(motion.div)`
+  position: relative;
+  width: 100%;
+`;
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  grid-template-rows: 180px 180px;
+  gap: 1.25rem;
+  position: relative;
+  
+  .img-1 { grid-column: 1; grid-row: 1; }
+  .img-2 { grid-column: 1; grid-row: 2; }
+  
+  .img-3 { 
+    grid-column: 2; 
+    grid-row: 1 / 3; 
+    transform: translateY(-20px);
+    height: calc(100% + 40px);
+    background-color: #fdfcf0; 
+    z-index: 2;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  }
+  
+  .img-4 { grid-column: 3; grid-row: 1; }
+  .img-5 { grid-column: 3; grid-row: 2; }
+
+  @media (max-width: 968px) {
+    grid-template-rows: 160px 160px;
+  }
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
     
-    svg {
-      width: 32px;
-      height: 32px;
+    .img-1 { grid-column: 1; grid-row: 1; height: 160px; }
+    .img-4 { grid-column: 2; grid-row: 1; height: 160px; }
+    .img-2 { grid-column: 1; grid-row: 2; height: 160px; }
+    .img-5 { grid-column: 2; grid-row: 2; height: 160px; }
+    .img-3 { 
+      grid-column: 1 / 3; 
+      grid-row: 3; 
+      height: 200px; 
+      transform: none;
     }
   }
 `;
 
-const CategoryName = styled.h3`
-  font-size: 1.5rem;
-  font-weight: 700;
-  text-align: center;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  
-  @media (max-width: 768px) {
-    font-size: 1.25rem;
-  }
-  
-  @media (max-width: 640px) {
-    font-size: 1rem;
-  }
-`;
-
-const CardShine = styled(motion.div)`
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.3),
-    transparent
-  );
-`;
-
-const CardBorder = styled.div`
-  position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  pointer-events: none;
-`;
-
-const CallToAction = styled(motion.div)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-  margin-top: 2rem;
-`;
-
-const CTAText = styled.p`
-  font-size: 1.25rem;
-  color: #2d3436;
-  font-weight: 600;
-  
-  @media (max-width: 640px) {
-    font-size: 1rem;
-  }
-`;
-
-const CTAButton = styled(motion.button)`
+const ImageCard = styled.div`
   position: relative;
-  padding: 1rem 2.5rem;
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: white;
-  background: linear-gradient(135deg, hsl(10, 90%, 65%), hsl(340, 80%, 65%));
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
+  border-radius: 4px;
+  background-image: url(${props => props.$bg});
+  background-size: cover;
+  background-position: center;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  border: 1px solid rgba(167, 107, 83, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, outline-color 0.3s ease;
+  outline: 3.5px solid transparent;
+  outline-offset: 5px;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    outline-color: #b07d6a;
+  }
 `;
 
-const ButtonShine = styled(motion.div)`
+const CategoryOverlay = styled.div`
   position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.4),
-    transparent
-  );
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem 1rem 1rem;
+  background: linear-gradient(to top, rgba(47,38,34,0.8) 0%, transparent 100%);
+  color: white;
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 1.25rem;
+  letter-spacing: 0.5px;
+
+  @media (max-width: 640px) {
+    font-size: 1.1rem;
+  }
+`;
+
+const FloatingCircle = styled(motion.div)`
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(176, 125, 106, 0.22);
+  pointer-events: none;
+  z-index: 1;
 `;

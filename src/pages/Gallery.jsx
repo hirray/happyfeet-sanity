@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { CategoryCard } from "../components/CategoryCard";
 import { useIsMobile } from "../hooks/use-mobile";
-import { FloatingConfetti } from "../components/FloatingConfetti";
 import { ImageSphere } from "../components/ImageSphere";
 import { EventCard } from "../components/EventCard";
 import FloatingNavbar from "../components/FloatingNavbar";
@@ -105,7 +104,6 @@ const Gallery = () => {
   return (
     <PageWrapper>
       <AnimatedBackground />
-      <FloatingConfetti />
       <FloatingNavbar />
       
       <HeroSection>

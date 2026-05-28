@@ -62,7 +62,7 @@ export const EventTimeline = () => {
           transition={{ duration: 0.6 }}
         >
           <SectionTitle>
-            Timeline <GradientText>Business</GradientText>
+            Timeline Business
           </SectionTitle>
           <SectionSubtitle>The Journey to Your Perfect Event</SectionSubtitle>
         </SectionHeader>
@@ -112,7 +112,7 @@ export const EventTimeline = () => {
         transition={{ duration: 0.6 }}
       >
         <SectionTitle>
-          Timeline <GradientText>Business</GradientText>
+          Timeline Business
         </SectionTitle>
         <SectionSubtitle>The Journey to Your Perfect Event</SectionSubtitle>
       </SectionHeader>
@@ -124,39 +124,39 @@ export const EventTimeline = () => {
             preserveAspectRatio="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            {/* Road base - dark asphalt - Curvy slanting downwards */}
+            {/* Road base - sandy dirt path */}
             <path
               d="M 0 150 Q 150 120, 300 180 Q 450 240, 600 280 Q 800 250, 1000 350 Q 1150 450, 1300 500 Q 1500 480, 1700 580 Q 1850 650, 2000 700 Q 2200 720, 2400 800 Q 2550 870, 2700 900 Q 2900 880, 3100 950 Q 3250 1000, 3400 1020 Q 3600 1050, 3800 1080 Q 3900 1090, 4000 1100"
               fill="none"
-              stroke="#2d3436"
+              stroke="#ead1c4"
               strokeWidth="80"
               strokeLinecap="round"
             />
 
-            {/* Road surface - lighter asphalt */}
+            {/* Road surface - lighter sand */}
             <path
               d="M 0 150 Q 150 120, 300 180 Q 450 240, 600 280 Q 800 250, 1000 350 Q 1150 450, 1300 500 Q 1500 480, 1700 580 Q 1850 650, 2000 700 Q 2200 720, 2400 800 Q 2550 870, 2700 900 Q 2900 880, 3100 950 Q 3250 1000, 3400 1020 Q 3600 1050, 3800 1080 Q 3900 1090, 4000 1100"
               fill="none"
-              stroke="#636e72"
+              stroke="#f5e8df"
               strokeWidth="75"
               strokeLinecap="round"
             />
 
-            {/* Center dashed line - white */}
+            {/* Center dashed line */}
             <path
               d="M 0 150 Q 150 120, 300 180 Q 450 240, 600 280 Q 800 250, 1000 350 Q 1150 450, 1300 500 Q 1500 480, 1700 580 Q 1850 650, 2000 700 Q 2200 720, 2400 800 Q 2550 870, 2700 900 Q 2900 880, 3100 950 Q 3250 1000, 3400 1020 Q 3600 1050, 3800 1080 Q 3900 1090, 4000 1100"
               fill="none"
-              stroke="#ffffff"
+              stroke="#d09074"
               strokeWidth="4"
               strokeDasharray="40 30"
               strokeLinecap="round"
             />
 
-            {/* Road edge lines - yellow */}
+            {/* Road edge lines */}
             <path
               d="M 0 150 Q 150 120, 300 180 Q 450 240, 600 280 Q 800 250, 1000 350 Q 1150 450, 1300 500 Q 1500 480, 1700 580 Q 1850 650, 2000 700 Q 2200 720, 2400 800 Q 2550 870, 2700 900 Q 2900 880, 3100 950 Q 3250 1000, 3400 1020 Q 3600 1050, 3800 1080 Q 3900 1090, 4000 1100"
               fill="none"
-              stroke="#ffd700"
+              stroke="#d09074"
               strokeWidth="3"
               strokeDasharray="0"
               strokeLinecap="round"
@@ -165,7 +165,7 @@ export const EventTimeline = () => {
             <path
               d="M 0 150 Q 150 120, 300 180 Q 450 240, 600 280 Q 800 250, 1000 350 Q 1150 450, 1300 500 Q 1500 480, 1700 580 Q 1850 650, 2000 700 Q 2200 720, 2400 800 Q 2550 870, 2700 900 Q 2900 880, 3100 950 Q 3250 1000, 3400 1020 Q 3600 1050, 3800 1080 Q 3900 1090, 4000 1100"
               fill="none"
-              stroke="#ffd700"
+              stroke="#d09074"
               strokeWidth="3"
               strokeDasharray="0"
               strokeLinecap="round"
@@ -305,7 +305,7 @@ const TimelineSection = styled.section`
   position: relative;
   min-height: 200vh;
   padding: 6rem 0;
-  background: linear-gradient(to bottom, #f8f9fa 0%, #e9ecef 100%);
+  background: transparent;
   overflow: hidden;
 
   @media (max-width: 768px) {
@@ -321,9 +321,10 @@ const SectionHeader = styled(motion.div)`
 `;
 
 const SectionTitle = styled.h2`
+  font-family: 'Playfair Display', serif;
   font-size: 3rem;
-  font-weight: 900;
-  color: #2d3436;
+  font-weight: 400;
+  color: #2f2622;
   margin-bottom: 1rem;
 
   @media (max-width: 768px) {
@@ -335,21 +336,10 @@ const SectionTitle = styled.h2`
   }
 `;
 
-const GradientText = styled.span`
-  background: linear-gradient(
-    135deg,
-    hsl(10, 90%, 65%),
-    hsl(340, 80%, 65%),
-    hsl(270, 60%, 70%)
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-`;
-
 const SectionSubtitle = styled.p`
-  font-size: 1.25rem;
-  color: #636e72;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  color: #6a605a;
 
   @media (max-width: 640px) {
     font-size: 1rem;
@@ -370,8 +360,8 @@ const MobileLine = styled.div`
   left: 18px;
   width: 4px;
   border-radius: 999px;
-  background: linear-gradient(180deg, rgba(255, 107, 157, 0.85), rgba(34, 184, 207, 0.75), rgba(255, 212, 59, 0.75));
-  box-shadow: 0 20px 60px rgba(34, 184, 207, 0.12);
+  background: linear-gradient(180deg, rgba(167, 107, 83, 0.85), rgba(208, 144, 116, 0.75), rgba(234, 221, 203, 0.75));
+  box-shadow: 0 4px 15px rgba(167, 107, 83, 0.12);
 `;
 
 const MobileItem = styled(motion.div)`
@@ -393,29 +383,27 @@ const MobileMarkerCircle = styled.div`
   width: 44px;
   height: 44px;
   border-radius: 999px;
-  background: linear-gradient(135deg, #ff6b9d, #fec163);
+  background: #a76b53;
   display: grid;
   place-items: center;
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   border: 3px solid rgba(255, 255, 255, 0.95);
   z-index: 2;
 `;
 
 const MobileMarkerNumber = styled.span`
+  font-family: 'Playfair Display', serif;
   font-size: 1.05rem;
-  font-weight: 950;
-  color: rgba(255, 255, 255, 0.98);
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+  font-weight: 500;
+  color: white;
 `;
 
 const MobileCard = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  border-radius: 18px;
+  background: #fdfcf0;
+  border: 1px solid rgba(167, 107, 83, 0.15);
+  border-radius: 4px;
   padding: 16px 16px;
-  box-shadow: 0 18px 45px rgba(17, 19, 28, 0.12);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 `;
 
 const RoadWrapper = styled.div`
@@ -471,39 +459,39 @@ const MarkerCircle = styled.div`
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #ff6b9d, #fec163);
+  background: #a76b53;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   border: 4px solid white;
   position: relative;
   z-index: 2;
 `;
 
 const MarkerNumber = styled.span`
+  font-family: 'Playfair Display', serif;
   font-size: 1.5rem;
-  font-weight: 900;
+  font-weight: 500;
   color: white;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 `;
 
 const MarkerLine = styled.div`
   width: 4px;
   height: 40px;
-  background: linear-gradient(to bottom, #ff6b9d, transparent);
+  background: linear-gradient(to bottom, #a76b53, transparent);
   margin-top: -4px;
 `;
 
 const ContentCard = styled(motion.div)`
   position: absolute;
-  background: white;
-  border-radius: 16px;
+  background: #fdfcf0;
+  border-radius: 4px;
   padding: 1.5rem;
   width: 220px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
   text-align: center;
-  border: 2px solid #f8f9fa;
+  border: 1px solid rgba(167, 107, 83, 0.15);
   left: 50%;
   transform: translateX(-50%);
 `;
@@ -512,7 +500,7 @@ const IconWrapper = styled.div`
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: #a76b53;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -521,15 +509,17 @@ const IconWrapper = styled.div`
 `;
 
 const CardTitle = styled.h3`
+  font-family: 'Playfair Display', serif;
   font-size: 1.25rem;
-  font-weight: 700;
-  color: #2d3436;
+  font-weight: 500;
+  color: #2f2622;
   margin-bottom: 0.5rem;
 `;
 
 const CardDescription = styled.p`
+  font-family: 'Inter', sans-serif;
   font-size: 0.875rem;
-  color: #636e72;
+  color: #4a423e;
   line-height: 1.5;
 `;
 

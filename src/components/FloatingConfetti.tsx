@@ -25,11 +25,11 @@ interface ConfettiPiece {
 
 export const FloatingConfetti = () => {
   const confettiPieces = useMemo<ConfettiPiece[]>(() => {
-    return Array.from({ length: 30 }, (_, i) => ({
+    return Array.from({ length: 6 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       delay: Math.random() * 5,
-      duration: 8 + Math.random() * 10,
+      duration: 15 + Math.random() * 20,
       size: 6 + Math.random() * 12,
       color: colors[Math.floor(Math.random() * colors.length)],
       shape: shapes[Math.floor(Math.random() * shapes.length)],
@@ -52,6 +52,7 @@ export const FloatingConfetti = () => {
             borderLeft: piece.shape === "triangle" ? `${piece.size / 2}px solid transparent` : undefined,
             borderRight: piece.shape === "triangle" ? `${piece.size / 2}px solid transparent` : undefined,
             borderBottom: piece.shape === "triangle" ? `${piece.size}px solid ${piece.color}` : undefined,
+            filter: "blur(1.5px)",
           }}
           initial={{ y: -100, rotate: 0, opacity: 0 }}
           animate={{

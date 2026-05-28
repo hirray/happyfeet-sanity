@@ -70,6 +70,7 @@ function App() {
   const [showSplash, setShowSplash] = useState(true);
   const [registerOpen, setRegisterOpen] = useState(false);
   const [registered, setRegistered] = useState(() => isRegisterPopupRegistered());
+  const [cancelCount, setCancelCount] = useState(0);
 
   useEffect(() => {
     const t = setTimeout(() => setShowSplash(false), 2200);
@@ -77,17 +78,14 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (showSplash) return;
-    if (registered) return;
+    if (showSplash || registered || cancelCount >= 2) return;
 
-    const tick = () => {
-      if (!registered) setRegisterOpen(true);
-    };
+    const timeoutId = setTimeout(() => {
+      setRegisterOpen(true);
+    }, cancelCount === 0 ? 0 : 10000);
 
-    tick();
-    const intervalId = setInterval(tick, 10000);
-    return () => clearInterval(intervalId);
-  }, [registered, showSplash]);
+    return () => clearTimeout(timeoutId);
+  }, [registered, showSplash, cancelCount]);
 
   return (
     <Router>
@@ -96,7 +94,10 @@ function App() {
         <main className="app__main">
           <RegisterPopup
             open={registerOpen}
-            onClose={() => setRegisterOpen(false)}
+            onClose={() => {
+              setRegisterOpen(false);
+              setCancelCount(prev => prev + 1);
+            }}
             onRegistered={() => {
               setRegistered(true);
               setRegisterOpen(false);

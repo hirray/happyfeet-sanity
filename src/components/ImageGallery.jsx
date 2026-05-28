@@ -1,5 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useMemo, useRef } from 'react';
+import styled from 'styled-components';
 import '../styles/ImageGallery.css';
 
 const galleryTiles = [
@@ -17,8 +18,8 @@ const ImageGallery = () => {
   const tiles = useMemo(() => galleryTiles, []);
 
   return (
-    <section id="landing-gallery" ref={ref} className="ig" aria-label="Captured moments gallery">
-      <div className="ig__container">
+    <section id="landing-gallery" ref={ref} className="ig" aria-label="Captured moments gallery" style={{ position: 'relative', overflow: 'hidden' }}>
+      <div className="ig__container" style={{ position: 'relative', zIndex: 10 }}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}

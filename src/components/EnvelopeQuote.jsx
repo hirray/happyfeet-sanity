@@ -31,14 +31,52 @@ export const EnvelopeQuote = () => {
     <QuoteSection ref={containerRef}>
       <QuoteBackground>
         <BackgroundCircle1
-          animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
+          animate={{ scale: [1, 1.15, 1], opacity: [0.35, 0.55, 0.35] }}
           transition={{ duration: 8, repeat: Infinity }}
         />
         <BackgroundCircle2
-          animate={{ scale: [1.2, 1, 1.2], opacity: [0.1, 0.2, 0.1] }}
+          animate={{ scale: [1.15, 1, 1.15], opacity: [0.35, 0.55, 0.35] }}
           transition={{ duration: 10, repeat: Infinity }}
         />
       </QuoteBackground>
+
+      {/* Floating Terracotta Circles */}
+      <FloatingCircle
+        style={{ top: '15%', left: '6%', width: 90, height: 90 }}
+        animate={{
+          x: [0, 45, 80, 35, -15, 0],
+          y: [0, 20, -20, 30, -10, 0],
+        }}
+        transition={{
+          duration: 26,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+      <FloatingCircle
+        style={{ bottom: '12%', right: '10%', width: 65, height: 65 }}
+        animate={{
+          x: [0, -35, -10, -55, 20, 0],
+          y: [0, -20, 18, -25, 12, 0],
+        }}
+        transition={{
+          duration: 30,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+      <FloatingCircle
+        style={{ top: '50%', right: '5%', width: 110, height: 110 }}
+        animate={{
+          x: [0, 50, -45, 25, -20, 0],
+          y: [0, -30, 30, -18, 22, 0],
+        }}
+        transition={{
+          duration: 34,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
 
       <QuoteContent>
         <SectionLabel
@@ -110,24 +148,24 @@ const QuoteBackground = styled.div`
 
 const BackgroundCircle1 = styled(motion.div)`
   position: absolute;
-  top: 10%;
-  left: 10%;
-  width: 25rem;
-  height: 25rem;
+  top: 8%;
+  left: 8%;
+  width: 28rem;
+  height: 28rem;
   border-radius: 50%;
-  background: hsl(340, 80%, 65%);
-  filter: blur(60px);
+  background: #9e634e;
+  filter: blur(90px);
 `;
 
 const BackgroundCircle2 = styled(motion.div)`
   position: absolute;
-  bottom: 10%;
-  right: 10%;
-  width: 30rem;
-  height: 30rem;
+  bottom: 8%;
+  right: 8%;
+  width: 34rem;
+  height: 34rem;
   border-radius: 50%;
-  background: hsl(175, 70%, 45%);
-  filter: blur(60px);
+  background: #9e634e;
+  filter: blur(90px);
 `;
 
 const QuoteContent = styled.div`
@@ -141,7 +179,7 @@ const SectionLabel = styled(motion.div)`
   text-align: center;
   font-size: 0.875rem;
   font-weight: 600;
-  color: hsl(10, 90%, 65%);
+  color: #a76b53;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 3rem;
@@ -303,8 +341,8 @@ const Seal = styled.button`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: hsl(350, 80%, 60%);
-  color: hsl(350, 60%, 40%);
+  background: #a76b53;
+  color: #fdfcf0;
   width: 4rem;
   aspect-ratio: 1;
   border-radius: 50%;
@@ -316,14 +354,14 @@ const Seal = styled.button`
   font-weight: 700;
   clip-path: polygon(50% 0%, 80% 10%, 100% 35%, 100% 70%, 80% 90%, 50% 100%, 20% 90%, 0% 70%, 0% 35%, 20% 10%);
   transition: all 1s ease;
-  border: 5px solid hsl(350, 70%, 30%);
+  border: 5px solid #905a45;
   cursor: pointer;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   
   @media (max-width: 640px) {
     width: 3rem;
     font-size: 0.875rem;
-    border: 4px solid hsl(350, 70%, 30%);
+    border: 4px solid #905a45;
   }
 `;
 
@@ -369,4 +407,12 @@ const BottomFlap = styled.div`
   transition: all 0.7s ease;
   z-index: 25;
   border-radius: 0 0 8px 8px;
+`;
+
+const FloatingCircle = styled(motion.div)`
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(176, 125, 106, 0.22);
+  pointer-events: none;
+  z-index: 2;
 `;

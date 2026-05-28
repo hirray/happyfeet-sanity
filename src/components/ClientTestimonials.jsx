@@ -1,87 +1,61 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import styled from "styled-components";
-import { Star, Quote, ArrowRight } from "lucide-react";
+import { Star, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const testimonials = [
   {
     id: 1,
     name: "Aarohi Iyer",
+    handle: "Wedding Client",
     rating: 5,
-    review: "Absolutely amazing experience! The team made our wedding unforgettable with their creative decorations.",
-    highlight: ["amazing", "unforgettable", "creative"],
-    color: "#FF6B9D",
-    gradient: "linear-gradient(135deg, #FF6B9D, #FEC163)",
+    title: "Absolutely amazing!",
+    review: "The team made our wedding unforgettable with their creative decorations. Every detail was planned to perfection and the execution was flawless.",
+    tail: "none",
   },
   {
     id: 2,
     name: "Rohan Gupta",
+    handle: "Happy Parent",
     rating: 5,
-    review: "Outstanding service and incredible attention to detail. Our daughter's birthday party was perfect!",
-    highlight: ["Outstanding", "incredible", "perfect"],
-    color: "#667EEA",
-    gradient: "linear-gradient(135deg, #667EEA, #764BA2)",
+    title: "I really appreciate!!",
+    review: "Outstanding service and incredible attention to detail. Our daughter's birthday party was transformed into a magical wonderland.",
+    tail: "bottom-right",
   },
   {
     id: 3,
     name: "Meera Menon",
+    handle: "Corporate Event",
     rating: 5,
-    review: "Highly professional team! They transformed our venue into a magical wonderland. Exceeded expectations!",
-    highlight: ["professional", "magical", "Exceeded expectations"],
-    color: "#F093FB",
-    gradient: "linear-gradient(135deg, #F093FB, #F5576C)",
+    title: "Good Job!",
+    review: "Highly professional team! They handled everything smoothly and exceeded our expectations. Truly exceptional work from start to finish.",
+    tail: "none",
   },
   {
     id: 4,
     name: "Kabir Malhotra",
+    handle: "Party Host",
     rating: 5,
-    review: "Fantastic work! The decorations were stunning and everyone loved the theme. Truly exceptional!",
-    highlight: ["Fantastic", "stunning", "exceptional"],
-    color: "#4FACFE",
-    gradient: "linear-gradient(135deg, #4FACFE, #00F2FE)",
+    title: "I was very impressed!",
+    review: "Fantastic work! The decorations were stunning and everyone loved the theme. We didn't have to worry about a single thing.",
+    tail: "bottom-left",
   },
   {
     id: 5,
     name: "Priya Sharma",
+    handle: "Anniversary Event",
     rating: 5,
-    review: "Best event planners ever! They brought our vision to life beautifully. Highly recommend!",
-    highlight: ["Best", "beautifully", "Highly recommend"],
-    color: "#43E97B",
-    gradient: "linear-gradient(135deg, #43E97B, #38F9D7)",
+    title: "Highly recommend!",
+    review: "Best event planners ever! They brought our vision to life beautifully. Our 10th anniversary was a dream come true because of Happy Feet.",
+    tail: "none",
   },
 ];
 
 export const ClientTestimonials = () => {
   const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: false, amount: 0.2 });
-  const [highlightedCards, setHighlightedCards] = useState([]);
+  const isInView = useInView(containerRef, { once: false, amount: 0.1 });
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (isInView) {
-      const timer = setTimeout(() => {
-        setHighlightedCards(testimonials.map((t) => t.id));
-      }, 600);
-      return () => clearTimeout(timer);
-    } else {
-      setHighlightedCards([]);
-    }
-  }, [isInView]);
-
-  const highlightWords = (text, wordsToHighlight, shouldHighlight) => {
-    if (!shouldHighlight) return text;
-
-    let highlightedText = text;
-    wordsToHighlight.forEach((word) => {
-      const regex = new RegExp(`(${word})`, "gi");
-      highlightedText = highlightedText.replace(
-        regex,
-        '<span class="highlight">$1</span>'
-      );
-    });
-    return highlightedText;
-  };
 
   const handleExploreMore = () => {
     navigate("/testimonials");
@@ -89,17 +63,6 @@ export const ClientTestimonials = () => {
 
   return (
     <TestimonialsSection ref={containerRef}>
-      <SectionBackground>
-        <BackgroundCircle1
-          animate={{ scale: [1, 1.2, 1], opacity: [0.05, 0.1, 0.05] }}
-          transition={{ duration: 10, repeat: Infinity }}
-        />
-        <BackgroundCircle2
-          animate={{ scale: [1.2, 1, 1.2], opacity: [0.05, 0.1, 0.05] }}
-          transition={{ duration: 12, repeat: Infinity }}
-        />
-      </SectionBackground>
-
       <ContentWrapper>
         <HeaderSection>
           <SectionTitle
@@ -107,162 +70,65 @@ export const ClientTestimonials = () => {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.6 }}
           >
-            What Our <GradientText>Clients Say</GradientText>
+            What Our Clients Say
           </SectionTitle>
           <SectionSubtitle
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Real experiences from our happy clients
+            Real experiences from the magical events we create.
           </SectionSubtitle>
         </HeaderSection>
 
-        <CardsGrid>
-          {testimonials.map((testimonial, index) => {
-            const shouldHighlight = highlightedCards.includes(testimonial.id);
-            const positions = [
-              { rotate: -3, y: 0 },
-              { rotate: 2, y: 20 },
-              { rotate: -2, y: 10 },
-              { rotate: 3, y: -10 },
-              { rotate: -1, y: 15 },
-            ];
+        <GridContainer>
+          {/* Decorative floating quotes */}
+          <FloatingQuote className="quote-top-left">“</FloatingQuote>
+          <FloatingQuote className="quote-middle">“</FloatingQuote>
+          <FloatingQuote className="quote-bottom-right">”</FloatingQuote>
 
-            return (
-              <TestimonialCard
-                key={testimonial.id}
-                $gradient={testimonial.gradient}
-                initial={{ opacity: 0, scale: 0.5, rotateX: -90, y: 100 }}
-                animate={
-                  isInView
-                    ? {
-                        opacity: 1,
-                        scale: 1,
-                        rotateX: 0,
-                        y: 0,
-                      }
-                    : { opacity: 0, scale: 0.5, rotateX: -90, y: 100 }
-                }
-                transition={{
-                  duration: 0.8,
-                  delay: index * 0.2,
-                  type: "spring",
-                  stiffness: 80,
-                  damping: 12,
-                }}
-                whileHover={{
-                  scale: 1.08,
-                  rotateY: 5,
-                  y: -20,
-                  transition: { duration: 0.4, type: "spring", stiffness: 300 },
-                }}
-              >
-                <CardTopBar $color={testimonial.color} />
+          {testimonials.map((t, index) => (
+            <GridItem
+              key={t.id}
+              initial={{ opacity: 0, y: 40 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+              transition={{ duration: 0.6, delay: index * 0.15, ease: "easeOut" }}
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
+            >
+              <Card>
+                {t.tail !== "none" && (
+                  <BubbleTail className={t.tail} />
+                )}
                 
-                <QuoteIcon $color={testimonial.color}>
-                  <Quote size={32} strokeWidth={3} />
-                </QuoteIcon>
+                <CardInner>
+                  {/* Title */}
+                  {t.title && <CardTitle>{t.title}</CardTitle>}
 
-                <CardHeader>
+                  {/* Stars */}
+                  <RatingContainer>
+                    {[...Array(t.rating)].map((_, i) => (
+                      <Star key={i} size={16} fill="#FACC15" color="#FACC15" />
+                    ))}
+                  </RatingContainer>
+
+                  {/* Review Text */}
+                  <ReviewText>{t.review}</ReviewText>
+
+                  {/* Client Info (No Image) */}
                   <ClientInfo>
-                    <ClientName>{testimonial.name}</ClientName>
-                    <RatingContainer>
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <StarIcon
-                          key={i}
-                          $color={testimonial.color}
-                          animate={
-                            shouldHighlight
-                              ? {
-                                  scale: [1, 1.5, 1],
-                                  rotate: [0, 180, 360],
-                                  y: [0, -5, 0],
-                                }
-                              : { scale: 1, rotate: 0, y: 0 }
-                          }
-                          transition={{
-                            duration: 0.7,
-                            delay: 0.5 + i * 0.15,
-                          }}
-                        >
-                          <Star size={16} fill="currentColor" strokeWidth={0} />
-                        </StarIcon>
-                      ))}
-                    </RatingContainer>
+                    <ClientName>{t.name}</ClientName>
+                    <ClientHandle>{t.handle}</ClientHandle>
                   </ClientInfo>
-                </CardHeader>
-
-                <ReviewText
-                  dangerouslySetInnerHTML={{
-                    __html: highlightWords(
-                      testimonial.review,
-                      testimonial.highlight,
-                      shouldHighlight
-                    ),
-                  }}
-                />
-
-                <CardGlow
-                  $gradient={testimonial.gradient}
-                  animate={
-                    shouldHighlight
-                      ? { opacity: 0.6, scale: 1.15 }
-                      : { opacity: 0, scale: 1 }
-                  }
-                  transition={{ duration: 0.5 }}
-                />
-                
-                <FloatingParticle1
-                  $color={testimonial.color}
-                  animate={{
-                    y: [-20, 20, -20],
-                    x: [-10, 10, -10],
-                    rotate: [0, 360],
-                    opacity: [0.3, 0.8, 0.3],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    delay: index * 0.5,
-                  }}
-                />
-                <FloatingParticle2
-                  $color={testimonial.color}
-                  animate={{
-                    y: [20, -20, 20],
-                    x: [10, -10, 10],
-                    rotate: [360, 0],
-                    opacity: [0.3, 0.8, 0.3],
-                  }}
-                  transition={{
-                    duration: 5,
-                    repeat: Infinity,
-                    delay: index * 0.7,
-                  }}
-                />
-                <FloatingParticle3
-                  $color={testimonial.color}
-                  animate={{
-                    scale: [1, 1.5, 1],
-                    rotate: [0, 180, 360],
-                    opacity: [0.2, 0.6, 0.2],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    delay: index * 0.3,
-                  }}
-                />
-              </TestimonialCard>
-            );
-          })}
-        </CardsGrid>
+                </CardInner>
+              </Card>
+            </GridItem>
+          ))}
+        </GridContainer>
 
         <ExploreButton
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, delay: 1 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
           whileHover={{ scale: 1.05, y: -5 }}
           whileTap={{ scale: 0.95 }}
           onClick={handleExploreMore}
@@ -281,41 +147,15 @@ export const ClientTestimonials = () => {
   );
 };
 
+// --- Styled Components ---
+
 const TestimonialsSection = styled.section`
   position: relative;
-  min-height: 100vh;
   display: flex;
   align-items: center;
   padding: 6rem 1rem;
+  background-color: #a76b53;
   overflow: hidden;
-`;
-
-const SectionBackground = styled.div`
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-`;
-
-const BackgroundCircle1 = styled(motion.div)`
-  position: absolute;
-  top: 10%;
-  left: 10%;
-  width: 30rem;
-  height: 30rem;
-  border-radius: 50%;
-  background: hsl(270, 60%, 70%);
-  filter: blur(80px);
-`;
-
-const BackgroundCircle2 = styled(motion.div)`
-  position: absolute;
-  bottom: 10%;
-  right: 10%;
-  width: 35rem;
-  height: 35rem;
-  border-radius: 50%;
-  background: hsl(40, 95%, 55%);
-  filter: blur(80px);
 `;
 
 const ContentWrapper = styled.div`
@@ -328,271 +168,170 @@ const ContentWrapper = styled.div`
 
 const HeaderSection = styled.div`
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 `;
 
 const SectionTitle = styled(motion.h2)`
-  font-size: 3rem;
-  font-weight: 900;
-  color: #2d3436;
-  margin-bottom: 1rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: white;
+  margin-bottom: 0.5rem;
 
   @media (max-width: 768px) {
-    font-size: 2.5rem;
-  }
-
-  @media (max-width: 640px) {
     font-size: 2rem;
   }
 `;
 
-const GradientText = styled.span`
-  background: linear-gradient(
-    135deg,
-    hsl(10, 90%, 65%),
-    hsl(340, 80%, 65%),
-    hsl(270, 60%, 70%)
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-`;
-
 const SectionSubtitle = styled(motion.p)`
-  font-size: 1.25rem;
-  color: #636e72;
-
-  @media (max-width: 640px) {
-    font-size: 1rem;
-  }
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.9);
 `;
 
-const CardsGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 260px);
-  gap: 1.5rem;
-  margin-bottom: 4rem;
-  padding: 0 1rem;
-  justify-content: center;
-
-  & > *:nth-child(4),
-  & > *:nth-child(5) {
-    grid-column: span 1;
-  }
-
-  & > *:nth-child(4) {
-    margin-left: auto;
-    margin-right: 0.75rem;
-  }
-
-  & > *:nth-child(5) {
-    margin-right: auto;
-    margin-left: 0.75rem;
-  }
-
-  @media (max-width: 900px) {
-    grid-template-columns: repeat(2, 260px);
-    
-    & > *:nth-child(4),
-    & > *:nth-child(5) {
-      margin: 0;
-    }
-  }
-
-  @media (max-width: 640px) {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    max-width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-    
-    & > *:nth-child(4),
-    & > *:nth-child(5) {
-      margin: 0;
-    }
-  }
-`;
-
-const TestimonialCard = styled(motion.div)`
-  position: relative;
-  background: ${props => props.$gradient};
-  border-radius: 20px;
-  padding: 1.75rem;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-  cursor: pointer;
-  overflow: hidden;
-  transform-style: preserve-3d;
-  perspective: 1000px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  max-width: 260px;
-  width: 100%;
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 20px;
-    z-index: 1;
-  }
-
-  @media (max-width: 640px) {
-    padding: 1.5rem;
-  }
-`;
-
-const CardTopBar = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 5px;
-  background: ${props => props.$color};
-  border-radius: 20px 20px 0 0;
-  z-index: 10;
-`;
-
-const QuoteIcon = styled.div`
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  color: ${props => props.$color};
-  opacity: 0.15;
-  transform: rotate(180deg);
-  z-index: 2;
-  
-  svg {
-    width: 24px;
-    height: 24px;
-  }
-`;
-
-const CardHeader = styled.div`
+const GridContainer = styled.div`
   position: relative;
   display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.25rem;
-  margin-top: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  max-width: 1050px;
+  margin: 0 auto 3rem auto;
+  align-items: stretch;
+`;
+
+const GridItem = styled(motion.div)`
+  position: relative;
   z-index: 2;
+  display: flex;
+  width: calc(33.333% - 1rem);
+  min-width: 300px;
+
+  @media (max-width: 950px) {
+    width: calc(50% - 0.75rem);
+  }
+
+  @media (max-width: 640px) {
+    width: 100%;
+  }
 `;
 
-const ClientInfo = styled.div`
-  flex: 1;
+const FloatingQuote = styled.div`
+  position: absolute;
+  font-family: 'Playfair Display', serif;
+  font-size: 8rem;
+  font-weight: 400;
+  line-height: 1;
+  color: #fdfcf0;
+  opacity: 0.15;
+  z-index: 1;
+  pointer-events: none;
+
+  &.quote-top-left {
+    top: -40px;
+    left: -45px;
+  }
+
+  &.quote-middle {
+    top: 48%;
+    left: 32%;
+    transform: translateY(-50%);
+  }
+
+  &.quote-bottom-right {
+    bottom: -10px;
+    right: -20px;
+  }
 `;
 
-const ClientName = styled.h4`
-  font-size: 1rem;
-  font-weight: 700;
-  color: #2d3436;
-  margin-bottom: 0.25rem;
+const Card = styled.div`
+  position: relative;
+  background: #fdfcf0;
+  border-radius: 4px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  width: 100%;
+`;
+
+const CardInner = styled.div`
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+`;
+
+const CardTitle = styled.h3`
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #2f2622;
+  margin: 0;
 `;
 
 const RatingContainer = styled.div`
   display: flex;
-  gap: 0.25rem;
-`;
-
-const StarIcon = styled(motion.div)`
-  color: ${props => props.$color};
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  gap: 0.15rem;
   
   svg {
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
   }
 `;
 
 const ReviewText = styled.p`
-  position: relative;
+  font-family: 'Inter', sans-serif;
   font-size: 0.9rem;
   line-height: 1.6;
-  color: #2d3436;
-  z-index: 2;
+  color: #4a423e;
+  margin: 0;
+`;
+
+const ClientInfo = styled.div`
+  margin-top: 0.15rem;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+`;
+
+const ClientName = styled.span`
+  font-family: 'Playfair Display', serif;
   font-weight: 500;
-
-  .highlight {
-    color: hsl(340, 80%, 65%);
-    font-weight: 800;
-    background: linear-gradient(
-      135deg,
-      hsl(340, 80%, 65%, 0.15),
-      hsl(10, 90%, 65%, 0.15)
-    );
-    padding: 0.15rem 0.4rem;
-    border-radius: 6px;
-    animation: highlightPulse 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-    display: inline-block;
-    position: relative;
-  }
-
-  @keyframes highlightPulse {
-    0% {
-      background: transparent;
-      transform: scale(1) translateY(0);
-    }
-    50% {
-      background: linear-gradient(
-        135deg,
-        hsl(340, 80%, 65%, 0.35),
-        hsl(10, 90%, 65%, 0.35)
-      );
-      transform: scale(1.08) translateY(-2px);
-    }
-    100% {
-      background: linear-gradient(
-        135deg,
-        hsl(340, 80%, 65%, 0.15),
-        hsl(10, 90%, 65%, 0.15)
-      );
-      transform: scale(1) translateY(0);
-    }
-  }
+  font-size: 1.1rem;
+  color: #2f2622;
 `;
 
-const CardGlow = styled(motion.div)`
-  position: absolute;
-  inset: -4px;
-  background: ${props => props.$gradient};
-  border-radius: 24px;
-  filter: blur(25px);
-  z-index: 0;
+const ClientHandle = styled.span`
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  color: #a76b53;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 `;
 
-const FloatingParticle1 = styled(motion.div)`
+/* The little arrow/tail to make it look like a chat bubble */
+const BubbleTail = styled.div`
   position: absolute;
-  top: 15%;
-  right: 15%;
   width: 12px;
   height: 12px;
-  border-radius: 50%;
-  background: ${props => props.$color};
-  z-index: 2;
-  filter: blur(1px);
-`;
+  background: #fdfcf0;
+  z-index: 1;
 
-const FloatingParticle2 = styled(motion.div)`
-  position: absolute;
-  bottom: 20%;
-  left: 10%;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: ${props => props.$color};
-  z-index: 2;
-  filter: blur(1px);
-`;
+  &.bottom-left {
+    bottom: -6px;
+    left: 20px;
+    transform: rotate(45deg);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.02);
+  }
 
-const FloatingParticle3 = styled(motion.div)`
-  position: absolute;
-  top: 50%;
-  left: 20%;
-  width: 6px;
-  height: 6px;
-  transform: rotate(45deg);
-  background: ${props => props.$color};
-  z-index: 2;
-  filter: blur(1px);
+  &.bottom-right {
+    bottom: -6px;
+    right: 20px;
+    transform: rotate(45deg);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.02);
+  }
 `;
 
 const ExploreButton = styled(motion.button)`
@@ -600,23 +339,21 @@ const ExploreButton = styled(motion.button)`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
+  gap: 0.6rem;
   margin: 0 auto;
-  padding: 1.25rem 3rem;
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: white;
-  background: linear-gradient(135deg, hsl(10, 90%, 65%), hsl(340, 80%, 65%));
+  padding: 0.8rem 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #a76b53;
+  background: #fdfcf0;
   border: none;
-  border-radius: 50px;
+  border-radius: 4px;
   cursor: pointer;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-
-  @media (max-width: 640px) {
-    padding: 1rem 2.5rem;
-    font-size: 1rem;
-  }
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 `;
 
 const ButtonShine = styled(motion.div)`
@@ -625,7 +362,7 @@ const ButtonShine = styled(motion.div)`
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.2),
     transparent
   );
 `;
