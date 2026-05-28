@@ -102,14 +102,22 @@ const CardWrapper = styled(motion.div)`
 
 const CardInner = styled(motion.div)`
   position: relative;
-  background: white;
-  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(167, 107, 83, 0.2);
+  border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  transition: box-shadow 0.3s ease;
+  box-shadow: 
+    0 10px 30px rgba(167, 107, 83, 0.05),
+    0 4px 10px rgba(0, 0, 0, 0.02);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 
   &:hover {
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    border-color: rgba(167, 107, 83, 0.6);
+    box-shadow: 
+      0 0 25px rgba(167, 107, 83, 0.25),
+      0 15px 35px rgba(167, 107, 83, 0.15),
+      0 6px 15px rgba(0, 0, 0, 0.06);
   }
 `;
 
@@ -144,13 +152,15 @@ const CategoryBadge = styled(motion.div)`
   top: 1rem;
   right: 1rem;
   padding: 0.4rem 0.85rem;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 50px;
+  background: rgba(253, 252, 240, 0.95);
+  border-radius: 4px;
   font-size: 0.7rem;
   font-weight: 700;
-  color: hsl(10, 90%, 65%);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #a76b53;
   backdrop-filter: blur(10px);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(167, 107, 83, 0.15);
 `;
 
 const ShimmerEffect = styled(motion.div)`
@@ -169,9 +179,10 @@ const CardContent = styled.div`
 `;
 
 const CardTitle = styled(motion.h3)`
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: #2d3436;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2f2622;
   margin-bottom: 0.75rem;
   line-height: 1.3;
 `;
@@ -187,27 +198,32 @@ const InfoItem = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: #636e72;
-  font-size: 0.82rem;
+  color: #6a605a;
+  font-size: 0.85rem;
+  font-family: 'Inter', sans-serif;
 
   svg {
     flex-shrink: 0;
-    color: hsl(10, 90%, 65%);
+    color: #a76b53;
   }
 `;
 
 const ViewButton = styled(motion.button)`
   position: relative;
   width: 100%;
-  padding: 0.65rem;
+  padding: 0.75rem;
   border: none;
-  border-radius: 50px;
-  background: linear-gradient(135deg, hsl(10, 90%, 65%), hsl(340, 80%, 65%));
-  color: white;
+  border-radius: 4px;
+  background: #a76b53;
+  color: #fdfcf0;
   font-weight: 600;
-  font-size: 0.82rem;
+  font-size: 0.85rem;
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   cursor: pointer;
   overflow: hidden;
+  box-shadow: 0 4px 12px rgba(167, 107, 83, 0.2);
 `;
 
 const ButtonGradient = styled(motion.div)`
@@ -224,8 +240,8 @@ const ButtonGradient = styled(motion.div)`
 const GlowEffect = styled(motion.div)`
   position: absolute;
   inset: -20px;
-  border-radius: 2rem;
-  background: linear-gradient(135deg, hsl(10, 90%, 65%), hsl(340, 80%, 65%));
+  border-radius: 12px;
+  background: rgba(167, 107, 83, 0.4);
   filter: blur(30px);
   z-index: -1;
 `;

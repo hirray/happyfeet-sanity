@@ -1,8 +1,9 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import styled from "styled-components";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { fetchCategories } from "../lib/sanity";
 
 const themes = [
   {
@@ -76,6 +77,16 @@ export const DecorThemes = () => {
   const scrollContainerRef = useRef(null);
   const isInView = useInView(containerRef, { once: false, amount: 0.2 });
 
+  const [currentThemes, setCurrentThemes] = useState(themes);
+
+  useEffect(() => {
+    let active = true;
+    fetchCategories().then(res => {
+      if (res && active && res.length > 0) setCurrentThemes(res);
+    });
+    return () => { active = false; };
+  }, []);
+
   const scroll = (direction) => {
     if (scrollContainerRef.current) {
       const scrollAmount = 350;
@@ -122,9 +133,9 @@ export const DecorThemes = () => {
 
           <ScrollContainer ref={scrollContainerRef}>
             <CardsTrack>
-              {themes.map((theme, index) => (
+              {currentThemes.map((theme, index) => (
                 <CardStack
-                  key={theme.id}
+                  key={theme.id || theme.slug || index}
                   initial={{ opacity: 0, y: 50 }}
                   animate={
                     isInView
@@ -141,9 +152,9 @@ export const DecorThemes = () => {
                     <CardImage
                       className="card-image"
                       src={theme.image}
-                      alt={theme.name}
+                      alt={theme.title || theme.name}
                     />
-                    <CardLabel className="card-label">{theme.name}</CardLabel>
+                    <CardLabel className="card-label">{theme.title || theme.name}</CardLabel>
                   </ElegantCard>
                 </CardStack>
               ))}

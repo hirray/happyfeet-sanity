@@ -77,3 +77,19 @@ select {
     padding: 0 0.9rem;
   }
 }
+
+/* Glowing effect for specific element requested by user */
+html > body > div > div > main > div > div > div:nth-of-type(8) > div:nth-of-type(1) {
+  box-shadow: 0 0 20px 10px rgba(167, 107, 83, 0.4) !important;
+  animation: pulse-glow 2s infinite alternate !important;
+  border-radius: 8px;
+}
+
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 0 15px 5px rgba(167, 107, 83, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 35px 15px rgba(167, 107, 83, 0.8);
+  }
+}

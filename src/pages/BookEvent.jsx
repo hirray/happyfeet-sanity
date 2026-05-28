@@ -7,6 +7,31 @@ import styled from 'styled-components';
 import FloatingNavbar from '../components/FloatingNavbar';
 import Footer from '../components/Footer';
 
+const BowSvg = (
+  <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M32 32 C 24 16, 8 16, 8 32 C 8 40, 24 40, 32 32 Z" />
+    <path d="M32 32 C 40 16, 56 16, 56 32 C 56 40, 40 40, 32 32 Z" />
+    <path d="M32 32 Q 25 45 20 56" />
+    <path d="M32 32 Q 39 45 44 56" />
+    <circle cx="32" cy="32" r="3" fill="currentColor" />
+  </svg>
+);
+
+const FloralSvg = (
+  <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M10 54 Q 32 32 54 10" />
+    <path d="M40 24 Q 45 15 54 10 Q 55 20 45 25 Z" />
+    <path d="M30 34 Q 25 25 35 15 Q 40 25 30 34 Z" />
+    <path d="M20 44 Q 15 35 25 25 Q 30 35 20 44 Z" />
+  </svg>
+);
+
+const ArchSvg = (
+  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <path d="M 10 100 A 40 40 0 0 1 90 100" />
+  </svg>
+);
+
 const BookEvent = () => {
   useEffect(() => {
     document.title = 'Book Your Event - Happyfeet Events';
@@ -214,9 +239,54 @@ const BookEvent = () => {
               {/* Social Channels Section */}
               <SocialCard>
                 <SocialInner>
-                  <SocialTitle>Connect with Us</SocialTitle>
-                  <SocialSubtitle>Follow our happy journey on social media</SocialSubtitle>
-                  <SocialRow>
+                  {/* Top Left Bow */}
+                  <DecorativeBow style={{ top: '-4px', left: '-4px', width: '70px', height: '70px', opacity: 0.18, transform: 'rotate(-10deg)' }}>
+                    <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M50 50 C 35 30, 10 35, 10 50 C 10 65, 35 70, 50 50 Z" />
+                      <path d="M50 50 C 65 30, 90 35, 90 50 C 90 65, 65 70, 50 50 Z" />
+                      <path d="M50 50 Q 40 70 30 90" />
+                      <path d="M50 50 Q 60 70 70 90" />
+                      <circle cx="50" cy="50" r="4" fill="currentColor" />
+                      <path d="M25 45 C 30 45, 35 48, 40 50" />
+                      <path d="M75 45 C 70 45, 65 48, 60 50" />
+                    </svg>
+                  </DecorativeBow>
+
+                  {/* Top Right Sparkles */}
+                  <SparkleDecoration style={{ top: '15px', right: '35px', width: '22px', height: '22px' }} animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.8, 0.4] }} transition={{ duration: 2, repeat: Infinity }}>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0 L14 10 L24 12 L14 14 L12 24 L10 14 L0 12 L10 10 Z" /></svg>
+                  </SparkleDecoration>
+                  <SparkleDecoration style={{ top: '10px', right: '15px', width: '14px', height: '14px' }} animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0 L13 9 L22 10 L13 11 L12 20 L11 11 L2 10 L11 9 Z" /></svg>
+                  </SparkleDecoration>
+                  <SparkleDecoration style={{ top: '35px', right: '18px', width: '18px', height: '18px' }} animate={{ scale: [1, 1.15, 1], opacity: [0.2, 0.5, 0.2] }} transition={{ duration: 2.2, repeat: Infinity, delay: 1 }}>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0 L13 9 L22 10 L13 11 L12 20 L11 11 L2 10 L11 9 Z" /></svg>
+                  </SparkleDecoration>
+
+                  {/* Bottom Left Sparkles */}
+                  <SparkleDecoration style={{ bottom: '70px', left: '20px', width: '20px', height: '20px' }} animate={{ scale: [1, 1.25, 1], opacity: [0.3, 0.7, 0.3] }} transition={{ duration: 2.3, repeat: Infinity, delay: 0.2 }}>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0 L14 10 L24 12 L14 14 L12 24 L10 14 L0 12 L10 10 Z" /></svg>
+                  </SparkleDecoration>
+                  <SparkleDecoration style={{ bottom: '95px', left: '28px', width: '12px', height: '12px' }} animate={{ scale: [1, 1.3, 1], opacity: [0.2, 0.6, 0.2] }} transition={{ duration: 2.7, repeat: Infinity, delay: 0.8 }}>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0 L13 9 L22 10 L13 11 L12 20 L11 11 L2 10 L11 9 Z" /></svg>
+                  </SparkleDecoration>
+                  <SparkleDecoration style={{ bottom: '60px', left: '45px', width: '14px', height: '14px' }} animate={{ scale: [1, 1.2, 1], opacity: [0.15, 0.5, 0.15] }} transition={{ duration: 2.1, repeat: Infinity, delay: 1.2 }}>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0 L13 9 L22 10 L13 11 L12 20 L11 11 L2 10 L11 9 Z" /></svg>
+                  </SparkleDecoration>
+
+                  {/* Bottom Right Floral */}
+                  <DecorativeFloral style={{ bottom: '15px', right: '35px', width: '60px', height: '80px', opacity: 0.18, transform: 'rotate(5deg)' }}>
+                    <svg viewBox="0 0 100 150" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M 50 150 Q 40 100 60 50" />
+                      <path d="M 55 70 Q 75 60 85 45 Q 85 70 58 85 Z" />
+                      <path d="M 47 100 Q 25 90 15 75 Q 35 70 50 90 Z" />
+                      <path d="M 60 50 Q 50 30 70 20 Q 80 35 60 50 Z" />
+                    </svg>
+                  </DecorativeFloral>
+
+                  <SocialTitle style={{ zIndex: 10, position: 'relative' }}>Connect with Us</SocialTitle>
+                  <SocialSubtitle style={{ zIndex: 10, position: 'relative' }}>Follow our happy journey on social media</SocialSubtitle>
+                  <SocialRow style={{ zIndex: 10, position: 'relative' }}>
                     {socialLinks.map((s) => (
                       <SocialButton
                         key={s.key}
@@ -244,6 +314,18 @@ const BookEvent = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.05 }}
             >
+              <CornerShapeTopLeft>
+                <svg viewBox="0 0 60 60" fill="#fdfcf0">
+                  <path d="M0,0 L60,0 C45,0 30,5 25,25 C5,30 0,45 0,60 Z" />
+                </svg>
+              </CornerShapeTopLeft>
+              
+              <CornerShapeBottomRight>
+                <svg viewBox="0 0 60 60" fill="#fdfcf0">
+                  <path d="M60,60 L0,60 C15,60 30,55 35,35 C55,30 60,15 60,0 Z" />
+                </svg>
+              </CornerShapeBottomRight>
+
               <FormInner>
                 {/* Slow Rotating Luxury Circular Brand Stamp */}
                 <OrnamentalStamp
@@ -355,7 +437,7 @@ const BookEvent = () => {
               transition={{ duration: 0.8, delay: 0.25 }}
             >
               <InfoGrid>
-                {contactInfo.map((info) => {
+                {contactInfo.map((info, index) => {
                   const Icon = info.icon;
                   return (
                     <InfoCard
@@ -364,6 +446,40 @@ const BookEvent = () => {
                       transition={{ duration: 0.3 }}
                     >
                       <InfoInner>
+                        {index === 0 && (
+                          <>
+                            <DecorativeBow style={{ top: '8px', left: '8px', width: '38px', height: '38px' }}>{BowSvg}</DecorativeBow>
+                            <DecorativeFloral style={{ top: '15px', right: '35%', transform: 'rotate(60deg)', width: '40px', height: '40px' }}>{FloralSvg}</DecorativeFloral>
+                            <DecorativeFloral style={{ bottom: '10px', left: '55%', transform: 'rotate(-30deg)', width: '30px', height: '30px' }}>{FloralSvg}</DecorativeFloral>
+                            <CardArchSvg className="card-arch" style={{ right: '-25px', top: '15px', width: '70px', height: '70px', transform: 'rotate(-90deg)' }}>{ArchSvg}</CardArchSvg>
+                          </>
+                        )}
+                        {index === 1 && (
+                          <>
+                            <DecorativeFloral style={{ top: '25px', left: '10px', transform: 'rotate(-10deg)', width: '25px', height: '65px' }}>{FloralSvg}</DecorativeFloral>
+                            <CardArchSvg className="card-arch" style={{ left: '40%', top: '-15px', width: '60px', height: '60px', transform: 'rotate(180deg)' }}>{ArchSvg}</CardArchSvg>
+                            <DecorativeBow style={{ top: '15px', right: '15px', width: '36px', height: '36px' }}>{BowSvg}</DecorativeBow>
+                            <CardArchSvg className="card-arch" style={{ right: '-15px', bottom: '15px', width: '40px', height: '40px', transform: 'rotate(-90deg)' }}>{ArchSvg}</CardArchSvg>
+                          </>
+                        )}
+                        {index === 2 && (
+                          <>
+                            <DecorativeFloral style={{ bottom: '10px', left: '15px', transform: 'rotate(-20deg)', width: '30px', height: '40px' }}>{FloralSvg}</DecorativeFloral>
+                            <DecorativeFloral style={{ top: '10px', left: '55%', transform: 'rotate(140deg)', width: '25px', height: '25px' }}>{FloralSvg}</DecorativeFloral>
+                            <CardArchSvg className="card-arch" style={{ bottom: '-15px', left: '42%', width: '55px', height: '55px' }}>{ArchSvg}</CardArchSvg>
+                            <DecorativeFloral style={{ top: '35px', right: '10px', transform: 'rotate(70deg)', width: '45px', height: '45px' }}>{FloralSvg}</DecorativeFloral>
+                          </>
+                        )}
+                        {index === 3 && (
+                          <>
+                            <DecorativeBow style={{ top: '10px', left: '10px', width: '35px', height: '35px' }}>{BowSvg}</DecorativeBow>
+                            <CardArchSvg className="card-arch" style={{ top: '-15px', left: '42%', width: '50px', height: '50px', transform: 'rotate(180deg)' }}>{ArchSvg}</CardArchSvg>
+                            <DecorativeFloral style={{ bottom: '-5px', left: '42%', transform: 'rotate(-15deg)', width: '25px', height: '30px' }}>{FloralSvg}</DecorativeFloral>
+                            <DecorativeFloral style={{ bottom: '15px', right: '20px', transform: 'rotate(-15deg)', width: '30px', height: '60px' }}>{FloralSvg}</DecorativeFloral>
+                            <CardArchSvg className="card-arch" style={{ right: '-15px', bottom: '-15px', width: '45px', height: '45px', transform: 'rotate(-45deg)' }}>{ArchSvg}</CardArchSvg>
+                          </>
+                        )}
+
                         <IconWrapper $color={info.color}>
                           <Icon size={20} />
                         </IconWrapper>
@@ -371,13 +487,6 @@ const BookEvent = () => {
                           <InfoLabel>{info.label}</InfoLabel>
                           <InfoValue>{info.value}</InfoValue>
                         </InfoText>
-                        
-                        {/* Faint embedded outline collage arch background */}
-                        <CardArchSvg className="card-arch">
-                          <svg viewBox="0 0 100 150" fill="none" stroke="currentColor" strokeWidth="2.5">
-                            <path d="M10,140 L10,55 A40,40 0 0,1 90,55 L90,140 Z" />
-                          </svg>
-                        </CardArchSvg>
                       </InfoInner>
                     </InfoCard>
                   );
@@ -597,23 +706,21 @@ const RightSidebar = styled(motion.div)`
 
 // Form Card - elegant double border design in the center
 const FormCard = styled(motion.div)`
-  background: #a76b53;
-  border-radius: 4px;
-  border: 1px solid rgba(251, 235, 225, 0.35);
-  padding: 8px; /* For the outer frame spacing */
+  background: linear-gradient(145deg, #a76b53, #945841);
+  border-radius: 8px;
+  border: 1px solid rgba(251, 235, 225, 0.25);
+  padding: 12px; /* For the outer frame spacing */
   box-shadow: 
-    1px 1px 0px #eae3d8,
-    2px 2px 0px #eae3d8,
-    3px 3px 18px rgba(167, 107, 83, 0.08);
+    0 20px 40px rgba(167, 107, 83, 0.3),
+    0 8px 16px rgba(0, 0, 0, 0.1);
   position: relative;
   transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   
   &:hover {
-    transform: scale(1.008);
+    transform: scale(1.008) translateY(-4px);
     box-shadow: 
-      1px 1px 0px #eae3d8,
-      2px 2px 0px #eae3d8,
-      0 12px 28px rgba(167, 107, 83, 0.15);
+      0 20px 40px rgba(167, 107, 83, 0.18),
+      0 8px 20px rgba(0, 0, 0, 0.06);
   }
   
   @media (min-width: 1101px) {
@@ -631,8 +738,8 @@ const FormCard = styled(motion.div)`
 `;
 
 const FormInner = styled.div`
-  border: 1px solid rgba(251, 235, 225, 0.35);
-  border-radius: 4px;
+  border: 1.5px solid rgba(251, 235, 225, 0.25);
+  border-radius: 6px;
   padding: 2.8rem 2.5rem;
   position: relative;
   
@@ -642,6 +749,34 @@ const FormInner = styled.div`
 
   @media (max-width: 640px) {
     padding: 2.2rem 1.8rem;
+  }
+`;
+
+const CornerShapeTopLeft = styled.div`
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 60px;
+  height: 60px;
+  z-index: 5;
+  svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.25));
+  }
+`;
+
+const CornerShapeBottomRight = styled.div`
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 60px;
+  height: 60px;
+  z-index: 5;
+  svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(-2px -2px 5px rgba(0, 0, 0, 0.25));
   }
 `;
 
@@ -958,6 +1093,49 @@ const CardArchSvg = styled.div`
   }
 `;
 
+const DecorativeBow = styled.div`
+  position: absolute;
+  top: 6px;
+  left: 8px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.12;
+  color: #a76b53;
+  pointer-events: none;
+  z-index: 1;
+  transition: all 0.3s ease;
+  
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+const DecorativeFloral = styled.div`
+  position: absolute;
+  bottom: 6px;
+  right: 8px;
+  width: 38px;
+  height: 38px;
+  opacity: 0.12;
+  color: #a76b53;
+  pointer-events: none;
+  z-index: 1;
+  transition: all 0.3s ease;
+  
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+const SparkleDecoration = styled(motion.div)`
+  position: absolute;
+  color: #a76b53;
+  pointer-events: none;
+  z-index: 5;
+`;
+
 const IconWrapper = styled.div`
   width: 44px;
   height: 44px;
@@ -972,34 +1150,42 @@ const IconWrapper = styled.div`
 `;
 
 const InfoCard = styled(motion.div)`
-  background: white;
-  border-radius: 4px;
-  border: 1.5px solid #a76b53;
-  padding: 6px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  border: 1px solid rgba(167, 107, 83, 0.2);
+  padding: 8px;
   box-shadow: 
-    1px 1px 0px #eae3d8,
-    2px 2px 10px rgba(0, 0, 0, 0.04);
+    0 10px 30px rgba(167, 107, 83, 0.05),
+    0 4px 10px rgba(0, 0, 0, 0.02);
   transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
     
   @media (min-width: 1101px) {
     height: 100%;
   }
     
   &:hover {
-    border-color: #8c5641;
+    border-color: rgba(167, 107, 83, 0.6);
     box-shadow: 
-      1px 1px 0px #eae3d8,
-      2px 2px 15px rgba(167, 107, 83, 0.12);
+      0 0 25px rgba(167, 107, 83, 0.25),
+      0 15px 35px rgba(167, 107, 83, 0.15),
+      0 6px 15px rgba(0, 0, 0, 0.06);
       
     .card-arch {
-      opacity: 0.16;
-      transform: translateY(-2px);
+      opacity: 0.12;
+      transform: translateY(-3px) scale(1.05);
+    }
+    
+    ${DecorativeBow}, ${DecorativeFloral} {
+      opacity: 0.25;
     }
     
     ${IconWrapper} {
       background-color: #a76b53;
       color: #fdfcf0;
-      transform: scale(1.08) rotate(6deg);
+      transform: scale(1.1) rotate(8deg);
+      box-shadow: 0 4px 12px rgba(167, 107, 83, 0.25);
     }
   }
 `;
@@ -1049,13 +1235,14 @@ const InfoValue = styled.span`
 
 // Map card styling
 const MapCard = styled(motion.div)`
-  background: white;
-  border-radius: 4px;
-  border: 1.5px solid #a76b53;
-  padding: 6px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  border: 1px solid rgba(167, 107, 83, 0.2);
+  padding: 8px;
   box-shadow: 
-    1px 1px 0px #eae3d8,
-    2px 2px 10px rgba(0, 0, 0, 0.04);
+    0 10px 30px rgba(167, 107, 83, 0.05),
+    0 4px 10px rgba(0, 0, 0, 0.02);
   transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     
   @media (min-width: 1101px) {
@@ -1068,7 +1255,11 @@ const MapCard = styled(motion.div)`
   }
 
   &:hover {
-    border-color: #8c5641;
+    border-color: rgba(167, 107, 83, 0.6);
+    box-shadow: 
+      0 0 25px rgba(167, 107, 83, 0.25),
+      0 15px 35px rgba(167, 107, 83, 0.15),
+      0 6px 15px rgba(0, 0, 0, 0.06);
     
     iframe {
       filter: sepia(0) contrast(1.02) brightness(1);
@@ -1121,28 +1312,35 @@ const MapCaption = styled.div`
 
 // Social section styling
 const SocialCard = styled.div`
-  background: white;
-  border-radius: 4px;
-  border: 1.5px solid #a76b53;
-  padding: 6px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  border: 1px solid rgba(167, 107, 83, 0.2);
+  padding: 8px;
   box-shadow: 
-    1px 1px 0px #eae3d8,
-    2px 2px 10px rgba(0, 0, 0, 0.04);
+    0 10px 30px rgba(167, 107, 83, 0.05),
+    0 4px 10px rgba(0, 0, 0, 0.02);
   transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 
   &:hover {
-    border-color: #8c5641;
+    border-color: rgba(167, 107, 83, 0.6);
+    box-shadow: 
+      0 0 25px rgba(167, 107, 83, 0.25),
+      0 15px 35px rgba(167, 107, 83, 0.15),
+      0 6px 15px rgba(0, 0, 0, 0.06);
   }
 `;
 
 const SocialInner = styled.div`
-  border: 1px solid rgba(167, 107, 83, 0.45);
-  border-radius: 4px;
-  padding: 1.8rem 1.7rem;
+  border: 1px solid rgba(167, 107, 83, 0.25);
+  border-radius: 6px;
+  padding: 2.2rem 1.7rem;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  overflow: hidden;
   transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 
   ${SocialCard}:hover & {

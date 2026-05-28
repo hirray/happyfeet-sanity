@@ -89,25 +89,42 @@ const GlowEffect = styled(motion.div)`
 const Card = styled(motion.div)`
   position: relative;
   height: 100%;
-  border-radius: 1.5rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(167, 107, 83, 0.2);
+  padding: 8px;
+  box-shadow: 
+    0 10px 30px rgba(167, 107, 83, 0.05),
+    0 4px 10px rgba(0, 0, 0, 0.02);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   overflow: hidden;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  
+  ${CardWrapper}:hover & {
+    border-color: rgba(167, 107, 83, 0.6);
+    box-shadow: 
+      0 0 25px rgba(167, 107, 83, 0.25),
+      0 15px 35px rgba(167, 107, 83, 0.15),
+      0 6px 15px rgba(0, 0, 0, 0.06);
+  }
 `;
 
 const CardImage = styled(motion.img)`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 4px;
 `;
 
 const Overlay = styled.div`
   position: absolute;
-  inset: 0;
+  inset: 8px;
+  border-radius: 4px;
   background: linear-gradient(
     to top,
-    ${props => props.$color}ee 0%,
-    ${props => props.$color}88 30%,
-    transparent 60%
+    rgba(47, 38, 34, 0.9) 0%,
+    rgba(47, 38, 34, 0.5) 40%,
+    transparent 70%
   );
 `;
 
@@ -131,17 +148,17 @@ const CardContent = styled.div`
 `;
 
 const CardTitle = styled(motion.h3)`
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: white;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #fdfcf0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 `;
 
 const Underline = styled(motion.div)`
-  height: 2px;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 9999px;
-  margin-top: 0.5rem;
+  height: 1px;
+  background: #a76b53;
+  margin-top: 0.6rem;
 `;
 
 const DecorativeCircle = styled(motion.div)`
