@@ -84,7 +84,9 @@ export const fetchPastEvents = async () => {
       },
       planning,
       images,
-      videos
+      videos[] {
+        asset-> { url }
+      }
     }`;
     const data = await client.fetch(query);
     if (!data || data.length === 0) return pastEvents;
@@ -131,7 +133,9 @@ export const fetchEventById = async (id) => {
       },
       planning,
       images,
-      videos
+      videos[] {
+        asset-> { url }
+      }
     }`;
     const item = await client.fetch(query, { id });
     if (!item) return pastEvents.find(e => e.id === id);
@@ -163,24 +167,156 @@ export const fetchPublicMedia = async () => {
     return publicMedia;
   }
   try {
-    const query = `*[_type == "publicMediaItem"] | order(_createdAt desc) {
+    // Query all document types that contain images or videos
+    const query = `*[
+      _type in ["publicMediaItem", "pastEvent", "happyMoment", "activity", "kit", "category"]
+    ] | order(_createdAt desc) {
       image,
+      images,
       video {
-        asset-> {
-          url
-        }
+        asset-> { url }
+      },
+      videos[] {
+        asset-> { url }
       }
     }`;
+    
     const data = await client.fetch(query);
     if (!data || data.length === 0) return publicMedia;
 
-    return data.map(item => {
-      if (item.image) return urlFor(item.image);
-      if (item.video && item.video.asset) return item.video.asset.url || '';
-      return '';
-    }).filter(Boolean);
+    const allUrls = [];
+
+    data.forEach(item => {
+      // Single image
+      if (item.image) allUrls.push(urlFor(item.image));
+      
+      // Array of images
+      if (item.images && Array.isArray(item.images)) {
+        item.images.forEach(img => {
+          if (img) allUrls.push(urlFor(img));
+        });
+      }
+      
+      // Single video
+      if (item.video && item.video.asset && item.video.asset.url) {
+        allUrls.push(item.video.asset.url);
+      }
+      
+      // Array of videos
+      if (item.videos && Array.isArray(item.videos)) {
+        item.videos.forEach(vid => {
+          if (vid && vid.asset && vid.asset.url) {
+            allUrls.push(vid.asset.url);
+          }
+        });
+      }
+    });
+
+    // Remove duplicates and filter out empties
+    return [...new Set(allUrls)].filter(Boolean);
+
   } catch (error) {
     console.error("Failed to fetch public media from Sanity. Falling back to local data.", error);
     return publicMedia;
   }
 };
+
+/**
+ * Fetch happy moments for PhotoGallery.
+ */
+export const fetchHappyMoments = async () => {
+  if (!isSanityConfigured) return null;
+  try {
+    const query = `*[_type == "happyMoment"] | order(_createdAt desc) {
+      title,
+      image
+    }`;
+    const data = await client.fetch(query);
+    if (!data || data.length === 0) return null;
+    return data.map((item, index) => ({
+      id: index + 1,
+      alt: item.title,
+      url: item.image ? urlFor(item.image) : ''
+    }));
+  } catch (error) {
+    console.error("Failed to fetch happy moments:", error);
+    return null;
+  }
+};
+
+/**
+ * Fetch activities for ActivityCards.
+ */
+export const fetchActivities = async () => {
+  if (!isSanityConfigured) return null;
+  try {
+    const query = `*[_type == "activity"] | order(_createdAt asc) {
+      title,
+      description,
+      color,
+      emoji,
+      videoUrl,
+      ingredients,
+      duration
+    }`;
+    const data = await client.fetch(query);
+    if (!data || data.length === 0) return null;
+    return data.map((item, index) => ({
+      ...item,
+      id: index + 1
+    }));
+  } catch (error) {
+    console.error("Failed to fetch activities:", error);
+    return null;
+  }
+};
+
+/**
+ * Fetch kits for KitsSection.
+ */
+export const fetchKits = async () => {
+  if (!isSanityConfigured) return null;
+  try {
+    const query = `*[_type == "kit"] | order(_createdAt asc) {
+      name,
+      description,
+      price,
+      colors,
+      image,
+      images,
+      features
+    }`;
+    const data = await client.fetch(query);
+    if (!data || data.length === 0) return null;
+    return data.map((item, index) => ({
+      ...item,
+      id: index + 1,
+      image: item.image ? urlFor(item.image) : '',
+      images: (item.images || []).map(img => img ? urlFor(img) : '')
+    }));
+  } catch (error) {
+    console.error("Failed to fetch kits:", error);
+    return null;
+  }
+};
+
+/**
+ * Fetch Home Page Data
+ */
+export const fetchHomePage = async () => {
+  if (!isSanityConfigured) return null;
+  try {
+    const query = `*[_type == "homePage"][0] {
+      heroTitle,
+      heroSubtitle,
+      features
+    }`;
+    const data = await client.fetch(query);
+    return data || null;
+  } catch (error) {
+    console.error("Failed to fetch home page data:", error);
+    return null;
+  }
+};
+
+

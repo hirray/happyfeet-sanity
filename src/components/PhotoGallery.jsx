@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react';
+import { useMemo, useRef, useState, useEffect } from 'react';
 import {
   motion,
   useMotionValue,
@@ -7,6 +7,7 @@ import {
   useTransform,
 } from 'framer-motion';
 import '../styles/PhotoGallery.css';
+import { fetchHappyMoments } from '../lib/sanity';
 
 const photos = [
   {
@@ -137,8 +138,18 @@ const PhotoGallery = () => {
   const springX1 = useSpring(row1X, { stiffness: 110, damping: 28 });
   const springX2 = useSpring(row2X, { stiffness: 110, damping: 28 });
 
-  const row1 = useMemo(() => [...photos, ...photos], []);
-  const row2 = useMemo(() => [...photos.slice(4), ...photos.slice(0, 4), ...photos], []);
+  const [currentPhotos, setCurrentPhotos] = useState(photos);
+
+  useEffect(() => {
+    let active = true;
+    fetchHappyMoments().then(res => {
+      if (res && active) setCurrentPhotos(res);
+    });
+    return () => { active = false; };
+  }, []);
+
+  const row1 = useMemo(() => [...currentPhotos, ...currentPhotos], [currentPhotos]);
+  const row2 = useMemo(() => [...currentPhotos.slice(4), ...currentPhotos.slice(0, 4), ...currentPhotos], [currentPhotos]);
 
   const [hoveredId, setHoveredId] = useState(null);
 

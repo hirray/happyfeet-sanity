@@ -340,6 +340,9 @@ const CategoryMedia = () => {
                           <video
                             src={v.src || v}
                             controls
+                            autoPlay
+                            muted
+                            loop
                             preload="metadata"
                             style={{ width: "100%", height: "100%", objectFit: "cover" }}
                           />
