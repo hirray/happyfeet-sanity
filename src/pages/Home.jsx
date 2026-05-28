@@ -1,10 +1,51 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import '../styles/Home.css';
 import FloatingNavbar from '../components/FloatingNavbar';
 import Footer from '../components/Footer';
+import { fetchHomePage } from '../lib/sanity';
+
+const fallbackData = {
+  heroTitle: 'Welcome to Happyfeet',
+  heroSubtitle: 'Creating Unforgettable Moments Through Dance',
+  features: [
+    {
+      icon: '🎭',
+      title: 'Dance Workshops',
+      description: 'Learn from the best in the industry'
+    },
+    {
+      icon: '🎵',
+      title: 'Music Production',
+      description: 'Create your own beats and tracks'
+    },
+    {
+      icon: '🌟',
+      title: 'Performance',
+      description: 'Showcase your talent on stage'
+    }
+  ]
+};
 
 const Home = () => {
+  const [data, setData] = useState(fallbackData);
+
+  useEffect(() => {
+    let active = true;
+    const loadData = async () => {
+      const sanityData = await fetchHomePage();
+      if (active && sanityData) {
+        setData({
+          heroTitle: sanityData.heroTitle || fallbackData.heroTitle,
+          heroSubtitle: sanityData.heroSubtitle || fallbackData.heroSubtitle,
+          features: sanityData.features && sanityData.features.length > 0 ? sanityData.features : fallbackData.features
+        });
+      }
+    };
+    loadData();
+    return () => { active = false; };
+  }, []);
+
   return (
     <>
       <FloatingNavbar />
@@ -15,8 +56,19 @@ const Home = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1>Welcome to <span className="highlight">Happyfeet</span></h1>
-          <p className="subtitle">Creating Unforgettable Moments Through Dance</p>
+          {/* Support wrapping "Happyfeet" in a span if found in the text */}
+          <h1>
+            {data.heroTitle.includes('Happyfeet') ? (
+              <>
+                {data.heroTitle.split('Happyfeet')[0]}
+                <span className="highlight">Happyfeet</span>
+                {data.heroTitle.split('Happyfeet')[1]}
+              </>
+            ) : (
+              data.heroTitle
+            )}
+          </h1>
+          <p className="subtitle">{data.heroSubtitle}</p>
           
           <motion.div 
             className="cta-buttons"
@@ -42,23 +94,7 @@ const Home = () => {
         </motion.div>
 
         <div className="features">
-          {[
-            {
-              icon: '🎭',
-              title: 'Dance Workshops',
-              description: 'Learn from the best in the industry'
-            },
-            {
-              icon: '🎵',
-              title: 'Music Production',
-              description: 'Create your own beats and tracks'
-            },
-            {
-              icon: '🌟',
-              title: 'Performance',
-              description: 'Showcase your talent on stage'
-            }
-          ].map((feature, index) => (
+          {data.features.map((feature, index) => (
             <motion.div 
               key={feature.title}
               className="feature-card"

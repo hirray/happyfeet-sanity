@@ -118,6 +118,7 @@ const AllMedia = () => {
                       controls
                       muted
                       loop
+                      autoPlay
                       playsInline
                       preload="none"
                     />

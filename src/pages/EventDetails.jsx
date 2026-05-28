@@ -303,6 +303,7 @@ const EventDetails = () => {
                               controls
                               muted
                               loop
+                              autoPlay
                               playsInline
                               preload="none"
                             />

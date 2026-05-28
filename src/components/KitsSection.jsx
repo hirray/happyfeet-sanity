@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import KitCard from "./KitCard";
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
+import { fetchKits } from "../lib/sanity";
 
 const kits = [
   {
@@ -71,7 +72,16 @@ const kits = [
 ];
 
 const KitsSection = () => {
+  const [currentKits, setCurrentKits] = useState(kits);
   const [activeIndex, setActiveIndex] = useState(null);
+
+  useEffect(() => {
+    let active = true;
+    fetchKits().then(res => {
+      if (res && active) setCurrentKits(res);
+    });
+    return () => { active = false; };
+  }, []);
 
   const handleActiveChange = useCallback((index, active) => {
     setActiveIndex(active ? index : null);
@@ -118,7 +128,7 @@ const KitsSection = () => {
         </motion.div>
 
         <Grid>
-          {kits.map((kit, index) => (
+          {currentKits.map((kit, index) => (
             <KitCard
               key={kit.id}
               kit={kit}

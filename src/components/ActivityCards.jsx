@@ -1,7 +1,8 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Play, Sparkles } from 'lucide-react';
 import '../styles/ActivityCards.css';
+import { fetchActivities } from '../lib/sanity';
 
 const activities = [
   {
@@ -336,13 +337,22 @@ const ActivityModal = ({ activity, onClose }) => {
 };
 
 const ActivityCards = () => {
+  const [currentActivities, setCurrentActivities] = useState(activities);
   const [selectedActivity, setSelectedActivity] = useState(null);
+
+  useEffect(() => {
+    let active = true;
+    fetchActivities().then(res => {
+      if (res && active) setCurrentActivities(res);
+    });
+    return () => { active = false; };
+  }, []);
 
   const containerRef = useRef(null);
   const bubbleRefs = useRef([]);
   const [connectorPoints, setConnectorPoints] = useState([]);
 
-  const measure = () => {
+  const measure = useCallback(() => {
     const containerEl = containerRef.current;
     if (!containerEl) return;
     const cr = containerEl.getBoundingClientRect();
@@ -364,11 +374,11 @@ const ActivityCards = () => {
         id: `c-${i}`,
         from: centers[i],
         to: centers[i + 1],
-        color: activities[i].color,
+        color: currentActivities[i]?.color || '#ccc',
       });
     }
     setConnectorPoints(segs);
-  };
+  }, [currentActivities]);
 
   useEffect(() => {
     const raf = requestAnimationFrame(measure);
@@ -381,7 +391,7 @@ const ActivityCards = () => {
       window.removeEventListener('scroll', onAnyScroll, true);
       window.removeEventListener('resize', onAnyScroll);
     };
-  }, []);
+  }, [measure]);
 
   return (
     <section className="ac-section-wrap" aria-label="Activities">
@@ -429,7 +439,7 @@ const ActivityCards = () => {
         </div>
 
         <div className="ac-stack">
-          {activities.map((activity, index) => (
+          {currentActivities.map((activity, index) => (
             <ActivityCard
               key={activity.id}
               activity={activity}
