@@ -177,6 +177,13 @@ const SectionTitle = styled(motion.h2)`
   font-weight: 400;
   color: white;
   margin-bottom: 0.5rem;
+  text-shadow: 
+    1px 1px 0px #75402e,
+    2px 2px 0px #6c3a2a,
+    3px 3px 0px #643626,
+    4px 4px 0px #5c3123,
+    5px 5px 0px #542d20,
+    6px 6px 8px rgba(0, 0, 0, 0.4);
 
   @media (max-width: 768px) {
     font-size: 2rem;
@@ -187,6 +194,9 @@ const SectionSubtitle = styled(motion.p)`
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.9);
+  text-shadow: 
+    1px 1px 0px #75402e,
+    2px 2px 3px rgba(0, 0, 0, 0.25);
 `;
 
 const GridContainer = styled.div`
@@ -268,6 +278,10 @@ const CardTitle = styled.h3`
   font-weight: 500;
   color: #2f2622;
   margin: 0;
+  text-shadow: 
+    1px 1px 0px #c0b6a7,
+    2px 2px 0px #b7ad9e,
+    3px 3px 2px rgba(0, 0, 0, 0.1);
 `;
 
 const RatingContainer = styled.div`
@@ -286,6 +300,7 @@ const ReviewText = styled.p`
   line-height: 1.6;
   color: #4a423e;
   margin: 0;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
 `;
 
 const ClientInfo = styled.div`
@@ -301,6 +316,9 @@ const ClientName = styled.span`
   font-weight: 500;
   font-size: 1.1rem;
   color: #2f2622;
+  text-shadow: 
+    1px 1px 0px #c0b6a7,
+    2px 2px 2px rgba(0, 0, 0, 0.08);
 `;
 
 const ClientHandle = styled.span`
@@ -309,6 +327,7 @@ const ClientHandle = styled.span`
   color: #a76b53;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
 `;
 
 /* The little arrow/tail to make it look like a chat bubble */

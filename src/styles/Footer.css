@@ -7,7 +7,6 @@
   padding: 85px 0 60px;
   background: linear-gradient(to bottom, #fdfcf0 0%, #f6f3e5 100%);
   color: #4a423e;
-  border-top: 1px solid rgba(167, 107, 83, 0.16);
   overflow: hidden; /* Contains the floating circles */
 }
 
@@ -52,6 +51,10 @@
   font-size: 1.8rem;
   letter-spacing: 0.2px;
   color: #2f2622;
+  text-shadow: 
+    1px 1px 0px #c0b6a7,
+    2px 2px 0px #b7ad9e,
+    3px 3px 2px rgba(0, 0, 0, 0.1);
 }
 
 .animated-footer__desc {
@@ -60,6 +63,7 @@
   line-height: 1.7;
   font-family: 'Inter', sans-serif;
   font-size: 0.94rem;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
 }
 
 .animated-footer__social {
@@ -93,6 +97,10 @@
   color: #2f2622;
   position: relative;
   padding-bottom: 10px;
+  text-shadow: 
+    1px 1px 0px #c0b6a7,
+    2px 2px 0px #b7ad9e,
+    3px 3px 2px rgba(0, 0, 0, 0.1);
 }
 
 .animated-footer__title::after {
@@ -122,6 +130,7 @@
   color: #4a423e;
   font-family: 'Inter', sans-serif;
   transition: color 180ms ease;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.03);
 }
 
 .animated-footer__link:hover {
@@ -150,6 +159,7 @@
   color: #4a423e;
   font-family: 'Inter', sans-serif;
   transition: all 0.25s ease;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.03);
 }
 
 .animated-footer__contactItem:hover {
@@ -206,6 +216,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.03);
 }
 
 .animated-footer__heart {
@@ -261,4 +272,154 @@
   filter: none;
   background: rgba(167, 107, 83, 0.26);
   box-shadow: none;
+}
+
+/* Decorative Divider */
+.animated-footer__divider-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.animated-footer__divider-line {
+  flex-grow: 1;
+  height: 1.5px;
+  background: linear-gradient(90deg, 
+    rgba(167, 107, 83, 0) 0%, 
+    rgba(167, 107, 83, 0.35) 50%, 
+    rgba(167, 107, 83, 0.8) 100%
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+.animated-footer__divider-line--right {
+  background: linear-gradient(90deg, 
+    rgba(167, 107, 83, 0.8) 0%, 
+    rgba(167, 107, 83, 0.35) 50%, 
+    rgba(167, 107, 83, 0) 100%
+  );
+}
+
+/* Moving light beam on the line */
+.animated-footer__divider-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 150px;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(253, 252, 240, 0.8), transparent);
+  pointer-events: none;
+}
+
+.animated-footer__divider-line--left::after {
+  animation: beam-run-left 3.5s infinite linear;
+}
+
+.animated-footer__divider-line--right::after {
+  animation: beam-run-right 3.5s infinite linear;
+}
+
+@keyframes beam-run-left {
+  0% {
+    left: -150px;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes beam-run-right {
+  0% {
+    right: -150px;
+  }
+  100% {
+    right: 100%;
+  }
+}
+
+/* Divider Badge */
+.animated-footer__divider-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #a76b53;
+  border: 1px solid rgba(251, 235, 225, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 
+    0 4px 10px rgba(167, 107, 83, 0.25),
+    1px 1px 0px #eae3d8;
+  flex-shrink: 0;
+  margin: 0 15px;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.animated-footer__divider-badge:hover {
+  transform: scale(1.15) rotate(180deg);
+  background-color: #8c5641;
+  box-shadow: 
+    0 6px 16px rgba(167, 107, 83, 0.4),
+    1px 1px 0px #eae3d8;
+}
+
+.animated-footer__divider-badge-icon {
+  width: 20px;
+  height: 20px;
+  color: #fdfcf0;
+  animation: spin-slow 12s infinite linear;
+  transition: color 0.3s ease;
+}
+
+.animated-footer__divider-badge:hover .animated-footer__divider-badge-icon {
+  color: #ffffff;
+}
+
+/* Pulsing aura ring behind badge */
+.animated-footer__divider-badge::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border-radius: 50%;
+  border: 1px solid rgba(167, 107, 83, 0.4);
+  animation: pulse-ring 3s infinite cubic-bezier(0.45, 0, 0.55, 1);
+  pointer-events: none;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.22);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+}
+
+@keyframes spin-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

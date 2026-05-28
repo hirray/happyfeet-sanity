@@ -121,6 +121,13 @@ const CTATitle = styled.h2`
   font-weight: 400;
   color: white;
   margin-bottom: 1.5rem;
+  text-shadow: 
+    1px 1px 0px #75402e,
+    2px 2px 0px #6c3a2a,
+    3px 3px 0px #643626,
+    4px 4px 0px #5c3123,
+    5px 5px 0px #542d20,
+    6px 6px 8px rgba(0, 0, 0, 0.4);
   
   @media (min-width: 768px) {
     font-size: 3.5rem;
@@ -132,6 +139,9 @@ const CTADescription = styled.p`
   font-size: 1.25rem;
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: 3rem;
+  text-shadow: 
+    1px 1px 0px #75402e,
+    2px 2px 3px rgba(0, 0, 0, 0.25);
 `;
 
 const CTAButtons = styled.div`

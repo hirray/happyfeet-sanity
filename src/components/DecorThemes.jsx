@@ -230,6 +230,12 @@ const SectionTitle = styled(motion.h2)`
   margin-bottom: 1rem;
   position: relative;
   display: inline-block;
+  text-shadow: 
+    1px 1px 0px #c0b6a7,
+    2px 2px 0px #b7ad9e,
+    3px 3px 0px #aea495,
+    4px 4px 0px #a59b8c,
+    5px 5px 6px rgba(0, 0, 0, 0.15);
   
   &::after {
     content: '';
@@ -255,6 +261,9 @@ const SectionSubtitle = styled(motion.p)`
   font-family: 'Inter', sans-serif;
   font-size: 1.1rem;
   color: #6a605a;
+  text-shadow: 
+    1px 1px 0px #c0b6a7,
+    2px 2px 2px rgba(0, 0, 0, 0.08);
 
   @media (max-width: 640px) {
     font-size: 1rem;
@@ -337,8 +346,14 @@ const CardStack = styled(motion.div)`
     transform: translateY(-8px);
     
     .elegant-card {
-      box-shadow: 0 12px 30px rgba(167, 107, 83, 0.15);
-      border-color: #b48d7b;
+      box-shadow: 
+        1px 1px 0px #a76b53,
+        2px 2px 0px #a76b53,
+        3px 3px 0px #a76b53,
+        4px 4px 0px #a76b53,
+        5px 5px 0px #a76b53,
+        6px 6px 12px rgba(167, 107, 83, 0.35);
+      border-color: #a76b53;
     }
     
     .card-image {
@@ -363,7 +378,11 @@ const ElegantCard = styled.div`
   position: relative;
   transition: all 0.3s ease;
   padding: 0;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  box-shadow: 
+    1px 1px 0px #c0b6a7,
+    2px 2px 0px #c0b6a7,
+    3px 3px 0px #c0b6a7,
+    4px 4px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   display: flex;
   flex-direction: column;

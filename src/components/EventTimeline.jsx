@@ -326,6 +326,11 @@ const SectionTitle = styled.h2`
   font-weight: 400;
   color: #2f2622;
   margin-bottom: 1rem;
+  text-shadow: 
+    1px 1px 0px #c0b6a7,
+    2px 2px 0px #b7ad9e,
+    3px 3px 0px #aea495,
+    4px 4px 4px rgba(0, 0, 0, 0.12);
 
   @media (max-width: 768px) {
     font-size: 2.5rem;
@@ -340,6 +345,7 @@ const SectionSubtitle = styled.p`
   font-family: 'Inter', sans-serif;
   font-size: 1.1rem;
   color: #6a605a;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
 
   @media (max-width: 640px) {
     font-size: 1rem;
@@ -396,6 +402,9 @@ const MobileMarkerNumber = styled.span`
   font-size: 1.05rem;
   font-weight: 500;
   color: white;
+  text-shadow: 
+    1px 1px 0px #85533f,
+    2px 2px 2px rgba(0, 0, 0, 0.2);
 `;
 
 const MobileCard = styled(motion.div)`
@@ -474,6 +483,9 @@ const MarkerNumber = styled.span`
   font-size: 1.5rem;
   font-weight: 500;
   color: white;
+  text-shadow: 
+    1px 1px 0px #85533f,
+    2px 2px 2px rgba(0, 0, 0, 0.2);
 `;
 
 const MarkerLine = styled.div`
@@ -514,6 +526,9 @@ const CardTitle = styled.h3`
   font-weight: 500;
   color: #2f2622;
   margin-bottom: 0.5rem;
+  text-shadow: 
+    1px 1px 0px #c0b6a7,
+    2px 2px 2px rgba(0, 0, 0, 0.08);
 `;
 
 const CardDescription = styled.p`
@@ -521,6 +536,7 @@ const CardDescription = styled.p`
   font-size: 0.875rem;
   color: #4a423e;
   line-height: 1.5;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
 `;
 
 const TreeIcon = styled.div`

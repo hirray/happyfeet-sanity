@@ -87,6 +87,15 @@ const footerLinks = [
 const Footer = () => {
   return (
     <footer className="animated-footer">
+      {/* Decorative Divider */}
+      <div className="animated-footer__divider-container">
+        <div className="animated-footer__divider-line animated-footer__divider-line--left" />
+        <div className="animated-footer__divider-badge" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+          <IconSparkles className="animated-footer__divider-badge-icon" />
+        </div>
+        <div className="animated-footer__divider-line animated-footer__divider-line--right" />
+      </div>
+
       {/* Background Floating Circles */}
       <motion.div
         className="animated-footer__floating-circle"

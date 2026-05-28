@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import styled from "styled-components";
 import { ArrowRight, Sparkles } from "lucide-react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // Custom icons for the stats card
 const BalloonIcon = ({ size = 24, ...props }) => (
@@ -77,17 +77,7 @@ const navLinks = [
 
 export const HeroSlider = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -101,49 +91,6 @@ export const HeroSlider = () => {
 
   return (
     <>
-      {/* Top Header Overlay */}
-      <HeaderContainer $scrolled={isScrolled}>
-        <HeaderLogo onClick={() => navigate("/")}>
-          <LogoImage src="/logo-white.png" alt="Happy Feet Activity Club Logo" $scrolled={isScrolled} />
-        </HeaderLogo>
-        <HeaderMenu>
-          {navLinks.map((link) => {
-            const isActive = 
-              location.pathname === link.to || 
-              (link.to === "/" && location.pathname === "/home");
-            return (
-              <HeaderLink 
-                key={link.label} 
-                onClick={() => {
-                  if (link.to.includes("#")) {
-                    const [path, hash] = link.to.split("#");
-                    navigate(path);
-                    setTimeout(() => {
-                      const el = document.getElementById(hash);
-                      if (el) el.scrollIntoView({ behavior: 'smooth' });
-                    }, 100);
-                  } else {
-                    navigate(link.to);
-                  }
-                }}
-                $active={isActive}
-              >
-                {link.label}
-              </HeaderLink>
-            );
-          })}
-        </HeaderMenu>
-        <HeaderAction onClick={() => navigate("/book-event")} $scrolled={isScrolled}>
-          BOOK YOUR EVENT <ArrowRight size={14} style={{ marginLeft: "6px" }} />
-        </HeaderAction>
-
-        <NavbarCurve $scrolled={isScrolled}>
-          <svg viewBox="0 0 1440 38" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-            <path d="M0,0 L1440,0 L1440,10 C1250,38 1050,4 850,25 C650,42 450,8 250,30 C120,40 0,22 0,10 Z" fill="rgba(158, 99, 78, 0.95)" />
-          </svg>
-        </NavbarCurve>
-      </HeaderContainer>
-
       <HeroContainer>
         <GlowBackground />
         <DotGridBackground />
@@ -430,126 +377,6 @@ const DotGridBackground = styled.div`
   }
 `;
 
-// Navigation Header
-const HeaderContainer = styled.header`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: ${props => props.$scrolled ? "0.9rem 4.5rem 0.2rem 4.5rem" : "1.5rem 4.5rem 1.1rem 4.5rem"};
-  background: ${props => props.$scrolled ? "rgba(158, 99, 78, 0.95)" : "transparent"};
-  backdrop-filter: ${props => props.$scrolled ? "blur(10px)" : "none"};
-  -webkit-backdrop-filter: ${props => props.$scrolled ? "blur(10px)" : "none"};
-  box-shadow: ${props => props.$scrolled ? "0 4px 20px rgba(0, 0, 0, 0.12)" : "none"};
-  border-bottom: ${props => props.$scrolled ? "1px solid rgba(251, 235, 225, 0.12)" : "1px solid transparent"};
-  z-index: 99999 !important; /* Globally overlay all elements, including animated wrappers */
-  transition: all 0.4s ease;
-
-  @media (max-width: 1024px) {
-    padding: ${props => props.$scrolled ? "0.7rem 2rem 0.15rem 2rem" : "1.3rem 2rem 0.9rem 2rem"};
-  }
-
-  @media (max-width: 768px) {
-    padding: ${props => props.$scrolled ? "0.6rem 1.5rem 0.12rem 1.5rem" : "1.0rem 1.5rem 0.7rem 1.5rem"};
-    justify-content: center;
-  }
-`;
-
-const HeaderLogo = styled.div`
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-`;
-
-const LogoImage = styled.img`
-  height: ${props => props.$scrolled ? "54px" : "68px"};
-  width: auto;
-  display: block;
-  object-fit: contain;
-  transition: height 0.4s ease;
-
-  @media (max-width: 768px) {
-    height: ${props => props.$scrolled ? "44px" : "54px"};
-  }
-
-  @media (max-width: 480px) {
-    height: ${props => props.$scrolled ? "38px" : "46px"};
-  }
-`;
-
-const HeaderMenu = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 2.2rem;
-
-  @media (max-width: 968px) {
-    display: none;
-  }
-`;
-
-const HeaderLink = styled.button`
-  background: transparent;
-  border: none;
-  font-family: 'Inter', sans-serif;
-  font-size: 1.02rem; /* Increased size to make links highly legible and balanced */
-  font-weight: 600;
-  color: #fbebe1;
-  cursor: pointer;
-  padding: 4px 0;
-  position: relative;
-  transition: opacity 0.2s ease;
-  opacity: ${props => props.$active ? 1 : 0.8};
-
-  &:hover {
-    opacity: 1;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: ${props => props.$active ? '100%' : '0'};
-    height: 1.5px;
-    background-color: #fbebe1;
-    transition: width 0.25s ease;
-  }
-
-  &:hover::after {
-    width: 100%;
-  }
-`;
-
-const HeaderAction = styled.button`
-  background: transparent;
-  color: #fbebe1;
-  border: 1px solid rgba(251, 235, 225, 0.4);
-  border-radius: 30px; /* Fully rounded pill shape */
-  padding: ${props => props.$scrolled ? "0.48rem 1.15rem" : "0.62rem 1.4rem"};
-  font-family: 'Inter', sans-serif;
-  font-size: ${props => props.$scrolled ? "0.84rem" : "0.88rem"};
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  transition: all 0.4s ease;
-  letter-spacing: 0.8px;
-
-  &:hover {
-    background: #fbebe1;
-    color: #9e634e;
-    border-color: #fbebe1;
-    transform: translateY(-1px);
-  }
-
-  @media (max-width: 968px) {
-    display: none;
-  }
-`;
-
 // Grid
 const GridWrapper = styled.div`
   position: relative;
@@ -599,6 +426,10 @@ const Tagline = styled(motion.div)`
   align-items: center;
   gap: 8px;
   margin-bottom: 1.8rem;
+  text-shadow: 
+    1px 1px 0px #703d2e,
+    2px 2px 0px #68392b,
+    3px 3px 4px rgba(0, 0, 0, 0.25);
 `;
 
 const Title = styled.h1`
@@ -609,9 +440,27 @@ const Title = styled.h1`
   line-height: 1.12;
   margin-bottom: 1.8rem;
   letter-spacing: -0.5px;
+  text-shadow: 
+    1px 1px 0px #703d2e,
+    2px 2px 0px #68392b,
+    3px 3px 0px #603427,
+    4px 4px 0px #583024,
+    5px 5px 0px #502b20,
+    6px 6px 0px #48271d,
+    7px 7px 8px rgba(0, 0, 0, 0.4),
+    8px 8px 12px rgba(0, 0, 0, 0.3);
   
   span {
     color: #e8c0ab;
+    text-shadow: 
+      1px 1px 0px #703d2e,
+      2px 2px 0px #68392b,
+      3px 3px 0px #603427,
+      4px 4px 0px #583024,
+      5px 5px 0px #502b20,
+      6px 6px 0px #48271d,
+      7px 7px 8px rgba(0, 0, 0, 0.4),
+      8px 8px 12px rgba(0, 0, 0, 0.3);
   }
 
   @media (max-width: 1200px) {
@@ -630,6 +479,9 @@ const Subtitle = styled.p`
   margin-bottom: 2.5rem;
   line-height: 1.65;
   max-width: 490px;
+  text-shadow: 
+    1px 1px 0px #703d2e,
+    2px 2px 3px rgba(0, 0, 0, 0.25);
 
   @media (max-width: 968px) {
     margin-left: auto;
@@ -752,6 +604,11 @@ const StatText = styled.div`
     color: white;
     margin: 0;
     line-height: 1.1;
+    text-shadow: 
+      1px 1px 0px #703d2e,
+      2px 2px 0px #68392b,
+      3px 3px 0px #603427,
+      4px 4px 5px rgba(0, 0, 0, 0.35);
   }
   
   p {
@@ -761,6 +618,7 @@ const StatText = styled.div`
     margin: 3px 0 0 0;
     font-weight: 500;
     letter-spacing: 0.3px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
   }
 `;
 
@@ -787,17 +645,17 @@ const RightColumn = styled(motion.div)`
 const CollageContainer = styled.div`
   position: relative;
   width: 100%;
-  max-width: 480px;
+  max-width: 600px;
   aspect-ratio: 480 / 520;
   margin: 0 auto;
 
   @media (max-width: 968px) {
-    max-width: 420px;
+    max-width: 520px;
     margin-top: 1rem;
   }
 
   @media (max-width: 480px) {
-    max-width: 320px;
+    max-width: 380px;
   }
 `;
 
@@ -811,12 +669,19 @@ const ImageOne = styled(motion.div)`
   position: absolute;
   top: 0;
   right: 8%;
-  width: 65%;
-  height: 75%;
+  width: 70%;
+  height: 80%;
   overflow: hidden;
   border-radius: 200px 200px 0 0;
   border: 1.5px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  box-shadow: 
+    1px 1px 0px #4a2114,
+    2px 2px 0px #4a2114,
+    3px 3px 0px #4a2114,
+    4px 4px 0px #4a2114,
+    5px 5px 0px #4a2114,
+    6px 6px 0px #4a2114,
+    7px 7px 20px rgba(0, 0, 0, 0.45);
   z-index: 1;
 
   img {
@@ -830,12 +695,19 @@ const ImageTwo = styled(motion.div)`
   position: absolute;
   bottom: 15%;
   left: 2%;
-  width: 46%;
-  height: 31%;
+  width: 50%;
+  height: 35%;
   overflow: hidden;
   border-radius: 24px;
   border: 4px solid #fdfcf0; /* Cream border */
-  box-shadow: 0 15px 35px rgba(0,0,0,0.18);
+  box-shadow: 
+    1px 1px 0px #4a2114,
+    2px 2px 0px #4a2114,
+    3px 3px 0px #4a2114,
+    4px 4px 0px #4a2114,
+    5px 5px 0px #4a2114,
+    6px 6px 0px #4a2114,
+    7px 7px 20px rgba(0, 0, 0, 0.45);
   z-index: 2;
 
   img {
@@ -849,12 +721,19 @@ const ImageThree = styled(motion.div)`
   position: absolute;
   bottom: 15%;
   right: 2%;
-  width: 33%;
-  height: 46%;
+  width: 38%;
+  height: 50%;
   overflow: hidden;
   border-radius: 24px;
   border: 4px solid #fdfcf0; /* Cream border */
-  box-shadow: 0 15px 35px rgba(0,0,0,0.18);
+  box-shadow: 
+    1px 1px 0px #4a2114,
+    2px 2px 0px #4a2114,
+    3px 3px 0px #4a2114,
+    4px 4px 0px #4a2114,
+    5px 5px 0px #4a2114,
+    6px 6px 0px #4a2114,
+    7px 7px 20px rgba(0, 0, 0, 0.45);
   z-index: 2;
 
   img {
@@ -872,7 +751,11 @@ const BadgeContainer = styled(motion.div)`
   width: 28.125%;
   aspect-ratio: 1;
   z-index: 10;
-  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.12));
+  filter: 
+    drop-shadow(1px 1px 0px #4a2114)
+    drop-shadow(2px 2px 0px #4a2114)
+    drop-shadow(3px 3px 0px #4a2114)
+    drop-shadow(4px 4px 15px rgba(0,0,0,0.35));
 `;
 
 // Bottom Curvy Wave
@@ -896,10 +779,10 @@ const BottomCurve = styled.div`
 
 const ArchOutline = styled(motion.div)`
   position: absolute;
-  top: -2.88%;
-  right: 5.5%;
-  width: 70%;
-  height: 79%;
+  top: -3%;
+  right: 5%;
+  width: 75%;
+  height: 84%;
   border-radius: 200px 200px 0 0;
   border: 1.5px solid rgba(251, 235, 225, 0.35);
   z-index: 0;
@@ -908,9 +791,9 @@ const ArchOutline = styled(motion.div)`
 
 const SweepCircleOutline = styled(motion.div)`
   position: absolute;
-  bottom: -9.6%;
-  right: -10.4%;
-  width: 68.75%;
+  bottom: -11%;
+  right: -12%;
+  width: 72%;
   aspect-ratio: 1;
   border-radius: 50%;
   border: 1.5px solid rgba(251, 235, 225, 0.22);
@@ -920,9 +803,9 @@ const SweepCircleOutline = styled(motion.div)`
 
 const DecorativeCircle = styled(motion.div)`
   position: absolute;
-  left: -6%;
-  top: 48%;
-  width: 18.75%;
+  left: -8%;
+  top: 46%;
+  width: 20%;
   aspect-ratio: 1;
   border-radius: 50%;
   background: rgba(251, 235, 225, 0.14);
@@ -930,23 +813,6 @@ const DecorativeCircle = styled(motion.div)`
   pointer-events: none;
 `;
 
-const NavbarCurve = styled.div`
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  height: 38px;
-  pointer-events: none;
-  z-index: 99999;
-  opacity: ${props => props.$scrolled ? 1 : 0};
-  transition: opacity 0.4s ease;
-
-  svg {
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
-`;
 
 const HeroFloatingCircle = styled(motion.div)`
   position: absolute;

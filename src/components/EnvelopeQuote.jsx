@@ -183,6 +183,9 @@ const SectionLabel = styled(motion.div)`
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 3rem;
+  text-shadow: 
+    1px 1px 0px #eae3d8,
+    2px 2px 2px rgba(167, 107, 83, 0.15);
 `;
 
 const CardContainer = styled(motion.div)`
@@ -264,6 +267,10 @@ const CardTitle = styled.p`
   text-align: center;
   line-height: 1.2;
   padding: 0 2rem;
+  text-shadow: 
+    1px 1px 0px #eae3d8,
+    2px 2px 0px #eae3d8,
+    3px 3px 4px rgba(184, 61, 12, 0.18);
   
   @media (max-width: 768px) {
     font-size: 1.25rem;
@@ -288,6 +295,9 @@ const CardText = styled.p`
   margin-bottom: 0.5rem;
   line-height: 1.6;
   font-weight: 500;
+  text-shadow: 
+    1px 1px 0px #f0f0f0,
+    2px 2px 2px rgba(17, 24, 39, 0.08);
   
   @media (max-width: 768px) {
     font-size: 1rem;
@@ -313,6 +323,7 @@ const CardSubtext = styled.p`
   font-style: italic;
   margin-bottom: 0.5rem;
   font-weight: 500;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
   
   @media (max-width: 768px) {
     font-size: 0.875rem;
@@ -330,6 +341,9 @@ const CardSignature = styled.p`
   padding-top: 2rem;
   font-weight: 700;
   letter-spacing: 0.1em;
+  text-shadow: 
+    1px 1px 0px #eae3d8,
+    2px 2px 2px rgba(56, 81, 123, 0.15);
   
   @media (max-width: 640px) {
     font-size: 0.75rem;
@@ -357,6 +371,9 @@ const Seal = styled.button`
   border: 5px solid #905a45;
   cursor: pointer;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  text-shadow: 
+    1px 1px 0px #905a45,
+    2px 2px 2px rgba(0, 0, 0, 0.25);
   
   @media (max-width: 640px) {
     width: 3rem;

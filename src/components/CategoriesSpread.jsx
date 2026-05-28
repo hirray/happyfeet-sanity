@@ -200,6 +200,11 @@ const Title = styled.h2`
   line-height: 1.15;
   color: #2f2622;
   letter-spacing: -0.01em;
+  text-shadow: 
+    1px 1px 0px #c0b6a7,
+    2px 2px 0px #b7ad9e,
+    3px 3px 0px #aea495,
+    4px 4px 4px rgba(0, 0, 0, 0.12);
 `;
 
 const Subtitle = styled.p`
@@ -209,6 +214,7 @@ const Subtitle = styled.p`
   color: #4a423e;
   margin-top: 0.25rem;
   margin-bottom: 1.5rem;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
 `;
 
 const ButtonGroup = styled.div`
@@ -283,6 +289,10 @@ const StatValue = styled.div`
   font-size: 1.5rem;
   font-weight: 400;
   color: #2f2622;
+  text-shadow: 
+    1px 1px 0px #c0b6a7,
+    2px 2px 0px #b7ad9e,
+    3px 3px 2px rgba(0, 0, 0, 0.1);
 `;
 
 const StatIconWrapper = styled.div`
@@ -305,6 +315,7 @@ const StatLabel = styled.div`
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
 `;
 
 const Divider = styled.div`
@@ -371,7 +382,11 @@ const ImageCard = styled.div`
   background-size: cover;
   background-position: center;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  box-shadow: 
+    1px 1px 0px #c0b6a7,
+    2px 2px 0px #c0b6a7,
+    3px 3px 0px #c0b6a7,
+    4px 4px 10px rgba(0, 0, 0, 0.12);
   border: 1px solid rgba(167, 107, 83, 0.15);
   transition: transform 0.3s ease, box-shadow 0.3s ease, outline-color 0.3s ease;
   outline: 3.5px solid transparent;
@@ -379,7 +394,12 @@ const ImageCard = styled.div`
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    box-shadow: 
+      1px 1px 0px #a59b8c,
+      2px 2px 0px #a59b8c,
+      3px 3px 0px #a59b8c,
+      4px 4px 0px #a59b8c,
+      5px 5px 15px rgba(0, 0, 0, 0.18);
     outline-color: #b07d6a;
   }
 `;
@@ -396,6 +416,9 @@ const CategoryOverlay = styled.div`
   font-weight: 400;
   font-size: 1.25rem;
   letter-spacing: 0.5px;
+  text-shadow: 
+    1px 1px 0px #2f2622,
+    2px 2px 3px rgba(0, 0, 0, 0.5);
 
   @media (max-width: 640px) {
     font-size: 1.1rem;
