@@ -16,9 +16,9 @@ const TopCurve = styled.div`
   top: -1px;
   left: 0;
   width: 100%;
-  height: 6vw;
-  min-height: 50px;
-  max-height: 100px;
+  height: 12vw;
+  min-height: 90px;
+  max-height: 180px;
   z-index: 5;
   pointer-events: none;
 
@@ -414,8 +414,8 @@ export const ContactComicForm = () => {
   return (
     <Section>
       <TopCurve>
-        <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-          <path d="M0,0 L1440,0 L1440,60 C1080,10 720,90 360,40 C180,15 90,45 0,60 Z" fill="#fdfcf0" />
+        <svg viewBox="0 0 1440 180" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M0,80 C320,180 640,20 960,110 C1180,170 1340,110 1440,80 L1440,0 L0,0 Z" fill="#fdfcf0" />
         </svg>
       </TopCurve>
       <Wrap>
