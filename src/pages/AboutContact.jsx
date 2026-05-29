@@ -299,13 +299,14 @@ const HeroLogo = () => {
               }}
               whileHover={{
                 scale: 1.2,
-                color: '#ff6b6b',
+                y: -8,
+                color: '#e8c0ab',
                 transition: { duration: 0.2 },
               }}
               className="hero-letter"
               style={{
-                color: '#ff8c42',
-                textShadow: '2px 2px 10px rgba(255, 107, 116, 0.3)',
+                color: '#ffffff',
+                textShadow: '1px 1px 0px #8f5842, 2px 2px 0px #7c4c38, 3px 3px 0px #69402f, 4px 4px 0px #573426, 5px 5px 0px #44291e, 6px 6px 8px rgba(0, 0, 0, 0.3)',
               }}
             >
               {letter}

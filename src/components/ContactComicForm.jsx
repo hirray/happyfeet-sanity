@@ -108,16 +108,20 @@ const CardStack = styled.div`
 
 const Card = styled(motion.div)`
   position: relative;
-  background: #fbf9f4;
-  border: 1px solid rgba(167, 107, 83, 0.22);
-  border-radius: 4px;
-  box-shadow: 0 16px 40px rgba(167, 107, 83, 0.04);
+  background: #fcfaf6;
+  border: 1px solid rgba(167, 107, 83, 0.25);
+  border-radius: 2px;
+  box-shadow: 0 24px 64px rgba(167, 107, 83, 0.06);
   overflow: hidden;
   transform-origin: center;
+  padding: 8px; /* nested frame padding */
 `;
 
 const CardInner = styled.div`
-  padding: 1.8rem 1.6rem;
+  border: 1px solid rgba(167, 107, 83, 0.12);
+  border-radius: 0px;
+  padding: 2.2rem 2rem;
+  background: #fdfcf0;
 `;
 
 const TopRow = styled.div`
@@ -189,39 +193,55 @@ const Row = styled.div`
 
 const Input = styled.input`
   width: 100%;
-  border: 1px solid rgba(167, 107, 83, 0.25);
-  border-radius: 2px;
-  padding: 0.85rem 1rem;
-  background: #fdfcf0;
+  border: none;
+  border-bottom: 1.5px solid rgba(167, 107, 83, 0.2);
+  border-radius: 0;
+  padding: 0.95rem 0.5rem;
+  background: transparent;
   color: #2c2a29;
-  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
   outline: none;
-  font-size: 0.92rem;
-  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &::placeholder {
+    color: rgba(44, 42, 41, 0.45);
+    font-style: italic;
+  }
 
   &:focus {
     border-color: #a76b53;
-    background: #ffffff;
+    padding-left: 0.8rem;
+    background: rgba(167, 107, 83, 0.02);
   }
 `;
 
 const Textarea = styled.textarea`
   width: 100%;
   min-height: 130px;
-  border: 1px solid rgba(167, 107, 83, 0.25);
-  border-radius: 2px;
-  padding: 0.85rem 1rem;
-  background: #fdfcf0;
+  border: none;
+  border-bottom: 1.5px solid rgba(167, 107, 83, 0.2);
+  border-radius: 0;
+  padding: 0.95rem 0.5rem;
+  background: transparent;
   color: #2c2a29;
-  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
   outline: none;
   resize: vertical;
-  font-size: 0.92rem;
-  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &::placeholder {
+    color: rgba(44, 42, 41, 0.45);
+    font-style: italic;
+  }
 
   &:focus {
     border-color: #a76b53;
-    background: #ffffff;
+    padding-left: 0.8rem;
+    background: rgba(167, 107, 83, 0.02);
   }
 `;
 
@@ -265,19 +285,37 @@ const IconButton = styled(motion.button)`
 const Submit = styled(motion.button)`
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
-  padding: 0.85rem 1.6rem;
-  border-radius: 4px;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.9rem 2.2rem;
+  border-radius: 2px;
   border: 1px solid #a76b53;
   background: #a76b53;
   color: white;
+  font-family: 'Inter', sans-serif;
   font-weight: 600;
   cursor: pointer;
-  font-size: 0.92rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 12px rgba(167, 107, 83, 0.15);
 
   svg {
-    width: 16px;
-    height: 16px;
+    width: 15px;
+    height: 15px;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover {
+    background: #8f5842;
+    border-color: #8f5842;
+    letter-spacing: 0.16em;
+    box-shadow: 0 8px 20px rgba(167, 107, 83, 0.25);
+    
+    svg {
+      transform: translate(3px, -3px);
+    }
   }
 `;
 
