@@ -5,10 +5,28 @@ import { Heart, MessageCircle, Send } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
 const Section = styled.section`
-  padding: 6rem 1rem 5.5rem;
+  padding: 8rem 1rem 5.5rem;
   position: relative;
   overflow: hidden;
-  background: #fdfcf0;
+  background: #9e634e;
+`;
+
+const TopCurve = styled.div`
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  height: 6vw;
+  min-height: 50px;
+  max-height: 100px;
+  z-index: 5;
+  pointer-events: none;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
 `;
 
 const Wrap = styled.div`
@@ -38,8 +56,8 @@ const Badge = styled(motion.span)`
   gap: 0.5rem;
   padding: 0.4rem 1.2rem;
   border-radius: 999px;
-  background: rgba(167, 107, 83, 0.08);
-  color: #a76b53;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
   font-weight: 600;
   font-size: 0.82rem;
 `;
@@ -50,17 +68,17 @@ const Title = styled.h2`
   font-weight: 400;
   font-size: clamp(2.2rem, 4vw, 3.2rem);
   letter-spacing: -0.02em;
-  color: #2c2a29;
+  color: #ffffff;
 `;
 
 const GradientWord = styled.span`
-  color: #a76b53;
+  color: #fbebe1;
   font-style: italic;
 `;
 
 const Subtitle = styled.p`
   margin: 0;
-  color: #5c5957;
+  color: rgba(255, 255, 255, 0.85);
   font-size: 1.05rem;
   line-height: 1.7;
   max-width: 40rem;
@@ -74,7 +92,7 @@ const Points = styled.div`
   margin-top: 1.5rem;
   display: grid;
   gap: 0.85rem;
-  color: #5c5957;
+  color: rgba(255, 255, 255, 0.9);
   font-weight: 600;
 `;
 
@@ -88,7 +106,7 @@ const Point = styled(motion.div)`
     width: 0.45rem;
     height: 0.45rem;
     border-radius: 999px;
-    background: #a76b53;
+    background: #fbebe1;
   }
 `;
 
@@ -395,6 +413,11 @@ export const ContactComicForm = () => {
 
   return (
     <Section>
+      <TopCurve>
+        <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M0,0 L1440,0 L1440,60 C1080,10 720,90 360,40 C180,15 90,45 0,60 Z" fill="#fdfcf0" />
+        </svg>
+      </TopCurve>
       <Wrap>
         <Left
           initial={{ opacity: 0, x: -20 }}
