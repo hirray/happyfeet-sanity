@@ -86,6 +86,13 @@ const Title = styled.h2`
   font-weight: 400;
   color: #ffffff;
   margin: 0 0 0.75rem;
+  text-shadow: 
+    1px 1px 0px #8f5842,
+    2px 2px 0px #7c4c38,
+    3px 3px 0px #69402f,
+    4px 4px 0px #573426,
+    5px 5px 0px #44291e,
+    6px 6px 8px rgba(0, 0, 0, 0.3);
 `;
 
 const GradientWord = styled.span`

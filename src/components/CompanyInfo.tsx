@@ -81,6 +81,11 @@ const Title = styled.h2`
   font-weight: 400;
   color: #2c2a29;
   margin-bottom: 1.2rem;
+  text-shadow: 
+    1px 1px 0px #eae3d8,
+    2px 2px 0px #e2d9cb,
+    3px 3px 0px #d9cfbe,
+    4px 4px 6px rgba(167, 107, 83, 0.15);
 `;
 
 const Accent = styled.span`
