@@ -43,10 +43,32 @@ const reviews = [
 ];
 
 const Section = styled.section`
-  padding: 6rem 1rem 5.5rem;
+  padding: 8rem 1rem 5.5rem;
   position: relative;
   overflow: hidden;
   background: #9e634e;
+
+  @media (min-width: 1024px) {
+    padding-top: 11rem;
+  }
+`;
+
+const TopCurve = styled.div`
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  height: 12vw;
+  min-height: 90px;
+  max-height: 180px;
+  z-index: 10;
+  pointer-events: none;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
 `;
 
 const Backdrop = styled.div`
@@ -272,6 +294,12 @@ export const ClientReviews = () => {
 
   return (
     <Section ref={ref}>
+      <TopCurve>
+        <svg viewBox="0 0 1440 180" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M0,100 C320,0 640,160 960,70 C1180,10 1340,70 1440,100 L1440,0 L0,0 Z" fill="#fdfcf0" />
+        </svg>
+      </TopCurve>
+
       <Backdrop>
         <Blob
           style={{ left: '-140px', top: '-160px', background: 'rgba(217, 160, 128, 0.2)' }}

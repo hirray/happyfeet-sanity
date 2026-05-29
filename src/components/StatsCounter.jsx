@@ -49,10 +49,10 @@ const Outer = styled(motion.div)`
 
 const Frame = styled(motion.div)`
   position: relative;
-  border-radius: 4px;
+  border-radius: 24px;
   padding: 3.75rem 1.5rem;
-  background: #fcfaf6;
-  border: 1px solid rgba(167, 107, 83, 0.22);
+  background: rgba(167, 107, 83, 0.15);
+  border: 1px solid rgba(167, 107, 83, 0.25);
   box-shadow: 0 12px 35px rgba(167, 107, 83, 0.04);
   overflow: hidden;
 
@@ -102,7 +102,7 @@ const Grid = styled.div`
   }
 `;
 
-const StatItem = styled(motion.div)`
+const StatItem = styled.div`
   position: relative;
   text-align: center;
 `;
@@ -111,9 +111,9 @@ const IconBox = styled(motion.div)`
   width: 4.2rem;
   height: 4.2rem;
   margin: 0 auto 1.2rem;
-  border-radius: 2px;
-  background: rgba(167, 107, 83, 0.08);
-  box-shadow: 0 8px 24px rgba(167, 107, 83, 0.08);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -121,7 +121,7 @@ const IconBox = styled(motion.div)`
   svg {
     width: 1.8rem;
     height: 1.8rem;
-    color: #a76b53;
+    color: #ffffff;
   }
 `;
 
@@ -130,13 +130,13 @@ const Number = styled(motion.div)`
   font-size: clamp(2.2rem, 3.4vw, 3.2rem);
   font-weight: 400;
   letter-spacing: -0.03em;
-  color: #2c2a29;
+  color: #ffffff;
   margin-bottom: 0.4rem;
 `;
 
-const Label = styled.p`
+const Label = styled(motion.p)`
   margin: 0;
-  color: #5c5957;
+  color: #ebd9ce;
   font-weight: 600;
   font-size: 0.82rem;
   text-transform: uppercase;
@@ -145,18 +145,84 @@ const Label = styled.p`
 
 const Card = styled(motion.div)`
   position: relative;
-  border-radius: 2px;
+  border-radius: 16px;
   padding: 2.2rem 1rem;
-  background: #fdfcf0;
-  border: 1px solid rgba(167, 107, 83, 0.22);
-  box-shadow: 0 8px 24px rgba(167, 107, 83, 0.02);
+  background: #a76b53;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 24px rgba(167, 107, 83, 0.12);
   overflow: hidden;
-
-  &:hover {
-    border-color: rgba(167, 107, 83, 0.45);
-    box-shadow: 0 12px 35px rgba(167, 107, 83, 0.06);
-  }
+  cursor: pointer;
 `;
+
+// Animation variants for rich, unique hover experience
+const cardVariants = {
+  initial: { opacity: 0, y: 30 },
+  animate: (index) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.25 + index * 0.08,
+      type: 'spring',
+      stiffness: 110,
+      damping: 18,
+    },
+  }),
+  hover: (index) => ({
+    y: -14,
+    scale: 1.06,
+    rotate: index % 2 === 0 ? 1.5 : -1.5,
+    backgroundColor: '#955c45',
+    borderColor: 'rgba(255, 255, 255, 0.45)',
+    boxShadow: '0 20px 40px rgba(167, 107, 83, 0.25)',
+    transition: {
+      type: 'spring',
+      stiffness: 280,
+      damping: 20,
+    },
+  }),
+};
+
+const iconBoxVariants = {
+  initial: { scale: 1, rotate: 0, y: 0 },
+  hover: {
+    scale: 1.15,
+    rotate: 15,
+    y: -6,
+    backgroundColor: 'rgba(255, 255, 255, 0.35)',
+    transition: {
+      type: 'spring',
+      stiffness: 300,
+      damping: 10,
+    },
+  },
+};
+
+const numberVariants = {
+  initial: { scale: 1, y: 0 },
+  hover: {
+    scale: 1.08,
+    y: -2,
+    textShadow: '0 4px 14px rgba(255, 255, 255, 0.3)',
+    transition: {
+      type: 'spring',
+      stiffness: 300,
+      damping: 15,
+    },
+  },
+};
+
+const labelVariants = {
+  initial: { y: 0 },
+  hover: {
+    y: -2,
+    color: '#ffffff',
+    transition: {
+      type: 'spring',
+      stiffness: 300,
+      damping: 15,
+    },
+  },
+};
 
 export const StatsCounter = () => {
   const [ref, inView] = useInView({
@@ -221,32 +287,26 @@ export const StatsCounter = () => {
               const Icon = stat.icon;
 
               return (
-                <StatItem
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.35 + index * 0.1 }}
-                >
+                <StatItem key={stat.label}>
                   <Card
-                    whileHover={{ y: -6 }}
-                    whileTap={{ scale: 0.99 }}
-                    transition={{ type: 'spring', stiffness: 260, damping: 18 }}
+                    custom={index}
+                    variants={cardVariants}
+                    initial="initial"
+                    animate={inView ? 'animate' : 'initial'}
+                    whileHover="hover"
+                    whileTap={{ scale: 0.98 }}
                   >
-                    <IconBox whileHover={{ scale: 1.05, rotate: 6 }} transition={{ type: 'spring' }}>
+                    <IconBox variants={iconBoxVariants}>
                       <Icon />
                     </IconBox>
 
-                    <Number
-                      initial={{ scale: 0.92, opacity: 0 }}
-                      animate={inView ? { scale: 1, opacity: 1 } : {}}
-                      transition={{ delay: 0.55 + index * 0.1, type: 'spring', stiffness: 160 }}
-                    >
+                    <Number variants={numberVariants}>
                       {inView && (
                         <CountUp end={stat.value} duration={2.4} delay={0.35} suffix={stat.suffix} />
                       )}
                     </Number>
 
-                    <Label>{stat.label}</Label>
+                    <Label variants={labelVariants}>{stat.label}</Label>
                   </Card>
                 </StatItem>
               );

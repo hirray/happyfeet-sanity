@@ -10,53 +10,59 @@ const reasons = [
     title: 'Creative Excellence',
     description:
       'We create vibrant experiences through décor, games, and joyful activities that spark',
-    color: '#a76b53',
+    color: '#d9a727', // Logo yellow
+    bgColor: '#faf2c8', // Richer pastel yellow
   },
   {
     icon: Clock,
     title: 'Timely Delivery',
     description: "From setup to wrap-up, we ensure every element is executed smoothly and delivered right on time.",
-    color: '#a76b53',
+    color: '#5b9a98', // Logo sage teal
+    bgColor: '#d4ece8', // Richer pastel teal
   },
   {
     icon: HeartHandshake,
     title: 'Personalized Service',
     description:
       'Every event is unique. We listen, understand, and deliver beyond expectations.',
-    color: '#a76b53',
+    color: '#cf6b76', // Logo pink
+    bgColor: '#fcdcd8', // Richer pastel pink
   },
   {
     icon: Palette,
     title: 'Attention to Detail',
     description:
       'From tiny props to grand setups, we perfect every detail for a flawless event experience.',
-    color: '#a76b53',
+    color: '#e09540', // Logo orange
+    bgColor: '#fae3ca', // Richer pastel orange
   },
   {
     icon: Shield,
     title: 'Reliable & Trusted',
     description: '500+ successful events and counting. Our track record speaks for itself. families trust us for worry-free celebrations.',
-    color: '#a76b53',
+    color: '#a76b53', // Navbar brown
+    bgColor: '#ecdcd0', // Richer pastel brown
   },
   {
     icon: Zap,
     title: 'Innovative Solutions',
     description:
       'We blend creative concepts with fresh ideas to make every event unique and memorable.',
-    color: '#a76b53',
+    color: '#c83b2e', // Logo red
+    bgColor: '#fad4d0', // Richer pastel red
   },
 ];
 
 const WhySection = styled.section`
   position: relative;
-  padding: 6rem 1.5rem 5rem;
+  padding: 3.5rem 1.5rem 3rem;
   overflow: hidden;
   background: #fdfcf0;
 `;
 
 const Header = styled(motion.div)`
   text-align: center;
-  margin-bottom: 3.5rem;
+  margin-bottom: 2rem;
   max-width: 720px;
   margin-left: auto;
   margin-right: auto;
@@ -66,23 +72,23 @@ const Badge = styled(motion.span)`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.4rem 1.4rem;
+  padding: 0.35rem 1.2rem;
   border-radius: 999px;
   background: rgba(167, 107, 83, 0.08);
   color: #a76b53;
   font-weight: 600;
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  margin-bottom: 1rem;
+  margin-bottom: 0.6rem;
 `;
 
 const Title = styled.h2`
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2.4rem, 5vw, 3.2rem);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
   font-weight: 400;
   color: #2c2a29;
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.8rem;
   text-shadow: 
     1px 1px 0px #eae3d8,
     2px 2px 0px #e2d9cb,
@@ -96,17 +102,17 @@ const GradientWord = styled.span`
 `;
 
 const Subtitle = styled.p`
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   color: #5c5957;
   max-width: 640px;
   margin: 0 auto;
-  line-height: 1.7;
+  line-height: 1.5;
 `;
 
 const Grid = styled(motion.div)`
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
-  gap: 1.8rem;
+  gap: 1.2rem;
   max-width: 1120px;
   margin: 0 auto;
 
@@ -121,50 +127,117 @@ const Grid = styled(motion.div)`
 
 const CardWrapper = styled(motion.div)`
   position: relative;
+  grid-column: span 1;
+
+  @media (min-width: 1024px) {
+    &:nth-child(1) { grid-column: span 2; }
+    &:nth-child(2) { grid-column: span 1; }
+    &:nth-child(3) { grid-column: span 1; }
+    &:nth-child(4) { grid-column: span 2; }
+    &:nth-child(5) { grid-column: span 2; }
+    &:nth-child(6) { grid-column: span 1; }
+  }
 `;
 
 const Card = styled(motion.div)`
   position: relative;
   overflow: hidden;
-  border-radius: 4px;
-  padding: 2.2rem 2rem;
-  background: #fcfaf6;
-  border: 1px solid rgba(167, 107, 83, 0.22);
-  box-shadow: 0 12px 35px rgba(167, 107, 83, 0.04);
-  transition: box-shadow 0.35s ease, transform 0.35s ease;
+  border-radius: 24px;
+  padding: 1.4rem 1.6rem;
+  background: ${props => props.$bgColor || '#fcfaf6'};
+  border: 2px solid ${props => props.$borderColor || '#a76b53'};
+  box-shadow: 0 10px 28px rgba(167, 107, 83, 0.04);
+  transition: box-shadow 0.35s ease, transform 0.35s ease, border-color 0.35s ease, background-color 0.35s ease;
+  height: 100%;
 `;
 
 const IconBubble = styled(motion.div)`
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 2px;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.9rem;
   color: #ffffff;
-  box-shadow: 0 10px 24px rgba(167, 107, 83, 0.15);
+  box-shadow: 0 8px 20px rgba(167, 107, 83, 0.15);
 
   svg {
-    width: 1.6rem;
-    height: 1.6rem;
+    width: 1.3rem;
+    height: 1.3rem;
   }
 `;
 
-const ReasonTitle = styled.h3`
+const ReasonTitle = styled(motion.h3)`
   font-family: 'Playfair Display', serif;
-  font-size: 1.35rem;
-  font-weight: 400;
-  color: #2c2a29;
-  margin-bottom: 0.60rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #713f2c;
+  margin-bottom: 0.4rem;
   transition: color 0.3s ease;
 `;
 
-const ReasonText = styled.p`
-  font-size: 0.95rem;
-  color: #5c5957;
-  line-height: 1.65;
+const ReasonText = styled(motion.p)`
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #2a2827;
+  line-height: 1.5;
 `;
+
+// Animation variants for rich, unique hover experience
+const cardHoverVariants = {
+  initial: { y: 0, scale: 1 },
+  hover: {
+    y: -10,
+    scale: 1.03,
+    boxShadow: '0 20px 35px rgba(167, 107, 83, 0.12)',
+    transition: {
+      type: 'spring',
+      stiffness: 300,
+      damping: 20,
+    },
+  },
+};
+
+const iconVariants = {
+  initial: { scale: 1, rotate: 0, y: 0 },
+  hover: {
+    scale: 1.2,
+    rotate: 360,
+    y: -4,
+    transition: {
+      type: 'spring',
+      stiffness: 260,
+      damping: 15,
+    },
+  },
+};
+
+const titleVariants = {
+  initial: { color: '#713f2c', x: 0 },
+  hover: {
+    color: '#a76b53',
+    x: 6,
+    transition: {
+      type: 'spring',
+      stiffness: 300,
+      damping: 20,
+    },
+  },
+};
+
+const textVariants = {
+  initial: { color: '#3d3b3a', x: 0 },
+  hover: {
+    color: '#1a1818',
+    x: 6,
+    transition: {
+      type: 'spring',
+      stiffness: 300,
+      damping: 20,
+    },
+  },
+};
 
 const WhyChooseUs = () => {
   const [ref, inView] = useInView({
@@ -229,22 +302,25 @@ const WhyChooseUs = () => {
             <CardWrapper
               key={reason.title}
               variants={cardVariants}
-              whileHover={{
-                y: -6,
-              }}
-              transition={{ duration: 0.3 }}
             >
-              <Card>
+              <Card
+                $bgColor={reason.bgColor}
+                $borderColor={reason.color}
+                variants={cardHoverVariants}
+                initial="initial"
+                whileHover="hover"
+                whileTap={{ scale: 0.98 }}
+              >
                 <IconBubble
                   style={{ background: reason.color }}
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.6 }}
+                  variants={iconVariants}
+                  initial="initial"
                 >
                   <Icon />
                 </IconBubble>
 
-                <ReasonTitle>{reason.title}</ReasonTitle>
-                <ReasonText>{reason.description}</ReasonText>
+                <ReasonTitle variants={titleVariants} initial="initial">{reason.title}</ReasonTitle>
+                <ReasonText variants={textVariants} initial="initial">{reason.description}</ReasonText>
               </Card>
             </CardWrapper>
           );
