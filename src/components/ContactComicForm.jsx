@@ -5,10 +5,20 @@ import { Heart, MessageCircle, Send } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
 const Section = styled.section`
-  padding: 13.5rem 1rem 11.5rem;
+  min-height: 95vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   overflow: hidden;
   background: #9e634e;
+  padding: 8rem 1rem 6rem;
+
+  @media (max-width: 992px) {
+    padding-top: 12rem;
+    padding-bottom: 8rem;
+    min-height: auto;
+  }
 `;
 
 const TopCurve = styled.div`
@@ -30,11 +40,14 @@ const TopCurve = styled.div`
 `;
 
 const Wrap = styled.div`
+  width: 100%;
   max-width: 68rem;
   margin: 0 auto;
   display: grid;
   gap: 2.5rem;
   align-items: center;
+  position: relative;
+  z-index: 10;
 
   @media (min-width: 992px) {
     grid-template-columns: 1fr 1.05fr;
