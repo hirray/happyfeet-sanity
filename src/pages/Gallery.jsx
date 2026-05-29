@@ -184,10 +184,10 @@ const Gallery = () => {
                 key={word}
                 $gradient={
                   i === 0 
-                    ? "linear-gradient(135deg, hsl(10, 90%, 65%), hsl(340, 80%, 65%))"
+                    ? "linear-gradient(135deg, #a76b53, #b8816c)"
                     : i === 1
-                    ? "linear-gradient(135deg, hsl(40, 95%, 55%), hsl(25, 90%, 60%))"
-                    : "linear-gradient(135deg, hsl(175, 70%, 45%), hsl(200, 80%, 60%))"
+                    ? "linear-gradient(135deg, #c79685, #a76b53)"
+                    : "linear-gradient(135deg, #b8816c, #945841)"
                 }
                 initial={{ opacity: 0, y: 50, rotateX: -90 }}
                 animate={{ opacity: 1, y: 0, rotateX: 0 }}
@@ -255,7 +255,7 @@ const Gallery = () => {
             transition={{ duration: 0.6 }}
           >
             <SectionTitle>
-              Event <RainbowSpan>Categories</RainbowSpan>
+              Event <LuxurySpan>Categories</LuxurySpan>
             </SectionTitle>
             <SectionDescription>
               Explore our diverse range of celebrations and find your perfect event type
@@ -304,8 +304,8 @@ const Gallery = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <SectionTitle style={{ textAlign: 'center', marginBottom: '1rem' }}>
-              Our <RainbowSpan>Memories</RainbowSpan>
+            <SectionTitle style={{ textAlign: 'center', margin: '0 auto', marginBottom: '1rem' }}>
+              Our <LuxurySpan>Memories</LuxurySpan>
             </SectionTitle>
             <SectionDescription style={{ textAlign: 'center', margin: '0 auto', maxWidth: '28rem', marginBottom: '2rem' }}>
               Hover and drag to explore our universe of celebrations
@@ -394,7 +394,7 @@ const Gallery = () => {
               Past Celebrations
             </motion.div>
             <SectionTitle>
-              Recent <RainbowSpan>Events</RainbowSpan>
+              Recent <LuxurySpan>Events</LuxurySpan>
             </SectionTitle>
             <SectionDescription style={{ margin: '0 auto' }}>
               Take a look at some of the magical moments we've created
@@ -450,7 +450,7 @@ const Gallery = () => {
 
 const PageWrapper = styled.div`
   min-height: 100vh;
-  background: transparent;
+  background: #fdfcf0;
   position: relative;
   overflow-x: hidden;
 `;
@@ -728,29 +728,21 @@ const SectionHeader = styled.div`
 `;
 
 const SectionTitle = styled.h2`
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #2d3436;
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8rem;
+  font-weight: 500;
+  color: #2f2622;
   margin-bottom: 1rem;
   
   @media (min-width: 768px) {
-    font-size: 3rem;
+    font-size: 3.5rem;
   }
 `;
 
-const RainbowSpan = styled.span`
-  background: linear-gradient(
-    90deg,
-    #ff6b6b 0%,
-    #f9ca24 20%,
-    #6ab04c 40%,
-    #4834d4 60%,
-    #e056fd 80%,
-    #ff6b6b 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+const LuxurySpan = styled.span`
+  color: #a76b53;
+  font-style: italic;
+  font-weight: 400;
 `;
 
 const SectionDescription = styled.p`
@@ -876,19 +868,23 @@ const EventsGrid = styled.div`
 const ViewAllButton = styled(motion.button)`
   position: relative;
   padding: 1rem 2rem;
-  border-radius: 50px;
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
   overflow: hidden;
   border: none;
   cursor: pointer;
-  background: linear-gradient(to right, hsl(10, 90%, 65%), hsl(40, 95%, 55%), hsl(175, 70%, 45%));
-  color: white;
+  background: #a76b53;
+  color: #fdfcf0;
+  box-shadow: 0 4px 15px rgba(167, 107, 83, 0.2);
 `;
 
 const ButtonAnimatedGradient = styled(motion.div)`
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, hsl(10, 90%, 65%), hsl(40, 95%, 55%), hsl(175, 70%, 45%));
+  background: linear-gradient(to right, #a76b53, #b8816c, #a76b53);
 `;
 
 const EventsDecor1 = styled(motion.div)`
@@ -898,8 +894,8 @@ const EventsDecor1 = styled(motion.div)`
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
-  background: linear-gradient(135deg, hsl(10, 90%, 65%), hsl(340, 80%, 65%));
-  opacity: 0.3;
+  background: #a76b53;
+  opacity: 0.15;
 `;
 
 const EventsDecor2 = styled(motion.div)`
@@ -909,8 +905,8 @@ const EventsDecor2 = styled(motion.div)`
   width: 1.5rem;
   height: 1.5rem;
   transform: rotate(45deg);
-  background: linear-gradient(135deg, hsl(175, 70%, 45%), hsl(200, 80%, 60%));
-  opacity: 0.3;
+  background: #c79685;
+  opacity: 0.15;
 `;
 
 export default Gallery;
