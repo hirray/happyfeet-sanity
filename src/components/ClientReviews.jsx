@@ -46,7 +46,7 @@ const Section = styled.section`
   padding: 6rem 1rem 5.5rem;
   position: relative;
   overflow: hidden;
-  background: #fdfcf0;
+  background: #9e634e;
 `;
 
 const Backdrop = styled.div`
@@ -73,8 +73,8 @@ const Badge = styled(motion.span)`
   display: inline-block;
   padding: 0.4rem 1.4rem;
   border-radius: 999px;
-  background: rgba(167, 107, 83, 0.08);
-  color: #a76b53;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
   font-weight: 600;
   font-size: 0.82rem;
   margin-bottom: 1rem;
@@ -84,12 +84,12 @@ const Title = styled.h2`
   font-family: 'Playfair Display', serif;
   font-size: clamp(2.2rem, 4vw, 3.2rem);
   font-weight: 400;
-  color: #2c2a29;
+  color: #ffffff;
   margin: 0 0 0.75rem;
 `;
 
 const GradientWord = styled.span`
-  color: #a76b53;
+  color: #fbebe1;
   font-style: italic;
 `;
 
@@ -118,11 +118,11 @@ const ReviewCard = styled(motion.div)`
 
 const CardInner = styled.div`
   position: relative;
-  background: #fcfaf6;
-  border: 1px solid rgba(167, 107, 83, 0.22);
+  background: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.85);
   border-radius: 4px;
   padding: 1.8rem 1.4rem;
-  box-shadow: 0 10px 30px rgba(167, 107, 83, 0.04);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   height: 100%;
 `;
@@ -214,18 +214,18 @@ const Button = styled(motion.button)`
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  border: 1px solid rgba(167, 107, 83, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.45);
   cursor: pointer;
   padding: 0.95rem 2.2rem;
   border-radius: 4px;
-  color: #a76b53;
+  color: #ffffff;
   font-weight: 600;
   background: transparent;
   transition: all 0.3s ease;
 
   &:hover {
-    background: #a76b53;
-    color: white;
+    background: #ffffff;
+    color: #9e634e;
   }
 `;
 

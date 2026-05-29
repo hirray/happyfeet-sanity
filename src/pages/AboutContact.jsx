@@ -462,6 +462,11 @@ const AboutContact = () => {
             ↓
           </motion.div>
         </motion.div>
+        <BottomCurve>
+          <svg viewBox="0 0 1440 180" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <path d="M0,80 C320,180 640,20 960,110 C1180,170 1340,110 1440,80 L1440,180 L0,180 Z" fill="#fdfcf0" />
+          </svg>
+        </BottomCurve>
       </section>
 
       <CompanyInfo />
@@ -786,6 +791,24 @@ const FeaturesList = styled.ul`
     &:not(:last-child) {
       border-bottom: 1px solid #f1f3f5;
     }
+  }
+`;
+
+const BottomCurve = styled.div`
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 12vw;
+  min-height: 90px;
+  max-height: 180px;
+  z-index: 15;
+  pointer-events: none;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    display: block;
   }
 `;
 
