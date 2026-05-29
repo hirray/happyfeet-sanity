@@ -5,7 +5,7 @@ import { Heart, MessageCircle, Send } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
 const Section = styled.section`
-  padding: 8rem 1rem 5.5rem;
+  padding: 13.5rem 1rem 11.5rem;
   position: relative;
   overflow: hidden;
   background: #9e634e;
