@@ -1,31 +1,26 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
-import styled, { keyframes } from 'styled-components';
-import { Heart, MessageCircle, Send, Twitter } from 'lucide-react';
+import styled from 'styled-components';
+import { Heart, MessageCircle, Send } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
-const floatWiggle = keyframes`
-  0% { transform: translateY(0px) rotate(-0.5deg); }
-  50% { transform: translateY(-10px) rotate(0.8deg); }
-  100% { transform: translateY(0px) rotate(-0.5deg); }
-`;
-
 const Section = styled.section`
-  padding: 5.5rem 1rem 6.5rem;
+  padding: 6rem 1rem 5.5rem;
   position: relative;
   overflow: hidden;
+  background: #fdfcf0;
 `;
 
 const Wrap = styled.div`
   max-width: 68rem;
   margin: 0 auto;
   display: grid;
-  gap: 2rem;
+  gap: 2.5rem;
   align-items: center;
 
   @media (min-width: 992px) {
     grid-template-columns: 1fr 1.05fr;
-    gap: 2.75rem;
+    gap: 3.5rem;
   }
 `;
 
@@ -41,32 +36,31 @@ const Badge = styled(motion.span)`
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.6rem 1.15rem;
+  padding: 0.4rem 1.2rem;
   border-radius: 999px;
-  background: rgba(34, 193, 195, 0.14);
-  color: #0ea5a4;
-  font-weight: 900;
-  font-size: 0.85rem;
-  border: 1px solid rgba(15, 23, 42, 0.10);
+  background: rgba(167, 107, 83, 0.08);
+  color: #a76b53;
+  font-weight: 600;
+  font-size: 0.82rem;
 `;
 
 const Title = styled.h2`
   margin: 1.1rem 0 0.8rem;
-  font-weight: 950;
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
   font-size: clamp(2.2rem, 4vw, 3.2rem);
   letter-spacing: -0.02em;
-  color: #0f172a;
+  color: #2c2a29;
 `;
 
 const GradientWord = styled.span`
-  background: linear-gradient(135deg, #22c1c3, #ec4899);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #a76b53;
+  font-style: italic;
 `;
 
 const Subtitle = styled.p`
   margin: 0;
-  color: #64748b;
+  color: #5c5957;
   font-size: 1.05rem;
   line-height: 1.7;
   max-width: 40rem;
@@ -77,11 +71,11 @@ const Subtitle = styled.p`
 `;
 
 const Points = styled.div`
-  margin-top: 1.35rem;
+  margin-top: 1.5rem;
   display: grid;
-  gap: 0.75rem;
-  color: #334155;
-  font-weight: 650;
+  gap: 0.85rem;
+  color: #5c5957;
+  font-weight: 600;
 `;
 
 const Point = styled(motion.div)`
@@ -91,11 +85,10 @@ const Point = styled(motion.div)`
 
   span {
     display: inline-block;
-    width: 0.6rem;
-    height: 0.6rem;
+    width: 0.45rem;
+    height: 0.45rem;
     border-radius: 999px;
-    background: #f97316;
-    box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.18);
+    background: #a76b53;
   }
 `;
 
@@ -110,54 +103,41 @@ const Right = styled(motion.div)`
 
 const CardStack = styled.div`
   position: relative;
-  width: min(420px, 100%);
-  padding-right: 18px;
-  padding-bottom: 18px;
-`;
-
-const ShadowCard = styled.div`
-  position: absolute;
-  inset: 14px 0 0 14px;
-  background: #dc2626;
-  border-radius: 1.6rem;
+  width: min(450px, 100%);
 `;
 
 const Card = styled(motion.div)`
   position: relative;
-  background: #fff8e7;
-  border: 3px solid #0f172a;
-  border-radius: 1.6rem;
-  box-shadow: 0 26px 55px rgba(15, 23, 42, 0.18);
+  background: #fbf9f4;
+  border: 1px solid rgba(167, 107, 83, 0.22);
+  border-radius: 4px;
+  box-shadow: 0 16px 40px rgba(167, 107, 83, 0.04);
   overflow: hidden;
   transform-origin: center;
-
-  &:hover {
-    animation: ${floatWiggle} 5.8s ease-in-out infinite;
-  }
 `;
 
 const CardInner = styled.div`
-  padding: 1.15rem 1.25rem 1.25rem;
+  padding: 1.8rem 1.6rem;
 `;
 
 const TopRow = styled.div`
   display: grid;
-  grid-template-columns: 60px 1fr;
+  grid-template-columns: 50px 1fr;
   gap: 1rem;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 `;
 
 const Avatar = styled(motion.div)`
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   border-radius: 999px;
-  background: #60a5fa;
-  border: 3px solid #0f172a;
+  background: rgba(167, 107, 83, 0.12);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  border: 1px solid rgba(167, 107, 83, 0.22);
 `;
 
 const LogoImg = styled.img`
@@ -168,57 +148,39 @@ const LogoImg = styled.img`
 
 const NameStrip = styled(motion.div)`
   display: grid;
-  gap: 0.35rem;
+  gap: 0.2rem;
 `;
 
 const NameBar = styled(motion.div)`
-  display: inline-flex;
-  align-items: center;
-  width: fit-content;
-  padding: 0.35rem 0.75rem;
-  border-radius: 0.7rem;
-  background: #facc15;
-  border: 2px solid #0f172a;
-  transform: rotate(-2.5deg);
-  font-weight: 950;
-  letter-spacing: 0.02em;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 400;
   text-transform: uppercase;
-  color: #0f172a;
+  color: #2c2a29;
 `;
 
 const Handle = styled.div`
-  font-weight: 900;
-  letter-spacing: 0.01em;
-  color: #0f172a;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #a76b53;
 `;
 
 const TextAreaWrap = styled.div`
-  border: 3px solid #0f172a;
-  border-radius: 1.1rem;
-  background: #3b82f6;
-  padding: 0.9rem;
+  border-radius: 2px;
   position: relative;
   overflow: hidden;
-`;
-
-const DotPattern = styled.div`
-  position: absolute;
-  inset: 0;
-  opacity: 0.32;
-  background-image: radial-gradient(#0f172a 1px, transparent 1px);
-  background-size: 11px 11px;
 `;
 
 const Form = styled.form`
   position: relative;
   z-index: 1;
   display: grid;
-  gap: 0.8rem;
+  gap: 1rem;
 `;
 
 const Row = styled.div`
   display: grid;
-  gap: 0.8rem;
+  gap: 1rem;
 
   @media (min-width: 520px) {
     grid-template-columns: 1fr 1fr;
@@ -227,37 +189,39 @@ const Row = styled.div`
 
 const Input = styled.input`
   width: 100%;
-  border: 2px solid rgba(15, 23, 42, 0.65);
-  border-radius: 0.85rem;
-  padding: 0.85rem 0.9rem;
-  background: rgba(255, 255, 255, 0.96);
-  color: #0f172a;
-  font-weight: 700;
+  border: 1px solid rgba(167, 107, 83, 0.25);
+  border-radius: 2px;
+  padding: 0.85rem 1rem;
+  background: #fdfcf0;
+  color: #2c2a29;
+  font-weight: 600;
   outline: none;
-  transition: transform 0.15s ease, box-shadow 0.2s ease;
+  font-size: 0.92rem;
+  transition: all 0.3s ease;
 
   &:focus {
-    box-shadow: 0 0 0 6px rgba(250, 204, 21, 0.35);
-    transform: translateY(-1px);
+    border-color: #a76b53;
+    background: #ffffff;
   }
 `;
 
 const Textarea = styled.textarea`
   width: 100%;
   min-height: 130px;
-  border: 2px solid rgba(15, 23, 42, 0.65);
-  border-radius: 0.85rem;
-  padding: 0.85rem 0.9rem;
-  background: rgba(255, 255, 255, 0.96);
-  color: #0f172a;
-  font-weight: 700;
+  border: 1px solid rgba(167, 107, 83, 0.25);
+  border-radius: 2px;
+  padding: 0.85rem 1rem;
+  background: #fdfcf0;
+  color: #2c2a29;
+  font-weight: 600;
   outline: none;
   resize: vertical;
-  transition: transform 0.15s ease, box-shadow 0.2s ease;
+  font-size: 0.92rem;
+  transition: all 0.3s ease;
 
   &:focus {
-    box-shadow: 0 0 0 6px rgba(250, 204, 21, 0.35);
-    transform: translateY(-1px);
+    border-color: #a76b53;
+    background: #ffffff;
   }
 `;
 
@@ -265,8 +229,8 @@ const BottomRow = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.85rem;
-  padding: 1rem 1.1rem 1.1rem;
+  gap: 1rem;
+  margin-top: 0.5rem;
 `;
 
 const IconTray = styled.div`
@@ -275,34 +239,22 @@ const IconTray = styled.div`
 `;
 
 const IconButton = styled(motion.button)`
-  width: 52px;
-  height: 52px;
-  border-radius: 1rem;
-  border: 3px solid #0f172a;
-  background: #facc15;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(167, 107, 83, 0.22);
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  color: #a76b53;
+  transition: all 0.3s ease;
 
-  svg {
-    width: 22px;
-    height: 22px;
-    color: #0f172a;
+  &:hover {
+    background: #a76b53;
+    color: white;
   }
-`;
-
-const Submit = styled(motion.button)`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  padding: 0.85rem 1.05rem;
-  border-radius: 1rem;
-  border: 3px solid #0f172a;
-  background: #22c1c3;
-  color: #0f172a;
-  font-weight: 950;
-  cursor: pointer;
 
   svg {
     width: 18px;
@@ -310,36 +262,47 @@ const Submit = styled(motion.button)`
   }
 `;
 
+const Submit = styled(motion.button)`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.85rem 1.6rem;
+  border-radius: 4px;
+  border: 1px solid #a76b53;
+  background: #a76b53;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.92rem;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+`;
+
 const Success = styled(motion.div)`
   margin-top: 0.9rem;
   padding: 0.75rem 1rem;
-  border-radius: 1rem;
-  border: 2px solid rgba(15, 23, 42, 0.18);
-  background: rgba(34, 197, 94, 0.12);
+  border-radius: 2px;
+  border: 1px solid rgba(34, 197, 94, 0.22);
+  background: rgba(34, 197, 94, 0.08);
   color: #166534;
-  font-weight: 800;
+  font-weight: 600;
   width: fit-content;
+  font-size: 0.88rem;
 `;
 
 const ErrorMsg = styled(motion.div)`
   margin-top: 0.9rem;
   padding: 0.75rem 1rem;
-  border-radius: 1rem;
-  border: 2px solid rgba(15, 23, 42, 0.18);
-  background: rgba(220, 38, 38, 0.12);
+  border-radius: 2px;
+  border: 1px solid rgba(220, 38, 38, 0.22);
+  background: rgba(220, 38, 38, 0.08);
   color: #991b1b;
-  font-weight: 800;
+  font-weight: 600;
   width: fit-content;
-`;
-
-const Spark = styled(motion.div)`
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  background: rgba(250, 204, 21, 0.9);
-  filter: blur(0.2px);
-  pointer-events: none;
+  font-size: 0.88rem;
 `;
 
 export const ContactComicForm = () => {
@@ -474,41 +437,24 @@ export const ContactComicForm = () => {
           transition={{ duration: 0.75 }}
         >
           <CardStack>
-            <ShadowCard />
             <Card
-              initial={{ opacity: 0, y: 24, rotate: 2 }}
-              whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.25 }}
               transition={{ type: 'spring', stiffness: 120, damping: 16 }}
-              whileHover={{ rotate: -0.8, y: -6 }}
+              whileHover={{ y: -6 }}
             >
-              <Spark
-                style={{ top: 18, right: 28 }}
-                animate={{ scale: [1, 1.4, 1], opacity: [0.7, 1, 0.7] }}
-                transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
-              />
-              <Spark
-                style={{ top: 80, right: 20, background: 'rgba(34,193,195,0.95)' }}
-                animate={{ scale: [1, 1.6, 1], opacity: [0.5, 0.9, 0.5] }}
-                transition={{ duration: 2.6, repeat: Infinity, ease: 'easeInOut', delay: 0.35 }}
-              />
-
               <CardInner>
                 <TopRow>
                   <Avatar
-                    whileHover={{ rotate: 6, scale: 1.04 }}
+                    whileHover={{ scale: 1.04 }}
                     transition={{ type: 'spring', stiffness: 220, damping: 14 }}
                   >
                     <LogoImg src="/logo.jpg" alt="Happyfeet" />
                   </Avatar>
 
                   <NameStrip>
-                    <NameBar
-                      initial={{ x: 10, opacity: 0 }}
-                      whileInView={{ x: 0, opacity: 1 }}
-                      viewport={{ once: true, amount: 0.25 }}
-                      transition={{ delay: 0.1, duration: 0.45 }}
-                    >
+                    <NameBar>
                       HAPPYFEET CREW
                     </NameBar>
                     <Handle>@happyfeet</Handle>
@@ -516,7 +462,6 @@ export const ContactComicForm = () => {
                 </TopRow>
 
                 <TextAreaWrap>
-                  <DotPattern />
                   <Form onSubmit={onSubmit}>
                     <Row>
                       <Input
@@ -548,46 +493,38 @@ export const ContactComicForm = () => {
                       required
                     />
 
-                    <Submit
-                      type="submit"
-                      disabled={sending}
-                      whileHover={{ scale: 1.04, rotate: -1 }}
-                      whileTap={{ scale: 0.98 }}
-                      transition={{ type: 'spring', stiffness: 240, damping: 14 }}
-                      style={{ opacity: sending ? 0.75 : 1, cursor: sending ? 'not-allowed' : 'pointer' }}
-                    >
-                      {sending ? 'Sending…' : 'Send'}
-                      <Send />
-                    </Submit>
+                    <BottomRow>
+                      <IconTray>
+                        <IconButton
+                          type="button"
+                          whileHover={{ y: -2 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <Heart />
+                        </IconButton>
+                        <IconButton
+                          type="button"
+                          whileHover={{ y: -2 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <MessageCircle />
+                        </IconButton>
+                      </IconTray>
+
+                      <Submit
+                        type="submit"
+                        disabled={sending}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        style={{ opacity: sending ? 0.75 : 1, cursor: sending ? 'not-allowed' : 'pointer' }}
+                      >
+                        {sending ? 'Sending…' : 'Send'}
+                        <Send />
+                      </Submit>
+                    </BottomRow>
                   </Form>
                 </TextAreaWrap>
               </CardInner>
-
-              <BottomRow>
-                <IconTray>
-                  <IconButton
-                    type="button"
-                    whileHover={{ y: -3, rotate: -6, boxShadow: '0 16px 30px rgba(15,23,42,0.18)' }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Heart />
-                  </IconButton>
-                  <IconButton
-                    type="button"
-                    whileHover={{ y: -3, rotate: 6, boxShadow: '0 16px 30px rgba(15,23,42,0.18)' }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <MessageCircle />
-                  </IconButton>
-                  <IconButton
-                    type="button"
-                    whileHover={{ y: -3, rotate: -4, boxShadow: '0 16px 30px rgba(15,23,42,0.18)' }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Twitter />
-                  </IconButton>
-                </IconTray>
-              </BottomRow>
             </Card>
           </CardStack>
         </Right>

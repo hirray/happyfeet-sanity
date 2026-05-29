@@ -7,12 +7,13 @@ import styled from 'styled-components';
 const Section = styled.section`
   position: relative;
   overflow: hidden;
-  padding: ${({ $paddingY }) => ($paddingY ? `${$paddingY} 1rem` : '5rem 1rem')};
+  padding: ${({ $paddingY }) => ($paddingY ? `${$paddingY} 1rem` : '6rem 1rem 5rem')};
+  background: #fdfcf0;
 `;
 
 const DecoBlob = styled(motion.div)`
   position: absolute;
-  border-radius: 999px;
+  border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
   filter: blur(64px);
   pointer-events: none;
 `;
@@ -26,44 +27,42 @@ const Container = styled.div`
 
 const Header = styled(motion.div)`
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
 `;
 
 const Badge = styled(motion.div)`
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.55rem 1.1rem;
+  padding: 0.55rem 1.15rem;
   border-radius: 999px;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 107, 107, 0.12),
-    rgba(236, 72, 153, 0.12)
-  );
+  background: rgba(167, 107, 83, 0.08);
   margin-bottom: 1rem;
 
   span {
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: #ff6b6b;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #a76b53;
   }
 
   svg {
-    width: 1rem;
-    height: 1rem;
-    color: #ff6b6b;
+    width: 0.95rem;
+    height: 0.95rem;
+    color: #a76b53;
   }
 `;
 
 const Title = styled.h2`
-  font-size: clamp(1.9rem, 3.2vw, 2.6rem);
-  font-weight: 900;
-  color: #111827;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.1rem, 3.4vw, 3rem);
+  font-weight: 400;
+  color: #2c2a29;
   margin: 0;
 `;
 
 const Accent = styled.span`
-  color: #ff6b6b;
+  color: #a76b53;
+  font-style: italic;
 `;
 
 const Layout = styled.div`
@@ -95,18 +94,18 @@ const Halo = styled(motion.div)`
 
 const Ring = styled(motion.div)`
   position: absolute;
-  inset: -10px;
+  inset: -8px;
   border-radius: 999px;
-  background: linear-gradient(135deg, rgba(168, 85, 247, 0.9), rgba(236, 72, 153, 0.9));
+  background: linear-gradient(135deg, rgba(217, 160, 128, 0.4), rgba(167, 107, 83, 0.6));
   pointer-events: none;
   z-index: 0;
 `;
 
 const InnerRing = styled.div`
   position: absolute;
-  inset: -6px;
+  inset: -5px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.92);
+  background: #fdfcf0;
   pointer-events: none;
   z-index: 1;
 `;
@@ -117,10 +116,9 @@ const PhotoCircle = styled(motion.div)`
   height: ${({ $size }) => ($size === 'sm' ? '12rem' : '18rem')};
   border-radius: 999px;
   overflow: hidden;
-  box-shadow:
-    0 28px 80px -28px rgba(15, 23, 42, 0.55),
-    0 10px 30px rgba(168, 85, 247, 0.18);
+  box-shadow: 0 16px 40px rgba(167, 107, 83, 0.08);
   z-index: 2;
+  border: 1px solid rgba(167, 107, 83, 0.2);
 
   @media (min-width: 768px) {
     width: ${({ $size }) => ($size === 'sm' ? '14rem' : '20rem')};
@@ -138,7 +136,7 @@ const Photo = styled.img`
 const PhotoOverlay = styled.div`
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.14), transparent 45%);
+  background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.1), transparent 45%);
   pointer-events: none;
 `;
 
@@ -148,25 +146,20 @@ const PhotoFallback = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 107, 107, 0.25),
-    rgba(236, 72, 153, 0.18),
-    rgba(168, 85, 247, 0.22)
-  );
+  background: #fcfaf6;
 `;
 
 const Initials = styled(motion.div)`
-  width: 7rem;
-  height: 7rem;
+  width: 6.5rem;
+  height: 6.5rem;
   border-radius: 999px;
-  background: linear-gradient(135deg, #ff6b6b, #ec4899);
+  background: rgba(167, 107, 83, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2.2rem;
-  font-weight: 950;
-  color: #ffffff;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #a76b53;
 `;
 
 const Shine = styled(motion.div)`
@@ -175,37 +168,10 @@ const Shine = styled(motion.div)`
   background: linear-gradient(
     90deg,
     rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.28) 50%,
+    rgba(255, 255, 255, 0.15) 50%,
     rgba(255, 255, 255, 0) 100%
   );
   transform: skewX(-18deg);
-  pointer-events: none;
-`;
-
-const FloatingBadge = styled(motion.div)`
-  position: absolute;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 16px 35px rgba(15, 23, 42, 0.25);
-  pointer-events: none;
-
-  svg {
-    width: 1.4rem;
-    height: 1.4rem;
-    color: #ffffff;
-  }
-`;
-
-const FloatingDot = styled(motion.div)`
-  position: absolute;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 999px;
-  box-shadow: 0 16px 35px rgba(15, 23, 42, 0.22);
   pointer-events: none;
 `;
 
@@ -218,23 +184,21 @@ const RolePill = styled(motion.div)`
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
-  padding: 0.55rem 1.05rem;
+  padding: 0.45rem 1.05rem;
   border-radius: 999px;
   color: #ffffff;
-  font-weight: 800;
-  font-size: 0.85rem;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.95), rgba(168, 85, 247, 0.95));
-  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(10px);
+  font-weight: 600;
+  font-size: 0.8rem;
+  background: #a76b53;
+  box-shadow: 0 10px 24px rgba(167, 107, 83, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 `;
 
 const RoleDot = styled.span`
-  width: 0.55rem;
-  height: 0.55rem;
+  width: 0.45rem;
+  height: 0.45rem;
   border-radius: 999px;
-  background: #f59e0b;
-  box-shadow: 0 0 0 5px rgba(245, 158, 11, 0.18);
+  background: #fdfcf0;
 `;
 
 const QuoteWrap = styled(motion.div)`
@@ -248,51 +212,37 @@ const QuoteWrap = styled(motion.div)`
 
 const QuoteIconWrap = styled(motion.div)`
   display: inline-flex;
-  width: 4rem;
-  height: 4rem;
+  width: 3.5rem;
+  height: 3.5rem;
   border-radius: 999px;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #ff6b6b, #ec4899);
-  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.2);
+  background: rgba(167, 107, 83, 0.08);
+  box-shadow: 0 8px 24px rgba(167, 107, 83, 0.04);
   margin-bottom: 1.5rem;
 
   svg {
-    width: 2rem;
-    height: 2rem;
-    color: #ffffff;
+    width: 1.6rem;
+    height: 1.6rem;
+    color: #a76b53;
   }
 `;
 
 const QuoteText = styled.p`
-  font-size: clamp(1.25rem, 2vw, 2rem);
-  font-weight: 750;
-  line-height: 1.45;
-  color: #111827;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.25rem, 2vw, 1.8rem);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #2c2a29;
   margin: 0 0 1.75rem;
-`;
-
-const Emph = styled(motion.span)`
-  position: relative;
-  display: inline-block;
-  font-weight: 900;
-`;
-
-const Underline = styled(motion.span)`
-  position: absolute;
-  left: 0;
-  bottom: -0.35rem;
-  width: 100%;
-  height: 0.3rem;
-  border-radius: 999px;
-  transform-origin: left;
 `;
 
 const NameBlock = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
 
   @media (min-width: 1024px) {
     align-items: flex-start;
@@ -301,41 +251,26 @@ const NameBlock = styled(motion.div)`
 
 const FounderName = styled(motion.h3)`
   margin: 0;
+  font-family: 'Playfair Display', serif;
   font-size: clamp(1.65rem, 2.5vw, 2.2rem);
-  font-weight: 950;
-  background: linear-gradient(90deg, #ff6b6b, #ec4899, #a855f7);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-size: 200% 200%;
+  font-weight: 400;
+  color: #2c2a29;
 `;
 
 const FounderTitle = styled(motion.p)`
   margin: 0;
-  color: #6b7280;
-  font-weight: 700;
+  color: #8c8885;
+  font-size: 0.88rem;
+  font-weight: 600;
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
 `;
 
 const Line = styled.span`
-  width: 2rem;
-  height: 3px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #ff6b6b, #ec4899);
-`;
-
-const Dots = styled(motion.div)`
-  margin-top: 0.7rem;
-  display: inline-flex;
-  gap: 0.45rem;
-`;
-
-const Dot = styled(motion.div)`
-  width: 0.55rem;
-  height: 0.55rem;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #ff6b6b, #ec4899);
+  width: 1.5rem;
+  height: 1px;
+  background: rgba(167, 107, 83, 0.45);
 `;
 
 export const FounderSection = ({
@@ -375,7 +310,7 @@ export const FounderSection = ({
           left: '2.5rem',
           width: '10rem',
           height: '10rem',
-          background: 'linear-gradient(135deg, rgba(255,107,107,0.22), rgba(236,72,153,0.22))',
+          background: 'rgba(217, 160, 128, 0.15)',
         }}
         animate={{ scale: [1, 1.2, 1], opacity: [0.25, 0.45, 0.25] }}
         transition={{ duration: 4, repeat: Infinity }}
@@ -386,7 +321,7 @@ export const FounderSection = ({
           right: '2.5rem',
           width: '12rem',
           height: '12rem',
-          background: 'linear-gradient(135deg, rgba(34,197,197,0.18), rgba(168,85,247,0.18))',
+          background: 'rgba(232, 196, 176, 0.12)',
         }}
         animate={{ scale: [1.2, 1, 1.2], opacity: [0.25, 0.45, 0.25] }}
         transition={{ duration: 5, repeat: Infinity }}
@@ -399,7 +334,7 @@ export const FounderSection = ({
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
-            <Badge whileHover={{ scale: 1.05 }}>
+            <Badge whileHover={{ scale: 1.02 }}>
               <Sparkles />
               <span>{badgeText}</span>
               <Sparkles />
@@ -415,7 +350,7 @@ export const FounderSection = ({
             transition={{ duration: 0.6 }}
             style={{ marginBottom: '1.5rem' }}
           >
-            <Badge whileHover={{ scale: 1.05 }}>
+            <Badge whileHover={{ scale: 1.02 }}>
               <Sparkles />
               <span>{badgeText}</span>
               <Sparkles />
@@ -425,41 +360,29 @@ export const FounderSection = ({
 
         <Layout>
           <ImageWrap
-            initial={{ opacity: 0, x: -50, rotate: -5 }}
-            animate={inView ? { opacity: 1, x: 0, rotate: 0 } : {}}
+            initial={{ opacity: 0, x: -40 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <Halo
               style={{
                 background:
-                  'radial-gradient(circle at 30% 30%, rgba(168,85,247,0.35), rgba(236,72,153,0.22), transparent 60%)',
+                  'radial-gradient(circle at 30% 30%, rgba(217, 160, 128, 0.2) 0%, transparent 60%)',
               }}
               animate={{ scale: [1, 1.08, 1], opacity: [0.45, 0.6, 0.45] }}
               transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
             />
 
-            <Ring
-              animate={{ rotate: [0, 2, 0, -2, 0] }}
-              transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-            />
+            <Ring />
             <InnerRing />
 
-            <PhotoCircle $size={photoSize} whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }}>
+            <PhotoCircle $size={photoSize} whileHover={{ scale: 1.01 }} transition={{ duration: 0.3 }}>
               {!imgError ? (
                 <Photo src={imageSrc} alt={name} onError={() => setImgError(true)} />
               ) : (
                 <PhotoFallback>
                   <div style={{ textAlign: 'center' }}>
-                    <Initials
-                      animate={{
-                        boxShadow: [
-                          '0 0 20px rgba(255, 111, 97, 0.3)',
-                          '0 0 40px rgba(255, 111, 97, 0.5)',
-                          '0 0 20px rgba(255, 111, 97, 0.3)',
-                        ],
-                      }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
+                    <Initials>
                       {computedInitials}
                     </Initials>
                   </div>
@@ -479,33 +402,10 @@ export const FounderSection = ({
               initial={{ opacity: 0, y: 10, scale: 0.95 }}
               animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
               transition={{ delay: 0.65, type: 'spring', stiffness: 160, damping: 18 }}
-              whileHover={{ scale: 1.03 }}
             >
               <RoleDot />
               {role}
             </RolePill>
-
-            <FloatingBadge
-              style={{
-                top: '-1rem',
-                right: '-1rem',
-                background: 'linear-gradient(135deg, #f59e0b, #ff6b6b)',
-              }}
-              animate={{ y: [0, -10, 0], rotate: [0, 10, 0] }}
-              transition={{ duration: 3, repeat: Infinity }}
-            >
-              <Sparkles />
-            </FloatingBadge>
-
-            <FloatingDot
-              style={{
-                bottom: '-0.75rem',
-                left: '-0.75rem',
-                background: 'linear-gradient(135deg, rgba(34,197,197,0.9), rgba(168,85,247,0.9))',
-              }}
-              animate={{ y: [0, 10, 0], scale: [1, 1.1, 1] }}
-              transition={{ duration: 4, repeat: Infinity }}
-            />
           </ImageWrap>
 
           {compact ? (
@@ -514,28 +414,24 @@ export const FounderSection = ({
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.45 }}
             >
-              <FounderName
-                animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
-                transition={{ duration: 5, repeat: Infinity }}
-                style={{ fontSize: 'clamp(1.35rem, 2vw, 1.75rem)' }}
-              >
+              <FounderName>
                 {name}
               </FounderName>
 
-              <FounderTitle whileHover={{ x: 5 }}>
+              <FounderTitle>
                 <Line />
                 {role}
               </FounderTitle>
             </NameBlock>
           ) : (
             <QuoteWrap
-              initial={{ opacity: 0, x: 50 }}
+              initial={{ opacity: 0, x: 40 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               <motion.div
-                initial={{ scale: 0, rotate: -180 }}
-                animate={inView ? { scale: 1, rotate: 0 } : {}}
+                initial={{ scale: 0 }}
+                animate={inView ? { scale: 1 } : {}}
                 transition={{ duration: 0.6, delay: 0.6, type: 'spring' }}
               >
                 <QuoteIconWrap>
@@ -558,27 +454,14 @@ export const FounderSection = ({
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.9 }}
               >
-                <FounderName
-                  animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
-                  transition={{ duration: 5, repeat: Infinity }}
-                >
+                <FounderName>
                   {name}
                 </FounderName>
 
-                <FounderTitle whileHover={{ x: 5 }}>
+                <FounderTitle>
                   <Line />
                   {role}
                 </FounderTitle>
-
-                <Dots initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}} transition={{ delay: 1.1 }}>
-                  {[...Array(5)].map((_, i) => (
-                    <Dot
-                      key={i}
-                      animate={{ scale: [1, 1.3, 1], opacity: [0.55, 1, 0.55] }}
-                      transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.2 }}
-                    />
-                  ))}
-                </Dots>
               </NameBlock>
             </QuoteWrap>
           )}
@@ -589,3 +472,4 @@ export const FounderSection = ({
 };
 
 export default FounderSection;
+

@@ -43,9 +43,10 @@ const reviews = [
 ];
 
 const Section = styled.section`
-  padding: 5rem 1rem 5.5rem;
+  padding: 6rem 1rem 5.5rem;
   position: relative;
   overflow: hidden;
+  background: #fdfcf0;
 `;
 
 const Backdrop = styled.div`
@@ -58,9 +59,9 @@ const Blob = styled(motion.div)`
   position: absolute;
   width: 420px;
   height: 420px;
-  border-radius: 999px;
+  border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
   filter: blur(70px);
-  opacity: 0.35;
+  opacity: 0.25;
 `;
 
 const Header = styled(motion.div)`
@@ -70,27 +71,26 @@ const Header = styled(motion.div)`
 
 const Badge = styled(motion.span)`
   display: inline-block;
-  padding: 0.55rem 1.15rem;
+  padding: 0.4rem 1.4rem;
   border-radius: 999px;
-  background: linear-gradient(135deg, rgba(236, 72, 153, 0.16), rgba(249, 115, 22, 0.12));
-  color: #db2777;
-  font-weight: 700;
+  background: rgba(167, 107, 83, 0.08);
+  color: #a76b53;
+  font-weight: 600;
   font-size: 0.82rem;
   margin-bottom: 1rem;
-  border: 1px solid rgba(236, 72, 153, 0.22);
 `;
 
 const Title = styled.h2`
-  font-size: clamp(2.2rem, 4vw, 3.1rem);
-  font-weight: 900;
-  color: #111827;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 400;
+  color: #2c2a29;
   margin: 0 0 0.75rem;
 `;
 
 const GradientWord = styled.span`
-  background: linear-gradient(135deg, #f97316, #ec4899);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #a76b53;
+  font-style: italic;
 `;
 
 const Wrap = styled(motion.div)`
@@ -101,7 +101,7 @@ const Wrap = styled(motion.div)`
 const Grid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.25rem;
+  gap: 1.5rem;
 
   @media (min-width: 640px) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -114,51 +114,24 @@ const Grid = styled.div`
 
 const ReviewCard = styled(motion.div)`
   position: relative;
-  perspective: 900px;
 `;
 
 const CardInner = styled.div`
   position: relative;
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid rgba(148, 163, 184, 0.35);
-  border-radius: 1.25rem;
-  padding: 1.35rem 1.2rem;
-  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+  background: #fcfaf6;
+  border: 1px solid rgba(167, 107, 83, 0.22);
+  border-radius: 4px;
+  padding: 1.8rem 1.4rem;
+  box-shadow: 0 10px 30px rgba(167, 107, 83, 0.04);
   overflow: hidden;
   height: 100%;
-`;
-
-const CardGlow = styled(motion.div)`
-  position: absolute;
-  inset: -2px;
-  border-radius: 1.3rem;
-  pointer-events: none;
-  opacity: 0;
-  background:
-    linear-gradient(135deg, rgba(249, 115, 22, 0.55), rgba(236, 72, 153, 0.55), rgba(34, 193, 195, 0.45));
-  filter: blur(10px);
-`;
-
-const CardBorder = styled(motion.div)`
-  position: absolute;
-  inset: 0;
-  border-radius: 1.25rem;
-  pointer-events: none;
-  opacity: 0;
-  padding: 1px;
-  background: linear-gradient(135deg, rgba(249, 115, 22, 0.65), rgba(236, 72, 153, 0.65), rgba(99, 102, 241, 0.55));
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
 `;
 
 const QuoteIcon = styled(motion.div)`
   position: absolute;
   top: 1rem;
   right: 1rem;
-  color: rgba(236, 72, 153, 0.14);
+  color: rgba(167, 107, 83, 0.08);
 
   svg {
     width: 2rem;
@@ -170,15 +143,15 @@ const Avatar = styled(motion.div)`
   width: 3.25rem;
   height: 3.25rem;
   border-radius: 999px;
-  background: linear-gradient(135deg, #ff6b6b, #ff9f43, #ff6fa5);
+  background: rgba(167, 107, 83, 0.12);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.05rem;
-  font-weight: 900;
+  font-weight: 600;
   letter-spacing: 0.06em;
-  color: rgba(255, 255, 255, 0.98);
-  margin-bottom: 0.85rem;
+  color: #a76b53;
+  margin-bottom: 1rem;
 `;
 
 const getInitials = (name) => {
@@ -192,74 +165,68 @@ const getInitials = (name) => {
 const Stars = styled.div`
   display: flex;
   gap: 0.25rem;
-  margin-bottom: 0.7rem;
+  margin-bottom: 0.85rem;
 `;
 
 const StarIcon = styled(motion.div)`
-  color: #f59e0b;
+  color: #a76b53;
 
   svg {
-    width: 1rem;
-    height: 1rem;
+    width: 0.95rem;
+    height: 0.95rem;
   }
 `;
 
 const ReviewText = styled.p`
-  margin: 0 0 0.9rem;
-  color: #4b5563;
+  margin: 0 0 1rem;
+  color: #5c5957;
   font-size: 0.9rem;
-  line-height: 1.6;
+  line-height: 1.65;
 `;
 
 const Author = styled.div``;
 
 const Name = styled.p`
   margin: 0;
-  font-weight: 800;
-  color: #111827;
+  font-weight: 700;
+  color: #2c2a29;
 `;
 
 const Role = styled.p`
   margin: 0.15rem 0 0;
   font-size: 0.78rem;
-  color: #6b7280;
-`;
-
-const HoverGradient = styled(motion.div)`
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 20% 18%, rgba(236, 72, 153, 0.12), transparent 55%),
-    radial-gradient(circle at 85% 35%, rgba(34, 193, 195, 0.10), transparent 55%),
-    linear-gradient(180deg, rgba(249, 115, 22, 0.06), transparent 60%);
+  color: #8c8885;
 `;
 
 const Highlight = styled(motion.span)`
-  color: #f97316;
-  font-weight: 800;
-  border-radius: 0.35rem;
+  color: #a76b53;
+  font-weight: 700;
+  border-radius: 2px;
   padding: 0 0.2rem;
 `;
 
 const Footer = styled(motion.div)`
   text-align: center;
-  margin-top: 2.75rem;
+  margin-top: 3.5rem;
 `;
 
 const Button = styled(motion.button)`
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  border: 0;
+  border: 1px solid rgba(167, 107, 83, 0.35);
   cursor: pointer;
-  padding: 0.95rem 1.6rem;
-  border-radius: 999px;
-  color: #ffffff;
-  font-weight: 800;
-  background: linear-gradient(135deg, #ff6b6b, #ff9f43, #ff6fa5);
-  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.18);
+  padding: 0.95rem 2.2rem;
+  border-radius: 4px;
+  color: #a76b53;
+  font-weight: 600;
+  background: transparent;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #a76b53;
+    color: white;
+  }
 `;
 
 const ArrowWrap = styled(motion.span)`
@@ -279,7 +246,7 @@ const highlightText = (text, highlight, inView) => {
       <Highlight
         key={index}
         initial={{ backgroundColor: 'transparent' }}
-        animate={inView ? { backgroundColor: 'rgba(249, 115, 22, 0.15)' } : {}}
+        animate={inView ? { backgroundColor: 'rgba(167, 107, 83, 0.08)' } : {}}
         transition={{ delay: 1.3, duration: 0.5 }}
       >
         {part}
@@ -300,12 +267,12 @@ export const ClientReviews = () => {
     <Section ref={ref}>
       <Backdrop>
         <Blob
-          style={{ left: '-140px', top: '-160px', background: 'linear-gradient(135deg, rgba(236,72,153,0.55), rgba(249,115,22,0.35))' }}
+          style={{ left: '-140px', top: '-160px', background: 'rgba(217, 160, 128, 0.2)' }}
           animate={{ y: [0, 18, 0], scale: [1, 1.08, 1] }}
           transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
         />
         <Blob
-          style={{ right: '-160px', bottom: '-180px', background: 'linear-gradient(135deg, rgba(34,193,195,0.45), rgba(99,102,241,0.32))' }}
+          style={{ right: '-160px', bottom: '-180px', background: 'rgba(232, 196, 176, 0.18)' }}
           animate={{ y: [0, -16, 0], scale: [1.05, 1, 1.05] }}
           transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
         />
@@ -337,37 +304,23 @@ export const ClientReviews = () => {
           {reviews.map((review, index) => (
             <ReviewCard
               key={review.name}
-              initial={{ opacity: 0, y: 50, rotateY: -15 }}
-              animate={inView ? { opacity: 1, y: 0, rotateY: 0 } : {}}
+              initial={{ opacity: 0, y: 40 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{
-                delay: 0.2 + index * 0.12,
+                delay: 0.2 + index * 0.1,
                 type: 'spring',
                 stiffness: 100,
               }}
               whileHover={{
-                y: -8,
-                rotateZ: index % 2 === 0 ? -0.6 : 0.6,
-                scale: 1.02,
-                transition: { duration: 0.3 },
+                y: -6,
               }}
             >
-              <CardGlow
-                whileHover={{ opacity: 0.7 }}
-                transition={{ duration: 0.25 }}
-              />
-              <CardBorder
-                whileHover={{ opacity: 1 }}
-                transition={{ duration: 0.25 }}
-              />
               <CardInner>
-                <QuoteIcon
-                  animate={{ rotate: [0, 10, -10, 0] }}
-                  transition={{ duration: 4, repeat: Infinity }}
-                >
+                <QuoteIcon>
                   <Quote />
                 </QuoteIcon>
 
-                <Avatar whileHover={{ rotate: 360 }} transition={{ duration: 0.6 }}>
+                <Avatar>
                   {getInitials(review.name)}
                 </Avatar>
 
@@ -392,12 +345,6 @@ export const ClientReviews = () => {
                   <Name>{review.name}</Name>
                   <Role>{review.role}</Role>
                 </Author>
-
-                <HoverGradient
-                  initial={{ opacity: 0 }}
-                  whileHover={{ opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                />
               </CardInner>
             </ReviewCard>
           ))}
@@ -409,10 +356,10 @@ export const ClientReviews = () => {
           transition={{ delay: 0.9 }}
         >
           <Link to="/testimonials">
-            <Button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               Explore More Reviews
               <ArrowWrap
-                animate={{ x: [0, 5, 0] }}
+                animate={{ x: [0, 4, 0] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
               >
                 <ArrowRight />
@@ -426,3 +373,4 @@ export const ClientReviews = () => {
 };
 
 export default ClientReviews;
+

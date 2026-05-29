@@ -6,75 +6,61 @@ import styled, { keyframes } from 'styled-components';
 
 const storyPoints = [
   {
+    key: '2011',
     year: '2011',
     title: 'The Beginning',
     description:
       'HappyFeet Activity Club was founded to create joyful, creative experiences for children through activities and workshops.',
     icon: Rocket,
-    color: '#ff7a7a',
+    color: '#a76b53',
   },
   {
+    key: '2014',
     year: '2014',
     title: 'Growing Smiles',
     description:
       'HappyFeet expanded into workshops and small events, earning trust from families and schools.',
     icon: Star,
-    color: '#1abc9c',
+    color: '#a76b53',
   },
   {
+    key: '2018',
     year: '2018',
     title: 'Full Service Event Management',
     description:
       'HappyFeet became a complete event company, managing décor, games, activities, and execution.',
     icon: Trophy,
-    color: '#f39c12',
+    color: '#a76b53',
   },
   {
+    key: 'Today',
     year: 'Today',
     title: 'A Trusted Multi-Age Event Brand',
     description:
       "Today, HappyFeet plans diverse celebrations for all ages, with a strong focus on kids.",
     icon: Heart,
-    color: '#ff6fa5',
+    color: '#a76b53',
   },
 ];
-
-const floatSparkle = keyframes`
-  0% {
-    transform: translate3d(0, 0, 0) scale(0.7);
-    opacity: 0;
-  }
-  20% {
-    opacity: 0.9;
-  }
-  60% {
-    transform: translate3d(10px, -12px, 0) scale(1);
-    opacity: 0.9;
-  }
-  100% {
-    transform: translate3d(18px, -20px, 0) scale(0.7);
-    opacity: 0;
-  }
-`;
 
 const StorySection = styled.section`
   position: relative;
   overflow: hidden;
-  padding: 5rem 1.5rem 4rem;
-  background: transparent;
+  padding: 6rem 1.5rem 5rem;
+  background: #fcfaf6;
 `;
 
 const BackgroundLayer = styled.div`
   position: absolute;
   inset: 0;
-  opacity: 0.7;
+  opacity: 0.6;
   pointer-events: none;
 `;
 
 const BackgroundCircle = styled(motion.div)`
   position: absolute;
-  border-radius: 999px;
-  filter: blur(45px);
+  border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+  filter: blur(60px);
 `;
 
 const SectionHeader = styled(motion.div)`
@@ -90,8 +76,8 @@ const SectionBadge = styled(motion.span)`
   justify-content: center;
   padding: 0.4rem 1.4rem;
   border-radius: 999px;
-  background: rgba(108, 99, 255, 0.08);
-  color: #ff6b6b;
+  background: rgba(167, 107, 83, 0.08);
+  color: #a76b53;
   font-weight: 600;
   font-size: 0.78rem;
   text-transform: uppercase;
@@ -100,16 +86,16 @@ const SectionBadge = styled(motion.span)`
 `;
 
 const SectionTitle = styled.h2`
-  font-size: clamp(2.4rem, 4vw, 3rem);
-  font-weight: 800;
-  color: #111827;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.4rem, 5vw, 3.2rem);
+  font-weight: 400;
+  color: #2c2a29;
   margin: 0;
 `;
 
 const GradientWord = styled.span`
-  background: linear-gradient(135deg, #f97316, #ec4899);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #a76b53;
+  font-style: italic;
 `;
 
 const TimelineWrapper = styled.div`
@@ -125,9 +111,8 @@ const TimelineLine = styled(motion.div)`
   left: 24px;
   top: 0;
   bottom: 0;
-  width: 3px;
-  border-radius: 999px;
-  background: linear-gradient(to bottom, #ff6b6b, #ff9f43, #ffd166);
+  width: 1px;
+  background: rgba(167, 107, 83, 0.35);
   transform-origin: top;
   z-index: 0;
 
@@ -141,7 +126,7 @@ const StoryItemRow = styled(motion.div)`
   position: relative;
   display: flex;
   align-items: center;
-  margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
 
   @media (min-width: 768px) {
     flex-direction: ${({ align }) => (align === 'left' ? 'row' : 'row-reverse')};
@@ -160,40 +145,22 @@ const TimelineDotWrapper = styled(motion.div)`
 `;
 
 const TimelineDot = styled(motion.div)`
-  width: 3rem;
-  height: 3rem;
+  width: 2.6rem;
+  height: 2.6rem;
   border-radius: 999px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.35);
+  box-shadow: 0 8px 24px rgba(167, 107, 83, 0.15);
   position: relative;
   z-index: 1;
+  border: 1px solid rgba(255, 255, 255, 0.9);
 
   svg {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1.15rem;
+    height: 1.15rem;
     color: #ffffff;
   }
-`;
-
-const PulseRing = styled(motion.div)`
-  position: absolute;
-  inset: 0;
-  border-radius: 999px;
-  z-index: 0;
-`;
-
-const SparkleDot = styled.span`
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  border-radius: 999px;
-  pointer-events: none;
-  filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.7));
-  animation: ${floatSparkle} 3.2s ease-in-out infinite;
-  transition: opacity 0.3s ease;
-  z-index: 0;
 `;
 
 const StoryCardContainer = styled.div`
@@ -203,70 +170,45 @@ const StoryCardContainer = styled.div`
   @media (min-width: 768px) {
     margin-left: 0;
     width: 50%;
-    padding-right: ${({ align }) => (align === 'left' ? '4rem' : '0')};
-    padding-left: ${({ align }) => (align === 'right' ? '4rem' : '0')};
+    padding-right: ${({ align }) => (align === 'left' ? '3.5rem' : '0')};
+    padding-left: ${({ align }) => (align === 'right' ? '3.5rem' : '0')};
   }
 `;
 
 const StoryCard = styled(motion.div)`
   position: relative;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.96);
-  border-radius: 1.25rem;
-  padding: 1.7rem 1.6rem;
-  border: 1px solid rgba(148, 163, 184, 0.35);
-  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
-  backdrop-filter: blur(16px);
+  background: #fdfcf0;
+  border-radius: 4px;
+  padding: 1.8rem 1.6rem;
+  border: 1px solid rgba(167, 107, 83, 0.22);
+  box-shadow: 0 10px 30px rgba(167, 107, 83, 0.04);
   transition: transform 0.35s ease, box-shadow 0.35s ease;
   z-index: 0;
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: -1px;
-    border-radius: inherit;
-    background: radial-gradient(circle at top, rgba(255, 255, 255, 0.8), transparent 60%);
-    opacity: 0;
-    transform: translate3d(0, 30%, 0);
-    transition: opacity 0.45s ease, transform 0.45s ease;
-    pointer-events: none;
-    z-index: -1;
-  }
-
-  &:hover::before {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-
-  &:hover .story-title {
-    color: #f97316;
-  }
 `;
 
 const YearPill = styled(motion.span)`
   display: inline-block;
-  padding: 0.35rem 0.9rem;
+  padding: 0.3rem 0.85rem;
   border-radius: 999px;
-  font-weight: 700;
-  font-size: 0.8rem;
-  margin-bottom: 0.75rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-weight: 600;
+  font-size: 0.78rem;
+  margin-bottom: 0.85rem;
 `;
 
 const StoryTitle = styled.h3`
-  font-size: 1.3rem;
-  font-weight: 800;
-  color: #111827;
-  margin: 0 0 0.45rem 0;
-  position: relative;
-  z-index: 1;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: #2c2a29;
+  margin: 0 0 0.55rem 0;
   transition: color 0.3s ease;
 `;
 
 const StoryDescription = styled.p`
-  font-size: 0.98rem;
-  color: #4b5563;
-  line-height: 1.7;
+  font-size: 0.95rem;
+  color: #5c5957;
+  line-height: 1.65;
   margin: 0;
 `;
 
@@ -283,23 +225,23 @@ const OurStory = () => {
           style={{
             top: '-90px',
             left: '-70px',
-            width: '260px',
-            height: '260px',
-            background: 'rgba(255, 135, 90, 0.9)',
+            width: '280px',
+            height: '280px',
+            background: 'rgba(217, 160, 128, 0.18)',
           }}
-          animate={{ y: [0, 18, 0] }}
-          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+          animate={{ y: [0, 15, 0] }}
+          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
         />
         <BackgroundCircle
           style={{
             bottom: '-130px',
             right: '-90px',
-            width: '340px',
-            height: '340px',
-            background: 'rgba(96, 165, 250, 0.9)',
+            width: '320px',
+            height: '320px',
+            background: 'rgba(232, 196, 176, 0.15)',
           }}
-          animate={{ y: [0, -22, 0] }}
-          transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
+          animate={{ y: [0, -15, 0] }}
+          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
         />
       </BackgroundLayer>
 
@@ -333,72 +275,44 @@ const OurStory = () => {
 
           return (
             <StoryItemRow
-              key={point.year}
+              key={point.key}
               align={isLeft ? 'left' : 'right'}
-              initial={{ opacity: 0, x: isLeft ? -50 : 50 }}
+              initial={{ opacity: 0, x: isLeft ? -40 : 40 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ delay: 0.3 + index * 0.2, duration: 0.6 }}
+              transition={{ delay: 0.3 + index * 0.15, duration: 0.6 }}
             >
               <TimelineDotWrapper
                 initial={{ scale: 0 }}
                 animate={inView ? { scale: 1 } : {}}
-                transition={{ delay: 0.5 + index * 0.2, type: 'spring' }}
+                transition={{ delay: 0.5 + index * 0.15, type: 'spring' }}
               >
                 <TimelineDot
-                  whileHover={{ scale: 1.2, rotate: 360 }}
-                  transition={{ duration: 0.6, ease: 'easeInOut' }}
+                  whileHover={{ scale: 1.15 }}
                   style={{ backgroundColor: point.color }}
                 >
                   <Icon />
                 </TimelineDot>
-                <PulseRing
-                  style={{ backgroundColor: point.color }}
-                  animate={{ scale: [1, 1.6, 1], opacity: [0.5, 0, 0.5] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
-                />
               </TimelineDotWrapper>
 
               <StoryCardContainer align={isLeft ? 'left' : 'right'}>
                 <StoryCard
                   whileHover={{
-                    y: -8,
-                    scale: 1.02,
-                    rotateX: 2,
-                    rotateY: -2,
-                    boxShadow: '0 28px 70px -18px rgba(15, 23, 42, 0.45)',
+                    y: -4,
+                    borderColor: 'rgba(167, 107, 83, 0.45)',
+                    boxShadow: '0 16px 35px rgba(167, 107, 83, 0.06)',
                   }}
-                  transition={{ duration: 0.4 }}
+                  transition={{ duration: 0.3 }}
                 >
                   <YearPill
-                    whileHover={{ y: -2, scale: 1.04 }}
                     style={{
-                      backgroundColor: `${point.color}1a`,
+                      backgroundColor: `${point.color}12`,
                       color: point.color,
                     }}
                   >
                     {point.year}
                   </YearPill>
-                  <StoryTitle className="story-title">{point.title}</StoryTitle>
+                  <StoryTitle>{point.title}</StoryTitle>
                   <StoryDescription>{point.description}</StoryDescription>
-
-                  <SparkleDot
-                    className="sparkle-dot"
-                    style={{
-                      top: '12%',
-                      right: '10%',
-                      backgroundColor: point.color,
-                      animationDelay: '0s',
-                    }}
-                  />
-                  <SparkleDot
-                    className="sparkle-dot"
-                    style={{
-                      bottom: '16%',
-                      left: '12%',
-                      backgroundColor: point.color,
-                      animationDelay: '1s',
-                    }}
-                  />
                 </StoryCard>
               </StoryCardContainer>
             </StoryItemRow>
@@ -409,4 +323,4 @@ const OurStory = () => {
   );
 };
 
-export default OurStory;
+export default OurStory;

@@ -4,8 +4,9 @@ import styled from 'styled-components';
 
 const Section = styled.section`
   position: relative;
-  padding: 8rem 0;
+  padding: 6rem 0;
   overflow: hidden;
+  background: #fdfcf0;
 `;
 
 const Background = styled.div`
@@ -13,9 +14,9 @@ const Background = styled.div`
   inset: 0;
   background: linear-gradient(
     90deg,
-    rgba(249, 115, 22, 0.08) 0%,
+    rgba(167, 107, 83, 0.05) 0%,
     rgba(255, 255, 255, 0) 35%,
-    rgba(236, 72, 153, 0.08) 100%
+    rgba(167, 107, 83, 0.05) 100%
   );
   pointer-events: none;
 `;
@@ -28,24 +29,25 @@ const Row = styled(motion.div)`
 
 const BigText = styled.span`
   display: inline-block;
+  font-family: 'Playfair Display', serif;
   font-size: clamp(3.2rem, 5.4vw, 6.6rem);
-  font-weight: 950;
+  font-weight: 400;
   line-height: 1;
   letter-spacing: -0.03em;
-  margin: 0 1rem;
-  background: linear-gradient(90deg, #f97316, #ec4899, #f59e0b);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  margin: 0 1.5rem;
+  color: #a76b53;
 `;
 
 const SmallText = styled.span`
   display: inline-block;
+  font-family: 'Playfair Display', serif;
   font-size: clamp(2rem, 3.6vw, 4rem);
-  font-weight: 900;
+  font-style: italic;
+  font-weight: 400;
   line-height: 1;
   letter-spacing: -0.02em;
-  margin: 0 1rem;
-  color: rgba(17, 24, 39, 0.22);
+  margin: 0 1.5rem;
+  color: rgba(44, 42, 41, 0.15);
 `;
 
 const Spark = styled(motion.span)`
@@ -69,10 +71,10 @@ export const ScrollingQuote = () => {
   });
 
   const x = useTransform(scrollYProgress, [0, 1], ['100%', '-100%']);
-  const rotate = useTransform(scrollYProgress, [0, 1], [5, -5]);
+  const rotate = useTransform(scrollYProgress, [0, 1], [3, -3]);
 
   const x2 = useTransform(scrollYProgress, [0, 1], ['-50%', '50%']);
-  const rotate2 = useTransform(scrollYProgress, [0, 1], [-3, 3]);
+  const rotate2 = useTransform(scrollYProgress, [0, 1], [-2, 2]);
 
   const quote =
     'Creating moments that last forever • Turning dreams into reality • Every event is a masterpiece •';
@@ -115,3 +117,4 @@ export const ScrollingQuote = () => {
 };
 
 export default ScrollingQuote;
+

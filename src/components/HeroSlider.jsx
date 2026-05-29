@@ -37,30 +37,30 @@ const slidesContent = [
   {
     title: "Beautiful Moments. Perfectly Planned.",
     subtitle: "From birthdays to corporate gatherings, we create meaningful experiences filled with joy, laughter and unforgettable memories.",
-    archImg: "/birthday.jpg",
-    leftImg: "/activity1.jpg",
-    rightImg: "/birthday4.jpg"
+    archImg: "/birthday4.jpg",
+    leftImg: "/corporate.jpg",
+    rightImg: "/gallery1.jpg"
   },
   {
     title: "Joyful Play. Creative Learning.",
     subtitle: "Engage in fun-filled activities and hands-on workshops designed to inspire young minds and unleash their imagination.",
-    archImg: "/fiesta.jpeg",
-    leftImg: "/cakepaint1.jpg",
-    rightImg: "/sipnpaint1.jpg"
+    archImg: "/activity8.jpeg",
+    leftImg: "/activity1.jpg",
+    rightImg: "/santa10.jpeg"
   },
   {
     title: "Dream Big. Celebrate Together.",
     subtitle: "Stunning themed decorations and bespoke event styling that turn any ordinary space into a wonderland.",
-    archImg: "/babyshower.jpg",
+    archImg: "/disco.jpg",
     leftImg: "/cooking1.jpg",
-    rightImg: "/babyshower4.jpg"
+    rightImg: "/landing7.jpg"
   },
   {
     title: "Magical Parties. Lasting Memories.",
     subtitle: "Every detail meticulously planned to ensure your special day is absolutely perfect, leaving smiles on every face.",
-    archImg: "/corporate1.jpg",
-    leftImg: "/potpaint.jpg",
-    rightImg: "/corporate4.jpg"
+    archImg: "/sipnpaint2.jpg",
+    leftImg: "/landing2.jpeg",
+    rightImg: "/landing1.jpeg"
   }
 ];
 
@@ -157,170 +157,170 @@ export const HeroSlider = () => {
           }}
         />
 
-      {/* Main Grid Content */}
-      <GridWrapper>
-        {/* Left Column */}
-        <LeftColumn>
-          <Tagline
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <span>✦ &nbsp; PLAN. CELEBRATE. CHERISH. &nbsp; ✦</span>
-          </Tagline>
+        {/* Main Grid Content */}
+        <GridWrapper>
+          {/* Left Column */}
+          <LeftColumn>
+            <Tagline
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <span>✦ &nbsp; PLAN. CELEBRATE. CHERISH. &nbsp; ✦</span>
+            </Tagline>
 
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentIndex}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentIndex}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.6, ease: "easeInOut" }}
+              >
+                <Title>
+                  {titleParts[0]}.
+                  {titleParts[1] && titleParts[1].trim() && (
+                    <>
+                      <br />
+                      <span>{titleParts[1].trim()}.</span>
+                    </>
+                  )}
+                </Title>
+                <Subtitle>{slide.subtitle}</Subtitle>
+              </motion.div>
+            </AnimatePresence>
+
+            <ButtonGroup
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <CTAButton onClick={() => navigate("/book-event")}>
+                BOOK YOUR EVENT <ArrowRight size={16} style={{ marginLeft: "8px" }} />
+              </CTAButton>
+              <SecondaryButton onClick={() => navigate("/gallery")}>
+                EXPLORE MORE
+              </SecondaryButton>
+            </ButtonGroup>
+
+            <StatsCard
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.6, ease: "easeInOut" }}
+              transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <Title>
-                {titleParts[0]}.
-                {titleParts[1] && titleParts[1].trim() && (
-                  <>
-                    <br />
-                    <span>{titleParts[1].trim()}.</span>
-                  </>
-                )}
-              </Title>
-              <Subtitle>{slide.subtitle}</Subtitle>
-            </motion.div>
-          </AnimatePresence>
+              <StatItem>
+                <BalloonIcon size={24} />
+                <StatText>
+                  <h4>500+</h4>
+                  <p>Happy Events</p>
+                </StatText>
+              </StatItem>
+              <StatDivider />
+              <StatItem>
+                <PopperIcon size={24} />
+                <StatText>
+                  <h4>50+</h4>
+                  <p>Unique Themes</p>
+                </StatText>
+              </StatItem>
+              <StatDivider />
+              <StatItem>
+                <SmileIcon size={24} />
+                <StatText>
+                  <h4>100%</h4>
+                  <p>Smiles & Joy</p>
+                </StatText>
+              </StatItem>
+            </StatsCard>
+          </LeftColumn>
 
-          <ButtonGroup
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+          {/* Right Column */}
+          <RightColumn
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <CTAButton onClick={() => navigate("/book-event")}>
-              BOOK YOUR EVENT <ArrowRight size={16} style={{ marginLeft: "8px" }} />
-            </CTAButton>
-            <SecondaryButton onClick={() => navigate("/gallery")}>
-              EXPLORE MORE
-            </SecondaryButton>
-          </ButtonGroup>
+            <CollageContainer>
+              <ArchOutline
+                animate={{ rotate: [0, 0.5, 0, -0.5, 0] }}
+                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <SweepCircleOutline
+                animate={{ rotate: [0, 360] }}
+                transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
+              />
+              <DecorativeCircle
+                animate={{ scale: [1, 1.06, 1], y: [0, -4, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <AnimatePresence mode="wait">
+                <CollageImageWrapper key={currentIndex}>
+                  {/* 1. Main Arch image */}
+                  <ImageOne
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -15 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <img src={slide.archImg} alt="Arch Event Setup" />
+                  </ImageOne>
 
-          <StatsCard
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <StatItem>
-              <BalloonIcon size={24} />
-              <StatText>
-                <h4>500+</h4>
-                <p>Happy Events</p>
-              </StatText>
-            </StatItem>
-            <StatDivider />
-            <StatItem>
-              <PopperIcon size={24} />
-              <StatText>
-                <h4>50+</h4>
-                <p>Unique Themes</p>
-              </StatText>
-            </StatItem>
-            <StatDivider />
-            <StatItem>
-              <SmileIcon size={24} />
-              <StatText>
-                <h4>100%</h4>
-                <p>Smiles & Joy</p>
-              </StatText>
-            </StatItem>
-          </StatsCard>
-        </LeftColumn>
+                  {/* 2. Bottom Left Image */}
+                  <ImageTwo
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 20 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                  >
+                    <img src={slide.leftImg} alt="Kids Crafting Activity" />
+                  </ImageTwo>
 
-        {/* Right Column */}
-        <RightColumn
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <CollageContainer>
-            <ArchOutline 
-              animate={{ rotate: [0, 0.5, 0, -0.5, 0] }}
-              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            />
-            <SweepCircleOutline 
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
-            />
-            <DecorativeCircle 
-              animate={{ scale: [1, 1.06, 1], y: [0, -4, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            />
-            <AnimatePresence mode="wait">
-              <CollageImageWrapper key={currentIndex}>
-                {/* 1. Main Arch image */}
-                <ImageOne
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
-                  transition={{ duration: 0.6 }}
-                >
-                  <img src={slide.archImg} alt="Arch Event Setup" />
-                </ImageOne>
+                  {/* 3. Bottom Right Image */}
+                  <ImageThree
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                  >
+                    <img src={slide.rightImg} alt="Theme Table Decor" />
+                  </ImageThree>
 
-                {/* 2. Bottom Left Image */}
-                <ImageTwo
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 20 }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                >
-                  <img src={slide.leftImg} alt="Kids Crafting Activity" />
-                </ImageTwo>
-
-                {/* 3. Bottom Right Image */}
-                <ImageThree
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                >
-                  <img src={slide.rightImg} alt="Theme Table Decor" />
-                </ImageThree>
-
-                {/* 4. Center Badge */}
-                <BadgeContainer
-                  initial={{ opacity: 0, scale: 0.8, rotate: -15 }}
-                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                  exit={{ opacity: 0, scale: 0.8, rotate: 15 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                >
-                  <svg viewBox="0 0 120 120" width="100%" height="100%">
-                    <circle cx="60" cy="60" r="55" fill="#fbebe1" stroke="#ecd8c7" strokeWidth="1.5" />
-                    <circle cx="60" cy="60" r="49" fill="none" stroke="#ecd8c7" strokeWidth="1" strokeDasharray="3 3" />
-                    <path id="badge-curve" d="M 22 60 A 38 38 0 0 1 98 60" fill="none" />
-                    <text font-family="'Inter', sans-serif" font-size="6.8" font-weight="700" fill="#9e634e" letter-spacing="1.1">
-                      <textPath href="#badge-curve" startOffset="50%" text-anchor="middle">
-                        MAKING MEMORIES
-                      </textPath>
-                    </text>
-                    <path d="M 60 52 C 58.5 50.5, 56 50.5, 56 52.5 C 56 54.5, 60 57.5, 60 57.5 C 60 57.5, 64 54.5, 64 52.5 C 64 50.5, 61.5 50.5, 60 52 Z" fill="#9e634e" />
-                    <text x="60" y="75" font-family="'Playfair Display', serif" font-size="19" font-weight="800" fill="#9e634e" text-anchor="middle">
-                      500+
-                    </text>
-                    <text x="60" y="87" font-family="'Inter', sans-serif" font-size="5.8" font-weight="700" fill="#9e634e" letter-spacing="0.8" text-anchor="middle">
-                      HAPPY EVENTS
-                    </text>
-                  </svg>
-                </BadgeContainer>
-              </CollageImageWrapper>
-            </AnimatePresence>
-          </CollageContainer>
-        </RightColumn>
-      </GridWrapper>
-      {/* Curvy Bottom SVG Shape */}
-      <BottomCurve>
-        <svg viewBox="0 0 1440 180" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-          <path d="M0,80 C320,180 640,20 960,110 C1180,170 1340,110 1440,80 L1440,180 L0,180 Z" fill="#fdfcf0" />
-        </svg>
-      </BottomCurve>
+                  {/* 4. Center Badge */}
+                  <BadgeContainer
+                    initial={{ opacity: 0, scale: 0.8, rotate: -15 }}
+                    animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                    exit={{ opacity: 0, scale: 0.8, rotate: 15 }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                  >
+                    <svg viewBox="0 0 120 120" width="100%" height="100%">
+                      <circle cx="60" cy="60" r="55" fill="#fbebe1" stroke="#ecd8c7" strokeWidth="1.5" />
+                      <circle cx="60" cy="60" r="49" fill="none" stroke="#ecd8c7" strokeWidth="1" strokeDasharray="3 3" />
+                      <path id="badge-curve" d="M 22 60 A 38 38 0 0 1 98 60" fill="none" />
+                      <text font-family="'Inter', sans-serif" font-size="6.8" font-weight="700" fill="#9e634e" letter-spacing="1.1">
+                        <textPath href="#badge-curve" startOffset="50%" text-anchor="middle">
+                          MAKING MEMORIES
+                        </textPath>
+                      </text>
+                      <path d="M 60 52 C 58.5 50.5, 56 50.5, 56 52.5 C 56 54.5, 60 57.5, 60 57.5 C 60 57.5, 64 54.5, 64 52.5 C 64 50.5, 61.5 50.5, 60 52 Z" fill="#9e634e" />
+                      <text x="60" y="75" font-family="'Playfair Display', serif" font-size="19" font-weight="800" fill="#9e634e" text-anchor="middle">
+                        500+
+                      </text>
+                      <text x="60" y="87" font-family="'Inter', sans-serif" font-size="5.8" font-weight="700" fill="#9e634e" letter-spacing="0.8" text-anchor="middle">
+                        HAPPY EVENTS
+                      </text>
+                    </svg>
+                  </BadgeContainer>
+                </CollageImageWrapper>
+              </AnimatePresence>
+            </CollageContainer>
+          </RightColumn>
+        </GridWrapper>
+        {/* Curvy Bottom SVG Shape */}
+        <BottomCurve>
+          <svg viewBox="0 0 1440 180" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <path d="M0,80 C320,180 640,20 960,110 C1180,170 1340,110 1440,80 L1440,180 L0,180 Z" fill="#fdfcf0" />
+          </svg>
+        </BottomCurve>
       </HeroContainer>
     </>
   );
